@@ -13,6 +13,7 @@ import { LoginComponent } from './Containers/login/login.component';
 import { ChecklistComponent } from './Containers/checklist/checklist.component';
 import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
+import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 
 
 
@@ -26,7 +27,8 @@ import { AboutComponent } from './Components/about/about.component';
     LoginComponent,
     ChecklistComponent,
     TitleComponent,
-    AboutComponent
+    AboutComponent,
+    WalkthroughComponent
   ],
   imports: [
     BrowserModule,
