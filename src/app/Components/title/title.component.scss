@@ -1,46 +1,92 @@
-.titel, .titel * {
-    box-sizing: border-box;
-    }
-.titel {
-   display: flex;
+// .titel, .titel * {
+//    box-sizing: border-box;
+//    }
+// .titel {
+//   display: flex;
+//    flex-direction: row;
+//    align-items: flex-start;
+//    justify-content: flex-start;
+//    flex-shrink: 0;
+//    width: 60%;
+//    margin: auto;
+//    padding-top: 70px;
+//    padding-bottom: 70px;
+//   }
+
+// .titlar {
+//   flex-shrink: 0;
+//    width: 588px;
+//    height: 178px;
+//    position: static;
+   
+   
+//   }
+
+// .titel-rubrik {
+//   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+//    text-align: left;
+//    font: 400 72px/90px 'Franklin Gothic Demi', sans-serif;
+//    left: 0px;
+//   top: 0px;
+//    width: 588px;
+//   }
+
+// .titel-underrubrik {
+//   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+//    text-align: left;
+//    font: 400 20px/32px 'Franklin Gothic Book', sans-serif;
+//    left: 0px;
+//   top: 114px;
+//    width: 497px;
+//   }
+
+// .image-4 {
+//   flex-shrink: 0;
+//    width: 342px;
+//    height: 307px;
+//    position: relative;
+//   }
+
+
+
+
+  .titel {
+    display: flex;
     flex-direction: row;
     gap: 276px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
     position: relative;
-   }
-
-.title {
-   flex-shrink: 0;
+    margin-top: 50px;
+  }
+  .titlar {
+    flex-shrink: 0;
     width: 588px;
     height: 178px;
     position: static;
-   }
-
-.xlent-onboarding {
-   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+  }
+  .titel-rubrik {
+    color: var(--tonalpalette-primary-primary-900, #0f0b2e);
     text-align: left;
-    font: 400 72px/90px 'Franklin Gothic Demi', sans-serif;
+    font: 400 72px/90px "Franklin Gothic Demi", sans-serif;
     position: absolute;
     left: 0px;
-   top: 0px;
+    top: 0px;
     width: 588px;
-   }
-
-.h-r-f-r-du-en-introduktion-till-din-arbetsplats-som-nyanst-lld {
-   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+  }
+  .titel-underrubrik {
+    color: var(--tonalpalette-primary-primary-900, #0f0b2e);
     text-align: left;
+    font: 400 20px/32px "Franklin Gothic Book", sans-serif;
     position: absolute;
     left: 0px;
-   top: 114px;
+    top: 180px;
     width: 497px;
-   }
-
-.image-4 {
-   flex-shrink: 0;
+  }
+  .image-4 {
+    flex-shrink: 0;
     width: 342px;
     height: 307px;
     position: relative;
-   }
-
+  }

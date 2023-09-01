@@ -14,6 +14,7 @@ import { ChecklistComponent } from './Containers/checklist/checklist.component';
 import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -28,13 +29,15 @@ import { WalkthroughComponent } from './Components/walkthrough/walkthrough.compo
     ChecklistComponent,
     TitleComponent,
     AboutComponent,
-    WalkthroughComponent
+    WalkthroughComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
