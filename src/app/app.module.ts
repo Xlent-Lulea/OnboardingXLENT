@@ -32,11 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 import { MatOptionModule } from '@angular/material/core';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
-
-
-
 
 
 
@@ -59,6 +57,7 @@ import { LoginBoxComponent } from './Components/login-box/login-box.component';
     ManageTasksComponent,
     ConfirmDialogComponent,
     LoginBoxComponent,
+    KnowledgeComponent,
     
   ],
   imports: [
