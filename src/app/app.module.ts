@@ -23,7 +23,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { ExpansionPanelComponent } from './Components/expansion-panel/expansion-panel.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
 import { ManagePersonsComponent } from './Components/manage-persons/manage-persons.component';
 import { ManageTasksComponent } from './Components/manage-tasks/manage-tasks.component';
@@ -33,6 +33,10 @@ import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { LoginBoxComponent } from './Components/login-box/login-box.component';
+
+
+
 
 
 
@@ -53,7 +57,8 @@ import { MatOptionModule } from '@angular/material/core';
     AdminPageComponent,
     ManagePersonsComponent,
     ManageTasksComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LoginBoxComponent,
     
   ],
   imports: [
@@ -74,6 +79,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatDialogModule,
     MatSelectModule,
     MatOptionModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
