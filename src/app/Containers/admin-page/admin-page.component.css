@@ -1,0 +1,3 @@
+router-outlet {
+    margin-top: 100px; /* Eller hur mycket höjd din header har, plus lite extra marginal. */
+}
