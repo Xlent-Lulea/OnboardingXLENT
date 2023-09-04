@@ -1,0 +1,63 @@
+.om-xlent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 1214px;
+    position: relative;
+    margin-bottom: 50px;
+  }
+  .rectangle-26 {
+    background: #ffffff;
+    border-radius: 12px;
+    flex-shrink: 0;
+    width: 1214px;
+    height: 629px;
+    position: relative;
+  }
+  .image-5 {
+    border-radius: 23px;
+    flex-shrink: 0;
+    width: 507px;
+    height: 285px;
+    position: absolute;
+    left: 107px;
+    top: calc(50% - 142.5px);
+  }
+  .frame-162792 {
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: absolute;
+    left: 739px;
+    top: calc(50% - 139.5px);
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .om-xlent2 {
+    color: var(--color-palette-black, #000000);
+    text-align: left;
+    font: 400 40px/48px "Franklin Gothic Demi", sans-serif;
+    position: relative;
+    width: 438px;
+  }
+  .lorem-ipsum-dolor-sit-amet-consectetur-amet-elementum-nec-lectus-donec-augue-dis-urna-non-nam-integer-interdum-ut-sit-condimentum-neque-tincidunt-ullamcorper-tellus-aliquet-erat-vitae-fermentum-ut-pellentesque-in-pharetra-pellentesque-sapien-tristique-blandit-semper {
+    color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px "Franklin Gothic Book", sans-serif);
+    position: relative;
+    width: 400px;
+    height: 185px;
+  }

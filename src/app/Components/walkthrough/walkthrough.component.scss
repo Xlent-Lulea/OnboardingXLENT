@@ -1,0 +1,180 @@
+.walkthrough {
+    background: var(--color-palette-white-background, #ffffff);
+    border-radius: 12px;
+    padding: 64px 30px 64px 87px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .benefits {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: center;
+    //justify-content: center;
+    flex-shrink: 0;
+    width: 1097px;
+    height: 120px;
+    position: relative;
+  }
+  .container-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .text-label {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    transform-origin: 0 0;
+    transform: rotate(-0.013deg) scale(1, 1);
+  }
+  .directions-walk {
+    flex-shrink: 0;
+    position: relative;
+    transform: translate(0px, 0px);
+    overflow: visible;
+  }
+  .genomg-ng {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+  }
+  .text-1 {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+    width: 315px;
+  }
+  .container-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 315px;
+    position: relative;
+  }
+  .checklista {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    transform-origin: 0 0;
+    transform: rotate(-0.013deg) scale(1, 1);
+  }
+  .fact-check {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    transform-origin: 0 0;
+    transform: rotate(0.013deg) scale(1, 1);
+    overflow: hidden;
+  }
+  .group {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+  }
+  .group2 {
+    position: absolute;
+    inset: 0;
+  }
+  .group3 {
+    position: absolute;
+    left: 2.67px;
+    top: 4px;
+    overflow: visible;
+  }
+  .checklistan {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+  }
+  .text-2 {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+    width: 318px;
+  }
+  .container2 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .text-label2 {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    transform-origin: 0 0;
+    transform: rotate(-0.013deg) scale(1, 1);
+  }
+  .vector5 {
+    flex-shrink: 0;
+    position: relative;
+    transform: translate(0px, 0px);
+    overflow: visible;
+  }
+  .l-nkar {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+  }
+  .text-3 {
+    color: var(--third, #000000);
+    text-align: left;
+    
+    position: relative;
+    width: 315px;
+  }
+  .buttonwalktrough {
+    
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 67px;
+    position: relative;
+  }
+  .g-till-genomg-ng {
+    color: #000000;
+    text-align: left;
+    font: 400 16px "Inter", sans-serif;
+    position: absolute;
+    left: 53px;
+    top: 24px;
+  }

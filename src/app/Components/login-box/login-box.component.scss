@@ -1,0 +1,74 @@
+.container, .container * {
+     box-sizing: border-box;
+     }
+     .container {
+      display: flex;
+      flex-direction: column;
+      gap: 70px;
+      align-items: center;
+      
+      justify-content: center;
+      flex-wrap: wrap;
+      align-self: stretch;
+      flex: 1;
+      position: relative;
+    }
+    
+ .v-lkommen-till-xlent-onboarding {
+     font: 400 36px/90px 'Franklin Gothic Demi', sans-serif;
+     margin-top: 50px;
+     
+    }
+
+ .frame-163018 {
+     display: flex;
+     background: #ffffff;
+     border-radius: 23px;
+     padding: 0px 38px 0px 38px;
+     
+     width: 465px;
+     height: 416px;
+     position: relative;
+    }
+
+ .v-lj-din-anv-ndare {
+     color: #000000;
+     text-align: center;
+     font: 400 20px/90px 'Franklin Gothic Book', sans-serif;
+     position: absolute;
+     left: 154px;
+     top: 21px;
+     display: flex;
+     align-items: center;
+     justify-content: center}
+
+ .vector {
+     position: absolute;
+     left: 149px;
+     top: 102px;
+     overflow: visible;
+    }
+
+ .listbox-component {
+     width: 308px;
+     height: 289px;
+     position: absolute;
+     left: 130px;
+    top: 312px;
+    }
+
+.knapp-next{
+     width: 308px;
+     height: 289px;
+     position: absolute;
+     left: 137px;
+     top: 450px;
+    
+}
+
+
+.loginButton  {
+   width: 200px;
+   height: 50px;
+   
+}
