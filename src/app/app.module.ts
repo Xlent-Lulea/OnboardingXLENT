@@ -15,6 +15,7 @@ import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
+import { LinksComponent } from './Containers/links/links.component';
 
 
 
@@ -30,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     TitleComponent,
     AboutComponent,
     WalkthroughComponent,
+    LinksComponent,
     
   ],
   imports: [
