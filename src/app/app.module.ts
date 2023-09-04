@@ -16,6 +16,7 @@ import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpanel.component';
+import { LinksComponent } from './Containers/links/links.component';
 
 
 
@@ -32,6 +33,7 @@ import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpa
     AboutComponent,
     WalkthroughComponent,
     ExpansionpanelComponent,
+    LinksComponent,
     
   ],
   imports: [
