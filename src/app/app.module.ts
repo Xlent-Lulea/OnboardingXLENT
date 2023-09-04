@@ -16,6 +16,11 @@ import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
 import { LinksComponent } from './Containers/links/links.component';
+import { LoginBoxComponent } from './Components/login-box/login-box.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 
 
@@ -32,6 +37,7 @@ import { LinksComponent } from './Containers/links/links.component';
     AboutComponent,
     WalkthroughComponent,
     LinksComponent,
+    LoginBoxComponent,
     
   ],
   imports: [
@@ -39,7 +45,9 @@ import { LinksComponent } from './Containers/links/links.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,21 +1,6 @@
 
 
-.hem,
-.hem * {
-  box-sizing: border-box;
-}
-.hem {
-  background: #f2f2f2;
-  display: flex;
-  flex-direction: column;
-  gap: 175px;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  //overflow: hidden;
-}
+
 .container {
   display: flex;
   flex-direction: column;
