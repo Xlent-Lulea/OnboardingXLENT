@@ -16,6 +16,23 @@ import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
 import { LinksComponent } from './Containers/links/links.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material/core';
+import { ExpansionPanelComponent } from './Components/expansion-panel/expansion-panel.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
+import { ManagePersonsComponent } from './Components/manage-persons/manage-persons.component';
+import { ManageTasksComponent } from './Components/manage-tasks/manage-tasks.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 
 
@@ -32,6 +49,11 @@ import { LinksComponent } from './Containers/links/links.component';
     AboutComponent,
     WalkthroughComponent,
     LinksComponent,
+    ExpansionPanelComponent,
+    AdminPageComponent,
+    ManagePersonsComponent,
+    ManageTasksComponent,
+    ConfirmDialogComponent
     
   ],
   imports: [
@@ -39,7 +61,19 @@ import { LinksComponent } from './Containers/links/links.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
