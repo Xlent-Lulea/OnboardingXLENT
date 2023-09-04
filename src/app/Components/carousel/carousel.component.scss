@@ -1,0 +1,50 @@
+p {
+    font-family: Lato;
+  }
+  
+  .carousel{
+    position: relative;
+    background: #999;
+    &-container{
+      width: 500px;
+      min-height: 300px;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    &-item{
+      width: 100%;
+      position: absolute;
+      left: -100%;
+      box-sizing: border-box;
+      transition: left 0.3s;
+      background: #fff;
+      &.active{
+        left: 0;
+        &+.carousel-item{
+          left: 100%;
+        }
+      }
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}){
+          z-index: 4 - $i + 1;
+        }
+      }
+    }
+    &-control{
+      position: absolute;
+      height: 30px;
+      top: calc(50% - 15px);
+      // right: 100%;
+      left: 20px;
+      &.next{
+        left: auto;
+        right: 20px;
+      }
+    }
+  }
+  .agree{
+    background: pink;
+    text-align: center;
+  }

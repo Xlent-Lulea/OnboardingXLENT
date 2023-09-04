@@ -35,7 +35,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 import { MatOptionModule } from '@angular/material/core';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
-
+import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
+import { CarouselComponent } from './Components/carousel/carousel.component';
+import { HelloComponent } from './Components/carousel/hello.component';
 
 
 
@@ -58,6 +60,9 @@ import { LoginBoxComponent } from './Components/login-box/login-box.component';
     ConfirmDialogComponent,
     LoginBoxComponent,
     KnowledgeComponent,
+    OnboardingComponent,
+    CarouselComponent,
+    HelloComponent
     
   ],
   imports: [
