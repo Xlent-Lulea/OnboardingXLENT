@@ -27,7 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ExpansionPanelComponent } from './Components/expansion-panel/expansion-panel.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
+import { AdminPageComponent } from './Containers/adminpage/adminpage.component';
 import { ManagePersonsComponent } from './Components/manage-persons/manage-persons.component';
 import { ManageTasksComponent } from './Components/manage-tasks/manage-tasks.component';
 import { FormsModule } from '@angular/forms';
