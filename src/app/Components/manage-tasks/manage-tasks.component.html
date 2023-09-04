@@ -1,0 +1,60 @@
+<!--task-list.component.html-->
+<div class="task-list">
+  <div class="header">
+    <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox> -->
+
+
+
+    <mat-form-field>
+      <mat-label>TaskType</mat-label>
+      <mat-select [(value)]="selectedTaskType" (selectionChange)="filterTasksByTaskType(selectedTaskType)">
+        <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
+          {{ taskType }}
+        </mat-option>
+      </mat-select>
+      {{ selectedTaskType }}
+    </mat-form-field>
+
+    <form (ngSubmit)="createTask()">
+     
+      <div class="form-group">
+        <label for="task-title">Title</label>
+        <input id="task-title" [(ngModel)]="newTask.title" name="title" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="task-description">Description</label>
+        <input id="task-description" [(ngModel)]="newTask.description" name="description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="task-url">Url?</label>
+        <input id="task-url" [(ngModel)]="newTask.url" name="url" not required>
+      </div>
+  
+      <button type="submit">Add task</button>
+    </form>
+  </div>
+  </div>
+
+<!-- Show tasks-->
+  <ng-container *ngIf="selectedPerson">
+    <ng-container *ngFor="let task of selectedPerson.tasks">
+      <ng-container *ngIf="task.taskType === selectedTaskType">
+        <div class="task-row">
+          <div class="task">
+            <h3>
+              Titel: 
+              <ng-container *ngIf="task.url; else noLink">
+                <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
+              </ng-container>
+              <ng-template #noLink>{{ task.title }}</ng-template>
+              Beskrivning: {{ task.description }}
+              <mat-icon (click)="deleteTask(selectedPerson.id, task.id)">delete_forever</mat-icon>
+              <!-- <app-email></app-email> Fungerar ej-->
+            </h3>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>

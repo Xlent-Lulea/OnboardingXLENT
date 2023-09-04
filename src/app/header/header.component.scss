@@ -63,12 +63,21 @@
     position: relative;
    }
 
+
    .kunskap {
       color: var(--tonalpalette-primary-primary-900, #0f0b2e);
        text-align: center;
        font: var(--body-bodylarge-16-medium, 500 16px/25px 'Inter', sans-serif);
        position: relative;
       }   
+
+.admin-page {
+   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+    text-align: center;
+    font: var(--body-bodylarge-16-medium, 500 16px/25px 'Inter', sans-serif);
+    position: relative;
+   }
+
 
 .button-container {
    display: flex;
