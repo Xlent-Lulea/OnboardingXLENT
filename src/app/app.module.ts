@@ -20,6 +20,7 @@ import { LinksComponent } from './Containers/links/links.component';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 
 
 
@@ -40,6 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
     ExpansionpanelComponent,
     LinksComponent,
     LoginBoxComponent,
+    KnowledgeComponent,
     
   ],
   imports: [

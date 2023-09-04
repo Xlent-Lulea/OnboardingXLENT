@@ -6,6 +6,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './Containers/login/login.component';
 import { ChecklistComponent } from './Containers/checklist/checklist.component';
 import { LinksComponent } from './Containers/links/links.component';
+import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 
 
 
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'checklist', component: ChecklistComponent },
       { path: 'links', component: LinksComponent },
+      { path: 'knowledge', component: KnowledgeComponent },
      
       // ... andra rutter
     ]
