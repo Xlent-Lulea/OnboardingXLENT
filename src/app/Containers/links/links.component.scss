@@ -1,0 +1,410 @@
+.links, .links * {
+    box-sizing: border-box;
+    }
+.links {
+   background: #f2f2f2;
+    padding: 182px 99px 182px 99px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+   }
+
+   .container, .container * {
+    box-sizing: border-box;
+    }
+    .container {
+     display: flex;
+     flex-direction: column;
+     gap: 70px;
+     align-items: center;
+     
+     justify-content: center;
+     flex-wrap: wrap;
+     align-self: stretch;
+     flex: 1;
+     position: relative;
+   }
+
+.title {
+   display: flex;
+    flex-direction: column;
+    gap: 11px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 391px;
+    position: relative;
+   }
+
+.heading {
+   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+    text-align: left;
+    font: 400 78px/90px 'Franklin Gothic Demi', sans-serif;
+    position: relative;
+   }
+
+.subheading {
+   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
+    text-align: center;
+    font: 400 20px/32px 'Franklin Gothic Book', sans-serif;
+    position: relative;
+    width: 333px;
+   }
+
+.boxes {
+   display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    width: 1238px;
+    position: relative;
+   }
+
+.general-1 {
+   background: #ffffff;
+    border-radius: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 609px;
+    height: 574px;
+    position: relative;
+   }
+
+.textbox {
+   display: flex;
+    flex-direction: column;
+    gap: 37px;
+    align-items: flex-end;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 475px;
+    position: absolute;
+    left: 46px;
+   top: 45px;
+   }
+
+.om-xlent {
+   color: var(--color-palette-black, #000000);
+    text-align: left;
+    font: 400 40px/48px 'Franklin Gothic Demi', sans-serif;
+    position: relative;
+    width: 438px;
+   }
+
+.texbox-links {
+   display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 416px;
+    position: relative;
+   }
+
+.intran-tet {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+    width: 106px;
+    height: 32px;
+   }
+
+.workplace {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.cinode {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.varum-rkessidan-med-logotyp-mallar-och-bilder {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.general-2 {
+   background: #ffffff;
+    border-radius: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 609px;
+    height: 574px;
+    position: relative;
+   }
+
+.texbox {
+   display: flex;
+    flex-direction: column;
+    gap: 37px;
+    align-items: flex-end;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 475px;
+    position: absolute;
+    left: 46px;
+   top: 45px;
+   }
+
+.texbo-links {
+   display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 416px;
+    position: relative;
+   }
+
+.medarbetarresan {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.workplace2 {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.varum-rkessidan-med-logotyp-mallar-och-bilder2 {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.lathundar-maconomy {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.fr-gor-och-svar-csf-support {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.intran-tet2 {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    position: relative;
+    width: 106px;
+    height: 32px;
+   }
+
+.cinode2 {
+   color: #000000;
+    text-align: left;
+    font: var(--xlent, 400 20px/28px 'Franklin Gothic Book', sans-serif);
+    position: relative;
+   }
+
+.specific-1 {
+   background: #ffffff;
+    border-radius: 23px;
+    padding: 28px 0px 150px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 62px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 609px;
+    height: 573px;
+    position: relative;
+   }
+
+.textbox2 {
+   display: flex;
+    flex-direction: column;
+    gap: 62px;
+    align-items: flex-end;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 521px;
+    position: relative;
+   }
+
+.om-xlent2 {
+   color: var(--color-palette-black, #000000);
+    text-align: left;
+    font: 400 40px/48px 'Franklin Gothic Demi', sans-serif;
+    position: relative;
+    width: 439px;
+   }
+
+.texboxlinks {
+   padding: 0px 21px 0px 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 439px;
+    position: relative;
+   }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+    width: 434px;
+   }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span2 {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span3 {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
+.fr-gor-och-svar-csf-support2 {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.medarbetarresan2 {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.lathundar-maconomy2 {
+   color: #000000;
+    text-align: left;
+    font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+    text-decoration: underline;
+    position: relative;
+   }
+
+.specific-2 {
+   background: #ffffff;
+    border-radius: 23px;
+    padding: 28px 0px 150px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 62px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 609px;
+    height: 573px;
+    position: relative;
+   }
+
+.textbox-links {
+   padding: 0px 21px 0px 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 439px;
+    position: relative;
+   }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span4 {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span5 {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
+.skapa-en-email-signatur-g-r-ocks-kopiera-en-befintlig-e-postsignaturen-finns-att-ladda-ner-h-r-span6 {
+   
+           color: #000000;
+   
+           font: 400 20px/28px 'Franklin Gothic Book', sans-serif;
+   
+           
+           text-decoration: underline;
+   
+       }
+
