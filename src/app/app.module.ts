@@ -17,6 +17,11 @@ import { WalkthroughComponent } from './Components/walkthrough/walkthrough.compo
 import { MatButtonModule } from '@angular/material/button';
 import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpanel.component';
 import { LinksComponent } from './Containers/links/links.component';
+import { LoginBoxComponent } from './Components/login-box/login-box.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 
 
@@ -34,6 +39,7 @@ import { LinksComponent } from './Containers/links/links.component';
     WalkthroughComponent,
     ExpansionpanelComponent,
     LinksComponent,
+    LoginBoxComponent,
     
   ],
   imports: [
@@ -41,7 +47,9 @@ import { LinksComponent } from './Containers/links/links.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
