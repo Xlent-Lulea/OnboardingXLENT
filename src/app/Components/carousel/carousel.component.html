@@ -6,19 +6,12 @@
 
 
 
-    <!-- <div class="carousel-item" [class.active]="isActive == 1">
-      <img src="../../../assets/image 4.png" alt=""> 
-      <hello name="{{ name }}"></hello>
-      <p> är väldigt glada att du blir en del av vårt gäng! Under första veckorna
-      på XLENT så kommer det säkert bli många som du får hälsa på och ”säga hej”
-      till. Tag gärna chansen och surra en stund när du får tillfälle, så kommer
-      du snabbt in i gänget.</p>
-    </div> -->
+
 
 
     <div class="carousel-item" [class.active]="isActive == 1">
-      <hello name="{{ name }}"></hello> <!-- This will now be above the rest of the content -->
-    <div class="item-content"> <!-- New div to hold image and text side by side -->
+      <hello name="{{ name }}"></hello> 
+    <div class="item-content"> 
         <img src="../../../assets/image 4.png" alt="">
         <div>
           Vi är väldigt glada att du blir en del av vårt gäng! Under första veckorna
@@ -113,11 +106,9 @@
           </div>
       </div>
   </div>
-  <!-- <div class="agree" *ngIf="isActive == 8">
-    <button mat-raised-button color="primary" routerLink="/checklist">Gå till checklistan</button>
-  </div> -->
+  
   <div class="carousel-control">
-    <button mat-raised-button color="secondary" class="carousel-control pre" (click)="pre()"><</button>
+    <button mat-raised-button color="secondary" class="carousel-control pre" (click)="pre()">Tillbaka</button>
     <button mat-raised-button color="primary" class="carousel-control next" (click)="next()">Nästa</button>
     
     <div class="agree" *ngIf="isActive == 8">
