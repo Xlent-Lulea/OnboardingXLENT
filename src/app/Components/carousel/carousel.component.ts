@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent {
-  name = 'lsdkfjh';
+  name = 'Albin';
   isActive = 1;
 
   next() {
@@ -15,7 +15,7 @@ export class CarouselComponent {
   }
   pre() {
     this.isActive --;
-    if (this.isActive == 0) this.isActive = 3;
+    if (this.isActive == 0) this.isActive = 8;
   }
 
 }
