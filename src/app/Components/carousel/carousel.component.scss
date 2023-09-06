@@ -9,7 +9,6 @@
       position: relative;
       margin: 0 auto;
       overflow: hidden;
-      box-sizing: border-box;
     }
     .carousel-control{
         display: flex;
@@ -24,14 +23,11 @@
       width: 100%;
       position: absolute;
       left: -100%;
-      box-sizing: border-box;
-      transition: right 0.3s;
       
 
       .item-content{
         display: flex;
         align-items: center;
-        width: 100%;
         font-size: 25px;
         font-weight: 300;
         height: 300px;
@@ -40,7 +36,6 @@
       img{
         margin-right: 70px;
         width: 200px;
-        height: auto;
       }
     }
       &.active{
