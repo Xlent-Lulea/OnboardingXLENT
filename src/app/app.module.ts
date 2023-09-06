@@ -35,6 +35,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
+import { ShowTasksComponent } from './Components/show-tasks/show-tasks.component';
+import { TaskService } from './services/task.service';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 @NgModule({
   declarations: [
@@ -56,6 +62,10 @@ import { MatOptionModule } from '@angular/material/core';
     ManagePersonsComponent,
     ManageTasksComponent,
     ConfirmDialogComponent,
+    LoginBoxComponent,
+    KnowledgeComponent,
+    ShowTasksComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -77,8 +87,10 @@ import { MatOptionModule } from '@angular/material/core';
     MatDialogModule,
     MatSelectModule,
     MatOptionModule,
+    HttpClientModule,
+
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [TaskService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
