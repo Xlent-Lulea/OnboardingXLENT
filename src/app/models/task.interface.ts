@@ -22,6 +22,7 @@ export enum TaskType {
     BLOMBLAD_6,
     BLOMBLAD_7,
     BLOMBLAD_8
+  
   }
 
   export interface Person {

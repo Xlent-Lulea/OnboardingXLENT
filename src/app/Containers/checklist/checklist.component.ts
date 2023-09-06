@@ -20,7 +20,7 @@ export class ChecklistComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const personId = 1 // ... get the personId you want to fetch tasks for ...
+    const personId = 137 // ... get the personId you want to fetch tasks for ...
     this.taskService.getTasksByPerson(personId).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
      });

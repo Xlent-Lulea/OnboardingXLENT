@@ -29,6 +29,7 @@ export class ExpansionPanelComponent {
 
   
   ngOnInit(): void {
+    
     const personId = 137// ... hämta personId du vill hämta uppgifter för ...
     for (let type of this.taskTypes) {
       this.fetchTasksByType(type, personId);
