@@ -46,11 +46,11 @@
             <h3>
               Titel: 
               <ng-container *ngIf="task.url; else noLink">
-                <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
+                <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
               </ng-container>
-              <ng-template #noLink>{{ task.title }}</ng-template>
+              <ng-template #noLink>{{ task.urltitle }}</ng-template>
               Beskrivning: {{ task.description }}
-              <mat-icon (click)="deleteTask(selectedPerson.id, task.id)">delete_forever</mat-icon>
+              <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)">delete_forever</mat-icon>
               <!-- <app-email></app-email> Fungerar ej-->
             </h3>
           </div>

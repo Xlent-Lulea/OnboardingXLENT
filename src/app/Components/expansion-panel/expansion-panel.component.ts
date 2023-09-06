@@ -34,7 +34,7 @@ selectedPerson: Person = {
   tasks: [
     {
       urltitle: "Introduction",
-      taskType: TaskType.BEFORE_START,
+      taskType: TaskType.WELCOME,
       url: "https://example.com/introduction",
       completed: false,
       description: "Get introduced to the platform.",
@@ -42,7 +42,7 @@ selectedPerson: Person = {
     },
     {
       urltitle: "Meet Your Buddy",
-      taskType: TaskType.AFTER_START_BUDDY,
+      taskType: TaskType.BUDDY,
       url: "https://example.com/meetbuddy",
       completed: false,
       description: "Meet and chat with your assigned buddy.",
@@ -50,7 +50,7 @@ selectedPerson: Person = {
     },
     {
       urltitle: "Recruitment Training",
-      taskType: TaskType.AFTER_START_RECRUIT,
+      taskType: TaskType.START,
       url: "https://example.com/recruitment",
       completed: false,
       description: "Understand the recruitment process.",

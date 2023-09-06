@@ -11,19 +11,20 @@ export interface Task {
 }   
 
 export enum TaskType {
-    BEFORE_START, 
-    AFTER_START_BUDDY, 
-    AFTER_START_RECRUIT,
-    BLOMBLAD_1,
-    BLOMBLAD_2,
-  
+    WELCOME = 'Välkommen', 
+    BUDDY = 'Buddy/Coach', 
+    START = 'Startklar',
+    ADMIN = 'Anställning och admin',
+    DIGITAL_SETUP = 'Digital Setup',
+    CONSULTANT = 'Konsultrollen',
+    FINISH = 'Avslut!',
   }
 
   export interface Person {
     id: number;
     name: string;
     email: string;
-    tasks: any[];
+    tasks: Task[];
     active: boolean;
   
   }
