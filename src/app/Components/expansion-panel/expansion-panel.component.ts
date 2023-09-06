@@ -24,16 +24,51 @@ export class ExpansionPanelComponent {
   tasksByType: { [key in TaskType]?: Task[] } = {};
   taskTypes: TaskType[] = Object.values(TaskType).filter(value => typeof value === 'string') as TaskType[];
   @Input() selectedTaskType: string = '';
-  selectedPerson: Person | null = null;
- 
+// ... your interface and enum definitions ...
+
+selectedPerson: Person = {
+  id: 3,
+  name: "Test",
+  email: "Test123@sdaad.com",
+  active: true,
+  tasks: [
+    {
+      urltitle: "Introduction",
+      taskType: TaskType.BEFORE_START,
+      url: "https://example.com/introduction",
+      completed: false,
+      description: "Get introduced to the platform.",
+      active: true
+    },
+    {
+      urltitle: "Meet Your Buddy",
+      taskType: TaskType.AFTER_START_BUDDY,
+      url: "https://example.com/meetbuddy",
+      completed: false,
+      description: "Meet and chat with your assigned buddy.",
+      active: true
+    },
+    {
+      urltitle: "Recruitment Training",
+      taskType: TaskType.AFTER_START_RECRUIT,
+      url: "https://example.com/recruitment",
+      completed: false,
+      description: "Understand the recruitment process.",
+      active: true
+    }
+    // ... Lägg till fler uppgifter om så önskas ...
+  ]
+};
+
+
 
   
   ngOnInit(): void {
     
-    const personId = 137// ... hämta personId du vill hämta uppgifter för ...
-    for (let type of this.taskTypes) {
-      this.fetchTasksByType(type, personId);
-    }
+    // const personId = 1// ... hämta personId du vill hämta uppgifter för ...
+    // for (let type of this.taskTypes) {
+    //   this.fetchTasksByType(type, personId);
+    // }
   }
   
   fetchTasksByType(taskType: TaskType, personId: number): void {

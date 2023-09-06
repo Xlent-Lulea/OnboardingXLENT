@@ -1,6 +1,6 @@
 //task.interface.ts
 export interface Task {
-    title: string;
+    urltitle?: string;
     id?:number;
     taskType: string;
     url?: string;
@@ -16,12 +16,6 @@ export enum TaskType {
     AFTER_START_RECRUIT,
     BLOMBLAD_1,
     BLOMBLAD_2,
-    BLOMBLAD_3,
-    BLOMBLAD_4,
-    BLOMBLAD_5,
-    BLOMBLAD_6,
-    BLOMBLAD_7,
-    BLOMBLAD_8
   
   }
 
