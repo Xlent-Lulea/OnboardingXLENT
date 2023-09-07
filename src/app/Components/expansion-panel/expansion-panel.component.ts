@@ -41,6 +41,14 @@ selectedPerson: Person = {
       active: true
     },
     {
+      urltitle: "2 Introduction",
+      taskType: TaskType.WELCOME,
+      url: "https://example.com/introduction",
+      completed: false,
+      description: "2 Get introduced to the platform.",
+      active: true
+    },
+    {
       urltitle: "Meet Your Buddy",
       taskType: TaskType.BUDDY,
       url: "https://example.com/meetbuddy",
