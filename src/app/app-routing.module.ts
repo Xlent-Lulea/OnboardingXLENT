@@ -7,7 +7,9 @@ import { LoginComponent } from './Containers/login/login.component';
 import { ChecklistComponent } from './Containers/checklist/checklist.component';
 import { LinksComponent } from './Containers/links/links.component';
 import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
-import { AdminPageComponent } from './Containers/adminpage/adminpage.component';
+import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
+import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
+
 
 
 
@@ -22,16 +24,16 @@ import { AdminPageComponent } from './Containers/adminpage/adminpage.component';
 export class AppRoutingModule { }
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'checklist', component: ChecklistComponent },
+  { path: 'links', component: LinksComponent },
+  { path: 'knowledge', component: KnowledgeComponent },
+  { path: 'admin-page', component: AdminPageComponent },
+  { path: 'onboarding', component: OnboardingComponent },
 
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'checklist', component: ChecklistComponent },
-      { path: 'links', component: LinksComponent },
-      { path: 'knowledge', component: KnowledgeComponent },
-      { path: 'admin-page', component: AdminPageComponent }
-
-      // ... andra rutter
-    ]
+  // ... andra rutter
+];
 
 

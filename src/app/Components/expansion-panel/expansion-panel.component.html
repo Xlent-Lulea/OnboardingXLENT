@@ -7,23 +7,23 @@
                   <mat-checkbox color="primary"></mat-checkbox>
               </mat-panel-title>
               <mat-panel-title>{{ type }}</mat-panel-title>
-             
+
           </mat-expansion-panel-header>
 
           <mat-form-field *ngIf="selectedPerson">
               <ng-container *ngFor="let task of selectedPerson.tasks">
-                
+
                   <ng-container *ngIf="task.taskType === type">
                       <div class="task-row">
                           <div class="task">
                               <h3>
-                                  Titel: 
+                                  Titel:
                                   <ng-container *ngIf="task.url; else noLink">
                                       <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
                                   </ng-container>
                                   <ng-template #noLink>{{ task.urltitle }}</ng-template>
                                   Beskrivning: {{ task.description }}
-                                 
+
                               </h3>
                           </div>
                       </div>

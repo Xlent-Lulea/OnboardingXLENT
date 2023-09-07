@@ -5,14 +5,14 @@ export interface Task {
     taskType: string;
     url?: string;
     completed: boolean;
-    description: string; 
+    description: string;
     active: boolean;
     person_id?: BigInt;
-}   
+}
 
 export enum TaskType {
-    WELCOME = 'Välkommen', 
-    BUDDY = 'Buddy/Coach', 
+    WELCOME = 'Välkommen',
+    BUDDY = 'Buddy/Coach',
     START = 'Startklar',
     ADMIN = 'Anställning och admin',
     DIGITAL_SETUP = 'Digital Setup',
@@ -26,7 +26,7 @@ export enum TaskType {
     email: string;
     tasks: Task[];
     active: boolean;
-  
+
   }
 
   export interface TaskEmail {
@@ -36,6 +36,5 @@ export enum TaskType {
     url: string;
     additionalInfo: string;
   }
-  
-  
-  
+
+

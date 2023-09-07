@@ -27,7 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ExpansionPanelComponent } from './Components/expansion-panel/expansion-panel.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { AdminPageComponent } from './Containers/adminpage/adminpage.component';
+import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
 import { ManagePersonsComponent } from './Components/manage-persons/manage-persons.component';
 import { ManageTasksComponent } from './Components/manage-tasks/manage-tasks.component';
 import { FormsModule } from '@angular/forms';
@@ -38,9 +38,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { ShowTasksComponent } from './Components/show-tasks/show-tasks.component';
 import { TaskService } from './services/task.service';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
+import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
+import { CarouselComponent } from './Components/carousel/carousel.component';
+import { HelloComponent } from './Components/carousel/hello.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
     LinksComponent,
     LoginBoxComponent,
     KnowledgeComponent,
+    LinksComponent,
     ExpansionPanelComponent,
     AdminPageComponent,
     ManagePersonsComponent,
@@ -66,6 +67,9 @@ import { HttpClientModule } from '@angular/common/http';
     KnowledgeComponent,
     ShowTasksComponent,
 
+    OnboardingComponent,
+    CarouselComponent,
+    HelloComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,9 +92,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
-
   ],
   providers: [TaskService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
