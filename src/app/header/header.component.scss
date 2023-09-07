@@ -59,3 +59,15 @@ button {
   flex-shrink: 0;
   position: relative;
 }
+
+.admin-page {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+  cursor: default;
+  font-size: 1px; // To ensure a small clickable area
+}
+
+.admin-page:hover {
+  color: red;
+}
