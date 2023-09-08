@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Person } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
-import { SelectedPersonService } from 'src/app/services/selectedperson.service';
+import { SelectedPersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
 
 

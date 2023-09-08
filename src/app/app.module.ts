@@ -41,6 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
+import { PersonService, SelectedPersonService } from './services/person.service';
+
 
 @NgModule({
   declarations: [
@@ -93,7 +95,7 @@ import { HelloComponent } from './Components/carousel/hello.component';
     MatOptionModule,
     HttpClientModule,
   ],
-  providers: [TaskService],
+  providers: [TaskService, SelectedPersonService,PersonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

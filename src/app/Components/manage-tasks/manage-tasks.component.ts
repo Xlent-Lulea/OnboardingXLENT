@@ -5,12 +5,13 @@ import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/app/models/task.interface';
-import { SelectedPersonService } from 'src/app/services/selectedperson.service';
+// import { SelectedPersonService } from 'src/app/services/selectedperson.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { SelectedPersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-manage-tasks',

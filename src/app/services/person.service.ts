@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
+
 export class PersonService {
   private activePersonsSubject = new BehaviorSubject<Person[]>([]);
   public activePersons$ = this.activePersonsSubject.asObservable();
@@ -76,4 +77,26 @@ getPerson(id: number): Observable<Person> {
   deletePerson(personId: number): Observable<any> {
     return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
   }
+}
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SelectedPersonService {
+  private personId: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  constructor() {
+      const storedPersonId = localStorage.getItem('personId') || '';
+      this.personId.next(storedPersonId);
+  }
+
+setPersonId(personId: string) {
+  this.personId.next(personId);
+  localStorage.setItem('personId', personId);
+}
+
+getPersonId(): BehaviorSubject<string> {
+  return this.personId;
+}
 }
