@@ -33,7 +33,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
   selectedPerson: Person | null = null;
   activePersons: Person[] = [];
   newTask: Task = {
-    title: '',
+    urltitle: '',
     description: '',
     taskType: this.selectedTaskType,
     completed: false,
@@ -49,7 +49,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {
     this.newTask = {
-      title: '',
+      urltitle: '',
       description: '',
       taskType: this.selectedTaskType,
       completed: false,
@@ -124,7 +124,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
           console.log('Created task:', task); // Add this line to print the created task
           this.selectedPerson?.tasks.push(task);
           this.newTask = {
-            title: '',
+            urltitle: '',
             description: '',
             taskType: this.selectedTaskType,
             completed: false,
