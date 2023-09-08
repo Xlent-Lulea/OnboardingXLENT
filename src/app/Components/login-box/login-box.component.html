@@ -18,22 +18,41 @@
       />
     </svg>
     <div class="listbox-component">
-      <div class="list-box-title">
-        <mat-form-field class="knapp">
-          <mat-label>Välj Användare</mat-label>
-          <mat-select>
-            <mat-option value="one">First option</mat-option>
-            <mat-option value="two">Second option</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
+
+      <div class="personvaljar-lista">
+        <mat-form-field>
+   <!-- Visar aktivt namn efter man valt i rullistan -->
+         <mat-label><div *ngIf="selectedPerson">  
+           <p>{{selectedPerson.name}}</p>
+       </div>
+       </mat-label>
+           
+       
+   <!-- Personvaljare -->
+   
+         <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
+   
+           <mat-option *ngFor="let person of activePersons" [value]="person">
+   
+               {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}  {{ person.id }}
+   
+           </mat-option>
+   
+       </mat-select>  
+   
+       </mat-form-field>
+            
+       
+     
+       </div>
+    
+
     <div class="knapp-next">
       <button
         class="knapp"
         mat-raised-button
         color="primary"
-        routerLink="/hem"
+        routerLink="/home"
         class="loginButton"
       >
         Nästa
