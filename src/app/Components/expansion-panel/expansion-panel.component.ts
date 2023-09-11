@@ -4,6 +4,7 @@ import { Task, TaskType } from '../../models/task.interface';
 import { Input } from '@angular/core';
 import { Person } from 'src/app/models/task.interface';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { SelectedPersonService } from 'src/app/services/person.service';
 
 
 

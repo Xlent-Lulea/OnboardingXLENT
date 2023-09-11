@@ -41,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
+import { PersonService, SelectedPersonService } from './services/person.service';
 import { MatDividerModule } from '@angular/material/divider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,6 @@ import { MatDividerModule } from '@angular/material/divider';
     LoginBoxComponent,
     KnowledgeComponent,
     ShowTasksComponent,
-
     OnboardingComponent,
     CarouselComponent,
     HelloComponent,
@@ -94,7 +95,7 @@ import { MatDividerModule } from '@angular/material/divider';
     HttpClientModule,
     MatDividerModule,
   ],
-  providers: [TaskService],
+  providers: [TaskService, SelectedPersonService,PersonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
