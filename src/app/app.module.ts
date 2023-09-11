@@ -42,7 +42,7 @@ import { OnboardingComponent } from './Containers/onboarding/onboarding.componen
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
 import { PersonService, SelectedPersonService } from './services/person.service';
-
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,6 @@ import { PersonService, SelectedPersonService } from './services/person.service'
     LoginBoxComponent,
     KnowledgeComponent,
     ShowTasksComponent,
-
     OnboardingComponent,
     CarouselComponent,
     HelloComponent,
@@ -94,6 +93,7 @@ import { PersonService, SelectedPersonService } from './services/person.service'
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
+    MatDividerModule,
   ],
   providers: [TaskService, SelectedPersonService,PersonService],
   bootstrap: [AppComponent],
