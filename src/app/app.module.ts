@@ -41,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
-
+import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +92,7 @@ import { HelloComponent } from './Components/carousel/hello.component';
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
+    MatDividerModule,
   ],
   providers: [TaskService],
   bootstrap: [AppComponent],

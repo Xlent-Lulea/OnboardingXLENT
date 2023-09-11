@@ -1,17 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
-import {MatAccordion} from '@angular/material/expansion';
+import { Component } from '@angular/core';
 
-
-/**
- * @title Accordion with expand/collapse all toggles
- */
 @Component({
-  selector: 'expansionpanel',
-  templateUrl: 'expansionpanel.component.html',
-  styleUrls: ['expansionpanel.component.scss'],
-  standalone: false,
-
+  selector: 'app-expansionpanel',
+  templateUrl: './expansionpanel.component.html',
+  styleUrls: ['./expansionpanel.component.scss']
 })
 export class ExpansionpanelComponent {
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
+
 }
