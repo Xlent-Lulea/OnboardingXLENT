@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonService, SelectedPersonService } from 'src/app/services/person.service';
+import { Observable, map } from 'rxjs';
+import { PersonService } from 'src/app/services/person.service';
+import { Person } from '../models/task.interface';
 
 @Component({
   selector: 'app-header',
@@ -7,20 +9,23 @@ import { PersonService, SelectedPersonService } from 'src/app/services/person.se
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  selectedPersonName: string = '';
+  // selectedPersonName: string = '';
+  selectedPersonName$: Observable<String | null> = this.personService.selectedPerson$.pipe(
+    map((person) => person?.name === 'test1' ? null : person),
+    map((person) => person?.name || 'Login' )
+  );
 
   constructor(
     private personService: PersonService,
-    private selectedPersonService: SelectedPersonService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.selectedPersonService.getPersonId().subscribe(personId => {
-      if (personId) {
-        this.personService.getPerson(+personId).subscribe(person => {
-          this.selectedPersonName = person.name;
-        });
-      }
-    });
+    // this.personService.getPersonId().subscribe(personId => {
+    //   if (personId) {
+    //     this.personService.getPerson(+personId).subscribe(person => {
+    //       this.selectedPersonName = person.name;
+    //     });
+    //   }
+    // });
   }
 }

@@ -5,13 +5,12 @@ import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/app/models/task.interface';
-// import { SelectedPersonService } from 'src/app/services/selectedperson.service';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
-import { SelectedPersonService } from 'src/app/services/person.service';
+
 
 @Component({
   selector: 'app-manage-tasks',
@@ -27,6 +26,9 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
   @Input() selectedTaskType: string = '';
   person: Person | undefined;
   personId: string | undefined;
+
+  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+
 
   taskTypes = Object.values(TaskType).filter(
     (value) => typeof value === 'string'
@@ -45,7 +47,6 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
   constructor(
     private taskService: TaskService,
     private personService: PersonService,
-    private selectedPersonService: SelectedPersonService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
@@ -60,38 +61,38 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.selectedPersonService
-      .getPersonId()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((personId) => {
-        this.personId = personId;
-        console.log('PersonId:', this.personId);
+    // this.personService
+    //   .getPersonId()
+    //   .pipe(takeUntil(this.ngUnsubscribe))
+    //   .subscribe((personId) => {
+    //     this.personId = personId;
+    //     console.log('PersonId:', this.personId);
 
-        if (this.personId) {
-          this.taskService
-            .getTasksByPerson(+this.personId)
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe((tasks: Task[]) => {
-              this.tasks = tasks;
-              this.allTasks = tasks;
-              console.log('Alla tasks för personen:', this.tasks);
-            });
+    //     if (this.personId) {
+    //       this.taskService
+    //         .getTasksByPerson(+this.personId)
+    //         .pipe(takeUntil(this.ngUnsubscribe))
+    //         .subscribe((tasks: Task[]) => {
+    //           this.tasks = tasks;
+    //           this.allTasks = tasks;
+    //           console.log('Alla tasks för personen:', this.tasks);
+    //         });
 
-          this.personService
-            .getPerson(+this.personId)
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe((person: Person) => {
-              this.selectedPerson = person;
-              console.log('SelectedPerson:', this.selectedPerson);
-              this.cdr.detectChanges();
-            });
-        }
-      });
+    //       this.personService
+    //         .getPerson(+this.personId)
+    //         .pipe(takeUntil(this.ngUnsubscribe))
+    //         .subscribe((person: Person) => {
+    //           this.selectedPerson = person;
+    //           console.log('SelectedPerson:', this.selectedPerson);
+    //           this.cdr.detectChanges();
+    //         });
+    //     }
+    //   });
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    // this.ngUnsubscribe.next();
+    // this.ngUnsubscribe.complete();
   }
 
   filterTasksByTaskType(taskType: string) {

@@ -22,30 +22,30 @@
       <div class="personvaljar-lista">
         <mat-form-field>
    <!-- Visar aktivt namn efter man valt i rullistan -->
-         <mat-label><div *ngIf="selectedPerson">  
-           <p>{{selectedPerson.name}}</p>
+         <mat-label><div>
+           <p>{{name$ | async}}</p>
        </div>
        </mat-label>
-           
-       
+
+
    <!-- Personvaljare -->
-   
+
          <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
-   
-           <mat-option *ngFor="let person of activePersons" [value]="person">
-   
+
+           <mat-option *ngFor="let person of activePersons$ | async" [value]="person">
+
                {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}  {{ person.id }}
-   
+
            </mat-option>
-   
-       </mat-select>  
-   
+
+       </mat-select>
+
        </mat-form-field>
-            
-       
-     
+
+
+
        </div>
-    
+
 
     <div class="knapp-next">
       <button
