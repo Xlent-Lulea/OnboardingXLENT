@@ -42,6 +42,10 @@ import { OnboardingComponent } from './Containers/onboarding/onboarding.componen
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
 import { PersonService, SelectedPersonService } from './services/person.service';
+import { MatCardModule } from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
+
 
 
 @NgModule({
@@ -94,6 +98,9 @@ import { PersonService, SelectedPersonService } from './services/person.service'
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
+    MatCardModule,
+    MatTableModule,
+    MatListModule
   ],
   providers: [TaskService, SelectedPersonService,PersonService],
   bootstrap: [AppComponent],

@@ -1,108 +1,26 @@
-.container,
-.container * {
-  box-sizing: border-box;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+  }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
-  align-items: center;
+  mat-expansion-panel{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    
+  }
+  mat-expansion-panel-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 
-  justify-content: center;
-  flex-wrap: wrap;
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-}
+  
 
-.title {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 391px;
-  position: relative;
-  margin-top: 70px;
-}
 
-.heading {
-  color: var(--tonalpalette-primary-primary-900, #0f0b2e);
-  text-align: left;
-  font: 400 78px/90px "Franklin Gothic Demi", sans-serif;
-  position: relative;
-}
 
-.subheading {
-  color: var(--tonalpalette-primary-primary-900, #0f0b2e);
-  text-align: center;
-  font: 400 20px/32px "Franklin Gothic Book", sans-serif;
-  position: relative;
-  width: 333px;
-}
 
-.boxes {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
+// .subheading {
+//   font-weight: bold;
+// }
 
-.ansvar {
-  background: #ffffff;
-  border-radius: 23px;
-  padding: 28px 0px 150px 0px;
-  display: flex;
-  flex-direction: column;
-  gap: 62px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 609px;
-  height: 349px;
-  position: relative;
-}
-
-.textbox-1 {
-  display: flex;
-  flex-direction: column;
-  gap: 62px;
-  align-items: flex-end;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 521px;
-  position: relative;
-}
-
-.heading2 {
-  color: var(--color-palette-black, #000000);
-  text-align: left;
-  font: 400 40px/48px "Franklin Gothic Demi", sans-serif;
-  position: relative;
-  width: 439px;
-}
-
-.text {
-  padding: 0px 21px 0px 21px;
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 439px;
-  position: relative;
-}
-
-.p {
-  color: #000000;
-  text-align: left;
-  font: var(--xlent, 400 20px/28px "Franklin Gothic Book", sans-serif);
-  position: relative;
-  width: 434px;
-}
