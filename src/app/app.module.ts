@@ -45,8 +45,7 @@ import { PersonService, SelectedPersonService } from './services/person.service'
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
-
-
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -72,7 +71,6 @@ import {MatListModule} from '@angular/material/list';
     LoginBoxComponent,
     KnowledgeComponent,
     ShowTasksComponent,
-
     OnboardingComponent,
     CarouselComponent,
     HelloComponent,
@@ -98,9 +96,11 @@ import {MatListModule} from '@angular/material/list';
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
+    feature-knowledgeEP
     MatCardModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule,
   ],
   providers: [TaskService, SelectedPersonService,PersonService],
   bootstrap: [AppComponent],

@@ -1,12 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+
+
+.container {
+  width: 600px;
+  margin: 0 auto; /* Centrera horisontellt */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Lägger till lite padding runt containerns innehåll */
+}
+
+
+.task-text {
+
+  font: var(--xlent, 400 20px/28px "Franklin Gothic Book", sans-serif);
+  font-size: 15px;
+}
+
 .example-action-buttons {
     padding-bottom: 20px;
   }
-  
+
   .example-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
+
   }
-  
+
   .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
     margin-left: 8px;
   }
