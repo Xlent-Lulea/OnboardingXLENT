@@ -96,7 +96,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSelectModule,
     MatOptionModule,
     HttpClientModule,
-    feature-knowledgeEP
     MatCardModule,
     MatTableModule,
     MatListModule,
