@@ -1,8 +1,11 @@
 <div class="container">
 <ng-container *ngFor="let type of taskTypes">
+
     <mat-expansion-panel>
         <mat-expansion-panel-header>
+
             <mat-panel-title>{{ type }}</mat-panel-title>
+
         </mat-expansion-panel-header>
 
         <ng-container *ngIf="selectedPerson">
@@ -38,3 +41,4 @@
 
 </ng-container>
 </div>
+<pre>{{ selectedPerson | json }}</pre>

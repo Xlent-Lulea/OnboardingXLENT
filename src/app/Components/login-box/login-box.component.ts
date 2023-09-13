@@ -27,16 +27,16 @@ export class LoginBoxComponent implements OnInit{
 
   constructor(
     private router: Router,
-    
+
     private personService: PersonService,
     private taskService: TaskService,
     private selectedPersonService: SelectedPersonService,
     private changeDetector: ChangeDetectorRef,
     public dialog: MatDialog,
-    
-   
+
+
   ) {
-    
+
   }
 
   // openTaskListPopup(): void {
@@ -60,22 +60,22 @@ export class LoginBoxComponent implements OnInit{
   onPersonSelected(personId: number) {
     console.log('onPersonSelected:', personId);
     this.selectedPersonService.setPersonId(personId.toString());
-  
+
     // Fetch the selected person details
     this.personService.getPerson(personId).subscribe((person) => {
       this.selectedPerson = person;
       this.getPersonTasks(
         personId,
-        this.selectedTaskType ? this.selectedTaskType : 'BLOMBLAD_1'
+        this.selectedTaskType ? this.selectedTaskType : 'WELCOME'
       );
 
       // Öppna WelcomePopupComponent efter att den valda personens information hämtats
-      
-      
+
+
     });
 }
 
-  
+
 
   getPersonTasks(personId: number, taskType: string) {
     this.taskService
@@ -145,5 +145,5 @@ export class LoginBoxComponent implements OnInit{
         this.persons[personIndex] = updatedPerson;
       });
   }
- 
+
 }

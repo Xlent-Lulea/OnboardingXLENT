@@ -13,8 +13,8 @@ import { tap } from 'rxjs/operators';
 export class PersonService {
   private activePersonsSubject = new BehaviorSubject<Person[]>([]);
   public activePersons$ = this.activePersonsSubject.asObservable();
-  
-  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;   
+
+  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
   constructor(private http: HttpClient) {
     this.refreshActivePersons();
@@ -25,10 +25,7 @@ export class PersonService {
     this.getActivePersons().subscribe();
   }
 
-  
-getAllPersons(): Observable<Person[]> {
-  return this.http.get<Person[]>(`${this.personsUrl}/persons`);
-}
+
 
 getPerson(id: number): Observable<Person> {
   return this.http.get<Person>(`${this.personsUrl}/person/${id}`);
@@ -69,7 +66,7 @@ getPerson(id: number): Observable<Person> {
   deactivatePerson(personId: number): Observable<any> {
     return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {});
   }
-  
+
   activatePerson(personId: number): Observable<any> {
     return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
   }
