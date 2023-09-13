@@ -1,43 +1,40 @@
-<div class="example-action-buttons">
-    <button mat-button (click)="accordion.openAll()">Expand All</button>
-    <button mat-button (click)="accordion.closeAll()">Collapse All</button>
-  </div>
-
-  <mat-accordion class="example-headers-align" multi>
+<div class="container">
+<ng-container *ngFor="let type of taskTypes">
     <mat-expansion-panel>
-     
-      <mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{ type }}</mat-panel-title>
+        </mat-expansion-panel-header>
 
-        <mat-panel-title>
-          <mat-checkbox color="primary"></mat-checkbox>
-          </mat-panel-title>
+        <ng-container *ngIf="selectedPerson">
+            <ng-container *ngFor="let task of selectedPerson.tasks; let taskIndex = index">
+                <ng-container *ngIf="task.taskType === type">
 
-        <mat-panel-title>
-         Tasklista 1
-        </mat-panel-title>
+                    <!-- Divider -->
+                    <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.tasks)"></mat-divider>
 
-        <mat-panel-description>
-          ansvarig: Christian
-  
-        </mat-panel-description>
+                    <div class="task-row">
+                        <div class="task" style="display: flex; align-items: center;">
+                            <!-- Checkbox for each task -->
+                            <mat-checkbox color="primary" style="margin-right: 10px;"></mat-checkbox>
+                            <div class="task-text">
+                                <p>
+                                    Titel:
+                                    <ng-container *ngIf="task.url; else noLink">
+                                        <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+                                    </ng-container>
+                                    <ng-template #noLink>{{ task.urltitle }}</ng-template>
+                                    Beskrivning: {{ task.description }}
+                                </p>
 
-      </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <mat-label>First name</mat-label>
-        <input matInput>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Age</mat-label>
-        <input matInput type="number" min="1">
-      </mat-form-field>
-  
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
 
-      
     </mat-expansion-panel>
 
-   <mat-expansion-panel></mat-expansion-panel>
-   
-  </mat-accordion>
-  
+
+</ng-container>
+</div>

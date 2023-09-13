@@ -24,19 +24,16 @@ import { OnboardingComponent } from './Containers/onboarding/onboarding.componen
 export class AppRoutingModule { }
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'checklist', component: ChecklistComponent },
+  { path: 'links', component: LinksComponent },
+  { path: 'knowledge', component: KnowledgeComponent },
+  { path: 'admin-page', component: AdminPageComponent },
+  { path: 'onboarding', component: OnboardingComponent },
 
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'checklist', component: ChecklistComponent },
-      { path: 'links', component: LinksComponent },
-      { path: 'knowledge', component: KnowledgeComponent },
-      { path: 'admin-page', component: AdminPageComponent },
-      { path: 'onboarding', component: OnboardingComponent }
-
-
-     
-      // ... andra rutter
-    ]
+  // ... andra rutter
+];
 
 

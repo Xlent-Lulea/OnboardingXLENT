@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PersonService } from './services/person.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OnboardingXLENT';
+
+  constructor(private personService: PersonService) {
+    const storedPersonId = localStorage.getItem('personId') || '';
+    this.personService.getPerson(+storedPersonId).subscribe();
+  }
 }

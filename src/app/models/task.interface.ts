@@ -1,36 +1,32 @@
 //task.interface.ts
 export interface Task {
-    title: string;
+    urltitle?: string;
     id?:number;
     taskType: string;
     url?: string;
     completed: boolean;
-    description: string; 
+    description: string;
     active: boolean;
     person_id?: BigInt;
-}   
+}
 
 export enum TaskType {
-    BEFORE_START, 
-    AFTER_START_BUDDY, 
-    AFTER_START_RECRUIT,
-    BLOMBLAD_1,
-    BLOMBLAD_2,
-    BLOMBLAD_3,
-    BLOMBLAD_4,
-    BLOMBLAD_5,
-    BLOMBLAD_6,
-    BLOMBLAD_7,
-    BLOMBLAD_8
+    WELCOME = 'Välkommen',
+    BUDDY = 'Buddy/Coach',
+    START = 'Startklar',
+    ADMIN = 'Anställning och admin',
+    DIGITAL_SETUP = 'Digital Setup',
+    CONSULTANT = 'Konsultrollen',
+    FINISH = 'Avslut!',
   }
 
   export interface Person {
     id: number;
     name: string;
     email: string;
-    tasks: any[];
+    tasks: Task[];
     active: boolean;
-  
+
   }
 
   export interface TaskEmail {
@@ -40,6 +36,5 @@ export enum TaskType {
     url: string;
     additionalInfo: string;
   }
-  
-  
-  
+
+
