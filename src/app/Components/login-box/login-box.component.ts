@@ -62,11 +62,14 @@ export class LoginBoxComponent implements OnInit {
   }
 
   onPersonSelected(personId: number) {
+
     console.log('onPersonSelected:', personId);
 
 
     // Fetch the selected person details
-    this.personService.getPerson(personId);
+    this.personService.getPerson(personId).pipe(
+      tap((person) => console.log('Selected person:', 'hej test123')),
+    ).subscribe();
     //.subscribe((person) => {
     //   this.selectedPerson = person;
     //   this.getPersonTasks(

@@ -18,7 +18,6 @@ export class PersonService {
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
 
   public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
-  // private personId: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {
     this.refreshActivePersons();
@@ -89,14 +88,6 @@ export class PersonService {
     return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
   }
 
-  // setPersonId(personId: string) {
-  //   this.personId.next(personId);
-  //   localStorage.setItem('personId', personId);
-  // }
-
-  // getPersonId(): BehaviorSubject<string> {
-  //   return this.personId;
-  // }
 }
 
 
