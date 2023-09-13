@@ -21,14 +21,11 @@ export class PersonService {
 
   constructor(private http: HttpClient) {
     this.refreshActivePersons();
-
   }
-
 
   refreshActivePersons(): void {
     this.getActivePersons().subscribe();
   }
-
 
   getAllPersons(): Observable<Person[]> {
     return this.http.get<Person[]>(`${this.personsUrl}/persons`).pipe(
@@ -36,9 +33,12 @@ export class PersonService {
     );
   }
 
-  getPerson(id: number | string): Observable<Person> {
+  getPerson(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
-      tap((person) => this.selectedPersonSubject.next(person))
+      tap((person) => {
+      localStorage.setItem('personId', '' + id);
+      this.selectedPersonSubject.next(person);
+    })
     );
   }
 
@@ -65,7 +65,6 @@ export class PersonService {
     return this.http.post<Person>(url, person);
   }
 
-
   addTask(personId: number, task: any[]): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks`;
     return this.http.post<Person>(url, task);
@@ -87,7 +86,6 @@ export class PersonService {
   deletePerson(personId: number): Observable<any> {
     return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
   }
-
 }
 
 

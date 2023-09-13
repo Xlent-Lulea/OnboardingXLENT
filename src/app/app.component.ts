@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PersonService } from './services/person.service';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,8 @@ import { tap } from 'rxjs';
 export class AppComponent {
   title = 'OnboardingXLENT';
 
-  constructor(private personService:PersonService) {
-
-  const storedPersonId = localStorage.getItem('personId') || '';
-  this.personService.getPerson(storedPersonId).pipe(
-    tap((p) => console.log(p))
-  ).subscribe();
-}
+  constructor(private personService: PersonService) {
+    const storedPersonId = localStorage.getItem('personId') || '';
+    this.personService.getPerson(+storedPersonId).subscribe();
+  }
 }

@@ -1,62 +1,45 @@
 <div class="container">
-    <div class="heading">
-      Välkommen till XLENT Onboarding
+  <div class="heading">
+    Välkommen till XLENT Onboarding
   </div>
   <div class="login-box">
     <div class="subheading">Välj din användare</div>
-    <svg
-      class="vector"
-      width="168"
-      height="167"
-      viewBox="0 0 168 167"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg class="vector" width="168" height="167" viewBox="0 0 168 167" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M84 0C37.908 0 0.5 37.408 0.5 83.5C0.5 129.592 37.908 167 84 167C130.092 167 167.5 129.592 167.5 83.5C167.5 37.408 130.092 0 84 0ZM84 25.05C97.861 25.05 109.05 36.239 109.05 50.1C109.05 63.961 97.861 75.15 84 75.15C70.139 75.15 58.95 63.961 58.95 50.1C58.95 36.239 70.139 25.05 84 25.05ZM84 143.62C63.125 143.62 44.6715 132.932 33.9 116.733C34.1505 100.117 67.3 91.015 84 91.015C100.617 91.015 133.85 100.117 134.1 116.733C123.329 132.932 104.875 143.62 84 143.62Z"
-        fill="#323232"
-      />
+        fill="#323232" />
     </svg>
     <div class="listbox-component">
 
       <div class="personvaljar-lista">
         <mat-form-field>
-   <!-- Visar aktivt namn efter man valt i rullistan -->
-         <mat-label><div>
-           <p>{{name$ | async}}</p>
-       </div>
-       </mat-label>
+          <!-- Visar aktivt namn efter man valt i rullistan -->
+          <mat-label>
+            <div>
+              <p>{{ selectedPerson?.name || 'Login' }}</p>
+            </div>
+          </mat-label>
+
+          <!-- Personvaljare -->
+
+          <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected.emit(selectedPerson!.id)">
+
+            <mat-option *ngFor="let person of activePersons" [value]="person">
+
+              {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }} {{ person.id }}
+
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+      </div>
 
 
-   <!-- Personvaljare -->
-
-         <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
-
-           <mat-option *ngFor="let person of activePersons$ | async" [value]="person">
-
-               {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}  {{ person.id }}
-
-           </mat-option>
-
-       </mat-select>
-
-       </mat-form-field>
-
-
-
-       </div>
-
-
-    <div class="knapp-next">
-      <button
-        class="knapp"
-        mat-raised-button
-        color="primary"
-        routerLink="/home"
-        class="loginButton"
-      >
-        Nästa
-      </button>
+      <div class="knapp-next">
+        <button class="knapp" mat-raised-button color="primary" routerLink="/home" class="loginButton">
+          Nästa
+        </button>
+      </div>
     </div>
   </div>
-</div>
