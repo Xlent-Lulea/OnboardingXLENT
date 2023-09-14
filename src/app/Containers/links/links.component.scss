@@ -1,91 +1,63 @@
-.links {
-  background: #f2f2f2;
-  padding: 182px 99px 182px 99px;
+html{
+
 }
-.container {
+mat-list-item{
+  min-width: 20px;
+}
+
+.titel{
   display: flex;
-  flex-direction: column;
-  gap: 70px;
-  align-items: center;
-  flex: 1;
-}
-
-.title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.heading {
-  text-align: left;
-  font-size: 70px;
-}
-
-.subheading {
-  text-align: center;
-  font-size: 20px;
-  width: 333px;
-}
-
-.boxes {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  width: 1238px;
-}
-
-.general-1 {
-  background: #ffffff;
-  border-radius: 23px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 609px;
-  height: 574px;
-  position: relative;
-}
-
-.general-2 {
-  background: #ffffff;
-  border-radius: 23px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 609px;
-  position: relative;
-}
-
-.textbox {
-  display: flex;
-  flex-direction: column;
-  gap: 37px;
-  align-items: flex-end;
   justify-content: center;
-  flex-shrink: 0;
-  width: 475px;
-  position: absolute;
-  left: 46px;
-  top: 45px;
-}
-
-.box-heading {
-  font-size: 40px;
-  position: relative;
-  width: 438px;
-}
-
-.textbox-links {
+  align-items: center;
+  padding-top: 30px;
+  width: 600px;
+  margin: 0 auto; /* Centrera horisontellt */
   display: flex;
   flex-direction: column;
-  gap: 34px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 416px;
-  position: relative;
+  gap: 10px;
 }
 
-.link {
-  font-size: 20px;
-  text-decoration: underline;
+mat-card-header{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.container, .container * {
+  box-sizing: border-box;
+  }
+  .container {
+   margin-top: 30px;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   align-items: center;
+
+ }
+
+ .top-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+
+
+
+}
+
+.bottom-container{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+}
+
+mat-card{
+
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  box-shadow: none;
+  text-wrap:wrap;
 }
