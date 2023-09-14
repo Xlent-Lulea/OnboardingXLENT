@@ -5,6 +5,18 @@ mat-list-item{
   min-width: 20px;
 }
 
+.titel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  width: 600px;
+  margin: 0 auto; /* Centrera horisontellt */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 mat-card-header{
   font-size: 25px;
   font-weight: bold;
