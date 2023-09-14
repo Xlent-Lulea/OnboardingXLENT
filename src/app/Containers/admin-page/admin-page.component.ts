@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { TaskType } from 'src/app/models/task.interface';
-
-
 
 @Component({
   selector: 'app-admin-page',
@@ -9,9 +6,6 @@ import { TaskType } from 'src/app/models/task.interface';
   styleUrls: ['./admin-page.component.css']
 })
 
-
-
 export class AdminPageComponent {
 
 }
-
