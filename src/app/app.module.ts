@@ -41,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
-import { PersonService, SelectedPersonService } from './services/person.service';
+import { PersonService } from './services/person.service';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
@@ -101,7 +101,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     MatDividerModule,
   ],
-  providers: [TaskService, SelectedPersonService,PersonService],
+  providers: [TaskService,PersonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

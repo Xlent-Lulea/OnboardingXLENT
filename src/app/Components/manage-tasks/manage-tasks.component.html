@@ -38,7 +38,7 @@
   </div>
 
 <!-- Show tasks-->
-  <ng-container *ngIf="selectedPerson">
+  <ng-container *ngIf="selectedPerson$ |async as selectedPerson">
     <ng-container *ngFor="let task of selectedPerson.tasks">
       <ng-container *ngIf="task.taskType === selectedTaskType">
         <div class="task-row">

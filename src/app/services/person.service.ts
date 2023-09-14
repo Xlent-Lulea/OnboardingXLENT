@@ -14,26 +14,34 @@ export class PersonService {
   private activePersonsSubject = new BehaviorSubject<Person[]>([]);
   public activePersons$ = this.activePersonsSubject.asObservable();
 
+  private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
+  public selectedPerson$ = this.selectedPersonSubject.asObservable();
+
   public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
   constructor(private http: HttpClient) {
     this.refreshActivePersons();
   }
 
-
   refreshActivePersons(): void {
     this.getActivePersons().subscribe();
   }
 
 
-
-getPerson(id: number): Observable<Person> {
-  return this.http.get<Person>(`${this.personsUrl}/person/${id}`);
-}
+  getPerson(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
+      tap((person) => {
+      localStorage.setItem('personId', '' + id);
+      this.selectedPersonSubject.next(person);
+    })
+    );
+  }
 
   getPersons(): Observable<Person[]> {
     const url = `${this.personsUrl}/persons`;
-    return this.http.get<Person[]>(url);
+    return this.http.get<Person[]>(url).pipe(
+      tap((persons) => this.activePersonsSubject.next(persons))
+    );
   }
 
   getActivePersons(): Observable<Person[]> {
@@ -51,7 +59,6 @@ getPerson(id: number): Observable<Person> {
     const url = `${this.personsUrl}/updatePerson`;
     return this.http.post<Person>(url, person);
   }
-
 
   addTask(personId: number, task: any[]): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks`;
@@ -77,23 +84,3 @@ getPerson(id: number): Observable<Person> {
 }
 
 
-@Injectable({
-  providedIn: 'root',
-})
-export class SelectedPersonService {
-  private personId: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
-  constructor() {
-      const storedPersonId = localStorage.getItem('personId') || '';
-      this.personId.next(storedPersonId);
-  }
-
-setPersonId(personId: string) {
-  this.personId.next(personId);
-  localStorage.setItem('personId', personId);
-}
-
-getPersonId(): BehaviorSubject<string> {
-  return this.personId;
-}
-}

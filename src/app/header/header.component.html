@@ -21,9 +21,10 @@
 
     <div class="button-container">
       <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
-        {{ selectedPersonName || 'Login' }}
+        <!-- {{ selectedPersonName || 'Login' }} -->
+        {{selectedPersonName$ | async }}
       </button>
-      
+
     </div>
   </div>
 </div>

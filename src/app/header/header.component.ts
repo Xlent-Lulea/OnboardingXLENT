@@ -1,26 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { PersonService, SelectedPersonService } from 'src/app/services/person.service';
+import { Component } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  selectedPersonName: string = '';
+export class HeaderComponent {
+  // selectedPersonName: string = '';
+  selectedPersonName$: Observable<String | null> = this.personService.selectedPerson$.pipe(
+    map((person) => person?.name === 'test1' ? null : person),
+    map((person) => person?.name || 'Login' )
+  );
 
   constructor(
     private personService: PersonService,
-    private selectedPersonService: SelectedPersonService
-  ) {}
-
-  ngOnInit(): void {
-    this.selectedPersonService.getPersonId().subscribe(personId => {
-      if (personId) {
-        this.personService.getPerson(+personId).subscribe(person => {
-          this.selectedPersonName = person.name;
-        });
-      }
-    });
-  }
+  ) { }
 }
