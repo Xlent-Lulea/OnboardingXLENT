@@ -37,15 +37,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
 import { ShowTasksComponent } from './Components/show-tasks/show-tasks.component';
 import { TaskService } from './services/task.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HelloComponent } from './Components/carousel/hello.component';
 import { PersonService } from './services/person.service';
 import { MatCardModule } from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatListModule} from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
@@ -101,9 +103,25 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatTableModule,
     MatListModule,
     MatDividerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     MatProgressBarModule,
   ],
-  providers: [TaskService,PersonService],
-  bootstrap: [AppComponent],
+  providers: [
+    TaskService,
+    PersonService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule {}
+export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

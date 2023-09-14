@@ -15,24 +15,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrls: ['expansion-panel.component.scss'],
 })
 export class ExpansionPanelComponent {
-
-
   @ViewChild(MatAccordion) accordion!: MatAccordion;
-  tasksByType: { [key in TaskType]?: Task[] } = {};
-  taskTypes: TaskType[] = Object.values(TaskType).filter(
-    (value) => typeof value === 'string'
-  ) as TaskType[];
 
-  taskKeys: TaskType[] = Object.keys(TaskType) as TaskType[];
+  tasksByType: { [key in TaskType]?: Task[] } = {};
+  taskTypes: TaskType[] = Object.keys(TaskType) as TaskType[];
 
   @Input() selectedPerson: Person | null = null;
 
-
   constructor(
     private taskService: TaskService,
-  ) {}
-
-
+  ) { }
 
   shouldShowDivider(task: Task, index: number, taskEntities: Task[]): boolean {
      if (index === 0) return false;
