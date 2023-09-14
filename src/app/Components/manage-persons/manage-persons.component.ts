@@ -50,7 +50,7 @@ export class ManagePersonsComponent implements OnInit {
       name: nameValue,
       email: this.personForm.get('email')!.value,
       active: this.personForm.get('active')!.value,
-      tasks: [],
+      taskEntities: [],
     };
 
     this.personService.getPersons().subscribe({

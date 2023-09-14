@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { Task } from '../../models/task.interface';
-import { OnInit } from '@angular/core';
+import { PersonService } from '../../services/person.service';
+import { Person } from '../../models/task.interface';
+import { Observable, tap } from 'rxjs';
 
 
 
@@ -14,16 +15,15 @@ import { OnInit } from '@angular/core';
 
 
 
-export class ChecklistComponent implements OnInit {
-  constructor(private taskService: TaskService) { }
-  tasks: Task[] = [];
+export class ChecklistComponent {
+  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$.pipe(
+    tap((person) =>  console.log ('selectedPerson', person) )
+  );
+
+  constructor(private taskService: TaskService,
+              private personService: PersonService) { }
 
 
-  ngOnInit(): void {
-    // const personId = 1;
-    // this.taskService.getTasksByPerson(personId).subscribe((tasks: Task[]) => {
-    //   this.tasks = tasks;
-    //  });
-   }
-  
+
+
 }

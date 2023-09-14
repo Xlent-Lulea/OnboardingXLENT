@@ -1,15 +1,16 @@
-<div class="container">
-    <ng-container *ngFor="let type of taskTypes">
+<div class="container" *ngIf="selectedPerson">
+    <ng-container *ngFor="let type of taskTypes; let key of taskKeys">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>{{ type }}</mat-panel-title>
             </mat-expansion-panel-header>
 
-            <ng-container *ngIf="selectedPerson$ | async as selectedPerson">
-                <ng-container *ngFor="let task of selectedPerson.tasks; let taskIndex = index">
-                    <ng-container *ngIf="task.taskType === type">
+            <ng-container>
+                <ng-container *ngFor="let task of selectedPerson.taskEntities; let taskIndex = index">
+
+                    <ng-container *ngIf="task.taskType === key">
                         <!-- Divider -->
-                        <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.tasks)"></mat-divider>
+                        <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.taskEntities)"></mat-divider>
 
                         <div class="task-row">
                             <div class="task" style="display: flex; align-items: center;">
@@ -33,4 +34,4 @@
         </mat-expansion-panel>
     </ng-container>
 </div>
-{{selectedPerson$ | json}}
+

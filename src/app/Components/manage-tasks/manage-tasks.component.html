@@ -39,7 +39,7 @@
 
 <!-- Show tasks-->
   <ng-container *ngIf="selectedPerson$ |async as selectedPerson">
-    <ng-container *ngFor="let task of selectedPerson.tasks">
+    <ng-container *ngFor="let task of selectedPerson.taskEntities">
       <ng-container *ngIf="task.taskType === selectedTaskType">
         <div class="task-row">
           <div class="task">
