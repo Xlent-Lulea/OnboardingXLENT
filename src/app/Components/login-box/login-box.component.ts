@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Person } from 'src/app/models/task.interface';
@@ -19,8 +19,12 @@ export class LoginBoxComponent implements OnInit{
   isDarkMode = false;
   persons: Person[] = [];
   newPerson: Person = { id: 0, name: '', email: '', tasks: [], active: true };
-  activePersons: Person[] = [];
-  selectedPerson: Person | null = null;
+  activePersons$: Observable<Person[]> = this.personService.activePersons$;
+  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+  name$: Observable<String> = this.selectedPerson$.pipe(
+    tap((person) => this.selectedPerson=person),
+    map((person) => person?.name ||"" )
+  );
   selectedTaskType = '';
   tasks = [];
   welcomeDialogRef: any;
