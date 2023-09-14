@@ -36,6 +36,10 @@ export class TaskService {
   deleteTask(personId: number, taskId: number): Observable<void> {
     return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
   }
-  
+
+  updateTaskCompletionStatus(personId: number, taskId: number, task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`, task);
+  }
+
 }
 
