@@ -1,44 +1,36 @@
 <div class="container">
-<ng-container *ngFor="let type of taskTypes">
+    <ng-container *ngFor="let type of taskTypes">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>{{ type }}</mat-panel-title>
+            </mat-expansion-panel-header>
 
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
+            <ng-container *ngIf="selectedPerson$ | async as selectedPerson">
+                <ng-container *ngFor="let task of selectedPerson.tasks; let taskIndex = index">
+                    <ng-container *ngIf="task.taskType === type">
+                        <!-- Divider -->
+                        <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.tasks)"></mat-divider>
 
-            <mat-panel-title>{{ type }}</mat-panel-title>
-
-        </mat-expansion-panel-header>
-
-        <ng-container *ngIf="selectedPerson">
-            <ng-container *ngFor="let task of selectedPerson.tasks; let taskIndex = index">
-                <ng-container *ngIf="task.taskType === type">
-
-                    <!-- Divider -->
-                    <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.tasks)"></mat-divider>
-
-                    <div class="task-row">
-                        <div class="task" style="display: flex; align-items: center;">
-                            <!-- Checkbox for each task -->
-                            <mat-checkbox color="primary" style="margin-right: 10px;"></mat-checkbox>
-                            <div class="task-text">
-                                <p>
-                                    Titel:
-                                    <ng-container *ngIf="task.url; else noLink">
-                                        <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
-                                    </ng-container>
-                                    <ng-template #noLink>{{ task.urltitle }}</ng-template>
-                                    Beskrivning: {{ task.description }}
-                                </p>
-
+                        <div class="task-row">
+                            <div class="task" style="display: flex; align-items: center;">
+                                <!-- Checkbox for each task -->
+                                <mat-checkbox color="primary" style="margin-right: 10px;"></mat-checkbox>
+                                <div class="task-text">
+                                    <p>
+                                        Titel:
+                                        <ng-container *ngIf="task.url; else noLink">
+                                            <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+                                        </ng-container>
+                                        <ng-template #noLink>{{ task.urltitle }}</ng-template>
+                                        Beskrivning: {{ task.description }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </ng-container>
             </ng-container>
-        </ng-container>
-
-    </mat-expansion-panel>
-
-
-</ng-container>
+        </mat-expansion-panel>
+    </ng-container>
 </div>
-<pre>{{ selectedPerson | json }}</pre>
+{{selectedPerson$ | json}}
