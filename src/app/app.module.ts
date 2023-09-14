@@ -46,6 +46,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTableModule,
     MatListModule,
     MatDividerModule,
+    MatProgressBarModule,
   ],
   providers: [TaskService,PersonService],
   bootstrap: [AppComponent],

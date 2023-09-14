@@ -3,6 +3,7 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>{{ type }}</mat-panel-title>
+                <mat-progress-bar mode="determinate" [value]="getCompletedTasksForType(key) / getTotalTasksForType(key) * 100"></mat-progress-bar>
             </mat-expansion-panel-header>
 
             <ng-container>
@@ -15,7 +16,8 @@
                         <div class="task-row">
                             <div class="task" style="display: flex; align-items: center;">
                                 <!-- Checkbox for each task -->
-                                <mat-checkbox color="primary" style="margin-right: 10px;"></mat-checkbox>
+                                <mat-checkbox  [(ngModel)]="task.completed" color="primary"  style="margin-right: 10px;"(change)="onTaskStatusChange(task)"> </mat-checkbox>
+
                                 <div class="task-text">
                                     <p>
                                         Titel:
@@ -34,4 +36,3 @@
         </mat-expansion-panel>
     </ng-container>
 </div>
-
