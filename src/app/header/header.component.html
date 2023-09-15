@@ -1,8 +1,11 @@
 <div class="header">
-  <img class="image" src="../../assets/image-2.png" />
+  <a [routerLink]="['/home']">
+    <img class="image"  src="../../assets/image-2.png"  />
+  </a>
+
   <div class="horizontal-container">
     <div class="paragraph-container">
-      <button mat-button routerLink="/home" class="hem">Hem</button>
+
 
       <button mat-button routerLink="/checklist" class="checklista">
         Checklista
@@ -14,7 +17,7 @@
         Kunskap
       </button>
 
-      
+
 
     <div class="button-container">
       <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
