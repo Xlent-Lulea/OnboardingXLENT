@@ -91,15 +91,26 @@
     </div>
 
     <div class="carousel-item" [class.active]="isActive == 8">
+      <h1>Jämställdhet</h1>
+      <div class="item-content">
+        <img src="../../../assets/image 4.png" alt="" />
+        <div>
+          Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
+          nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.
+          Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam
+          elementum.
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" [class.active]="isActive == 9">
       <h1>Avslut!</h1>
       <div class="item-content">
         <img src="../../../assets/image 4.png" alt="" />
         <div>
-          Toppen! Då har du fått en snabb introduktion till vår
-          "onboardingprocess". Hoppas det inte kändes allt för krångligt. Nu är
-          det bara att hugga tag i de olika bladen och sätta igång. Hör av dig
-          till din Buddy eller till någon av kontaktpersonerna om du undrar över
-          något. Lycka till!
+          Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
+          nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.
+          Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam
+          elementum.
         </div>
       </div>
     </div>
@@ -123,11 +134,11 @@
       Nästa
     </button>
 
-    <div class="agree" *ngIf="isActive == 8">
+    <div class="agree" *ngIf="isActive == 9">
       <button mat-raised-button color="primary" routerLink="/checklist">
         Gå till checklistan
       </button>
     </div>
-    <div class="activeNr">{{ isActive }}/8</div>
+    <div class="activeNr">{{ isActive }}/9</div>
   </div>
 </div>

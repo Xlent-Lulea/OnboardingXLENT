@@ -23,12 +23,12 @@ export class CarouselComponent {
 
 
   next() {
-    if (this.isActive == 8) this.isActive = 0;
+    if (this.isActive == 9) this.isActive = 0;
     this.isActive ++;
   }
   pre() {
     this.isActive --;
-    if (this.isActive == 0) this.isActive = 8;
+    if (this.isActive == 0) this.isActive = 9;
   }
 
 }
