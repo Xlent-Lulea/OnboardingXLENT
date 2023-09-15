@@ -2,7 +2,7 @@
 export interface Task {
     urltitle?: string;
     id?:number;
-    taskType: string;
+    taskType: TaskType;
     url?: string;
     completed: boolean;
     description: string;
@@ -24,7 +24,7 @@ export enum TaskType {
     id: number;
     name: string;
     email: string;
-    tasks: Task[];
+    taskEntities: Task[];
     active: boolean;
 
   }

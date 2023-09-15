@@ -3,4 +3,8 @@
 <h4>Här får du en introduktion som nyanställd</h4>
 </div>
 
-<app-expansion-panel></app-expansion-panel>
+<app-expansion-panel
+
+    [selectedPerson]="selectedPerson$ | async"
+
+></app-expansion-panel>
