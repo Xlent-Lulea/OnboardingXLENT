@@ -55,19 +55,20 @@ export class ExpansionPanelComponent {
   }
 
   onTaskStatusChange(task: Task): void {
-    if (task.id !== undefined && this.selectedPerson && this.selectedPerson.id !== undefined) {
-      this.taskService.updateTaskCompletionStatus(this.selectedPerson.id, task.id, task).subscribe(
-        updatedTask => {
+    if (task.id !== undefined) {
+      this.taskService.updateTaskCompletionStatus(task.id).subscribe(
+        (updatedTask) => {
           console.log('Task updated:', updatedTask);
+          // Optionally, update local task state or UI here if needed.
         },
-        error => {
+        (error) => {
           console.error('Failed to update task:', error);
           // Optionally, revert the checkbox state in case of an error
           task.completed = !task.completed;
         }
       );
     } else {
-      console.error('Task ID or Selected Person ID is undefined');
+      console.error('Task ID is undefined');
     }
   }
 
