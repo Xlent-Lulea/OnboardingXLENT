@@ -40,7 +40,6 @@ import { TaskService } from './services/task.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
-import { HelloComponent } from './Components/carousel/hello.component';
 import { PersonService } from './services/person.service';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
@@ -75,7 +74,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ShowTasksComponent,
     OnboardingComponent,
     CarouselComponent,
-    HelloComponent,
   ],
   imports: [
     BrowserModule,
