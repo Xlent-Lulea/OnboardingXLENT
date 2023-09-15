@@ -14,10 +14,7 @@
         Kunskap
       </button>
 
-      <button mat-button routerLink="/admin-page" class="admin-page">
-        Admin
-      </button>
-    </div>
+      
 
     <div class="button-container">
       <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
@@ -25,6 +22,10 @@
         {{selectedPersonName$ | async }}
       </button>
 
+      <button  routerLink="/admin-page" class="admin-page">
+       admin
+      </button>
+      </div>
     </div>
   </div>
 </div>

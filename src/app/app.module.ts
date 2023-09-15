@@ -49,6 +49,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       }
     }),
     MatProgressBarModule,
+    MatGridListModule
   ],
   providers: [
     TaskService,

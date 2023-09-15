@@ -1,24 +1,27 @@
+<div class="titel">
+  <h1>Kunskap</h1>
+    <h4>Här kan du se saker som kan vara bra att veta</h4>
+
+</div>
 <div class="container">
-<h1>Kunskap</h1>
-<p>Här kan du se saker som kan vara bra att veta</p>
-<mat-accordion>
+  <mat-accordion>
   <h1>Fokusgrupper</h1>
   <p>Detta är grupper som...</p>
   <mat-expansion-panel *ngFor="let group of focusGroups">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ group.heading }}  
+        {{ group.heading }}
       </mat-panel-title>
       <mat-panel-description>
         <div class="subheading"> {{group.subheading}}</div>
       </mat-panel-description>
-    </mat-expansion-panel-header>  
+    </mat-expansion-panel-header>
     <mat-list>
       <mat-list-item *ngFor="let task of group.tasks">{{ task }}</mat-list-item>
     </mat-list>
   </mat-expansion-panel>
-</mat-accordion>
+  </mat-accordion>
 
-<h1>Annat</h1>
+  <h1>Annat</h1>
 
-</div>  
+</div>
