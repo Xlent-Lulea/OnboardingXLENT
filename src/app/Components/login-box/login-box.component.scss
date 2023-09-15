@@ -41,8 +41,8 @@
 }
 
 .knapp-next {
-  position: absolute;
-  top: 150px;
+
+
 }
 
 .loginButton {
@@ -50,4 +50,13 @@
   height: 50px;
 }
 
+.knappar{
+  display: flex;
+  flex-direction: row;
+  padding-top: 450px;
+  gap: 20px;
+  padding-left: 25px;
+
+
+}
 
