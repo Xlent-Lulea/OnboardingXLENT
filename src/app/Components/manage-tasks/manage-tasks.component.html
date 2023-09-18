@@ -52,8 +52,9 @@
 
 <!-- Show tasks-->
 
-<ng-container *ngIf="selectedPerson$ | async as selectedPerson">
-  <ng-container *ngFor="let task of selectedPerson.tasks">
+<!-- Show tasks-->
+<ng-container *ngIf="selectedPerson$ |async as selectedPerson">
+  <ng-container *ngFor="let task of selectedPerson.taskEntities">
     <ng-container *ngIf="task.taskType === selectedTaskType">
       <div class="task-row">
         <div class="task">
@@ -64,9 +65,7 @@
             </ng-container>
             <ng-template #noLink>{{ task.urltitle }}</ng-template>
             Beskrivning: {{ task.description }}
-            <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)"
-              >delete_forever</mat-icon
-            >
+            <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)">delete_forever</mat-icon>
             <!-- <app-email></app-email> Fungerar ej-->
           </h3>
         </div>
