@@ -1,13 +1,15 @@
 <!--task-list.component.html-->
 <div class="task-list">
-  <div class="header">
+  <h2>Lägg till task</h2>
+
     <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox> -->
-
-
 
     <mat-form-field>
       <mat-label>TaskType</mat-label>
-      <mat-select [(value)]="selectedTaskType" (selectionChange)="filterTasksByTaskType(selectedTaskType)">
+      <mat-select
+        [(value)]="selectedTaskType"
+        (selectionChange)="filterTasksByTaskType(selectedTaskType)"
+      >
         <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
           {{ taskType }}
         </mat-option>
@@ -16,45 +18,58 @@
     </mat-form-field>
 
     <form (ngSubmit)="createTask()">
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          id="task-urltitle"
+          [(ngModel)]="newTask.urltitle"
+          name="urltitle"
+          required
+        />
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="task-urltitle">Title</label>
-        <input id="task-urltitle" [(ngModel)]="newTask.urltitle" name="urltitle" required>
-      </div>
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          id="task-description"
+          [(ngModel)]="newTask.description"
+          name="description"
+          required
+        />
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="task-description">Description</label>
-        <input id="task-description" [(ngModel)]="newTask.description" name="description" required>
-      </div>
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Url?</mat-label>
+        <input matInput id="task-url" [(ngModel)]="newTask.url" name="url" />
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="task-url">Url?</label>
-        <input id="task-url" [(ngModel)]="newTask.url" name="url" not required>
-      </div>
-
-      <button type="submit">Add task</button>
+      <button mat-raised-button color="primary" type="submit">Add task</button>
     </form>
-  </div>
-  </div>
+
+</div>
 
 <!-- Show tasks-->
-  <ng-container *ngIf="selectedPerson$ |async as selectedPerson">
-    <ng-container *ngFor="let task of selectedPerson.taskEntities">
-      <ng-container *ngIf="task.taskType === selectedTaskType">
-        <div class="task-row">
-          <div class="task">
-            <h3>
-              Titel:
-              <ng-container *ngIf="task.url; else noLink">
-                <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
-              </ng-container>
-              <ng-template #noLink>{{ task.urltitle }}</ng-template>
-              Beskrivning: {{ task.description }}
-              <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)">delete_forever</mat-icon>
-              <!-- <app-email></app-email> Fungerar ej-->
-            </h3>
-          </div>
+
+<!-- Show tasks-->
+<ng-container *ngIf="selectedPerson$ |async as selectedPerson">
+  <ng-container *ngFor="let task of selectedPerson.taskEntities">
+    <ng-container *ngIf="task.taskType === selectedTaskType">
+      <div class="task-row">
+        <div class="task">
+          <h3>
+            Titel:
+            <ng-container *ngIf="task.url; else noLink">
+              <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+            </ng-container>
+            <ng-template #noLink>{{ task.urltitle }}</ng-template>
+            Beskrivning: {{ task.description }}
+            <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)">delete_forever</mat-icon>
+            <!-- <app-email></app-email> Fungerar ej-->
+          </h3>
         </div>
-      </ng-container>
+      </div>
     </ng-container>
   </ng-container>
+</ng-container>
