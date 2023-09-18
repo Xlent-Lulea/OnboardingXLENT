@@ -28,7 +28,7 @@ export class ManagePersonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.personService.getAllPersons().subscribe({
+    this.personService.getPersons().subscribe({
       next: (persons) => {
         this.allPersons = persons;
       },
@@ -44,25 +44,25 @@ export class ManagePersonsComponent implements OnInit {
       console.log('Name cannot be null. Cannot create person.');
       return; // Exit the function if name is null
     }
-  
+
     const newPerson: Person = {
       id: 0,
       name: nameValue,
       email: this.personForm.get('email')!.value,
       active: this.personForm.get('active')!.value,
-      tasks: [],
+      taskEntities: [],
     };
-  
-    this.personService.getAllPersons().subscribe({
-      next: (persons) => {
+
+    this.personService.getPersons().subscribe({
+      next: (persons: Person[]) => {
         this.activePersons = persons;
       },
       error: (error) => {
         console.error('Error fetching persons:', error);
       }
     });
-  
-    this.personService.createPerson(newPerson).subscribe({ 
+
+    this.personService.createPerson(newPerson).subscribe({
       next: (response) => {
         console.log('Person created', response);
       },
@@ -71,8 +71,8 @@ export class ManagePersonsComponent implements OnInit {
       }
     });
   }
-  
- 
+
+
   toggleActive(person: Person): void {
     if (person.active) {
       this.personService.deactivatePerson(person.id).subscribe({
@@ -98,7 +98,7 @@ export class ManagePersonsComponent implements OnInit {
   }
 
   reloadPersons(): void {
-    this.personService.getAllPersons().subscribe({
+    this.personService.getPersons().subscribe({
       next: (persons) => {
         this.allPersons = persons;
       },
@@ -111,19 +111,19 @@ export class ManagePersonsComponent implements OnInit {
 
   openDeleteConfirmationDialog(personId: number): void {
     const dialogData = new ConfirmDialogModel('Delete Person', 'Are you sure you want to delete this person?');
-  
+
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
       data: dialogData,
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deletePerson(personId); // Call the deletePerson method after confirmation
       }
     });
   }
-  
+
 deletePerson(personId: number): void {
   this.personService.deletePerson(personId).subscribe(
     () => {
@@ -137,5 +137,5 @@ deletePerson(personId: number): void {
   );
 
 
-}  
+}
 }

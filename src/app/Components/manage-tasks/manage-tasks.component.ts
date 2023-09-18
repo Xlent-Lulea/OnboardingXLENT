@@ -23,7 +23,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
   selectAll: boolean = false;
   @Input() tasks: Task[] = [];
   allTasks: Task[] = [];
-  @Input() selectedTaskType: string = '';
+  @Input() selectedTaskType!: TaskType;
   person: Person | undefined;
   personId: string | undefined;
 
@@ -107,7 +107,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
               .subscribe((tasks: Task[]) => {
                 this.tasks = tasks;
                 if (this.selectedPerson) {
-                  this.selectedPerson.tasks = tasks; // update selectedPerson tasks
+                  this.selectedPerson.taskEntities = tasks; // update selectedPerson tasks
                 }
                 console.log('Specifika tasks efter TaskType:', this.tasks);
               });
@@ -124,7 +124,7 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
         .createTask(this.selectedPerson.id, this.selectedTaskType, this.newTask)
         .subscribe((task: Task) => {
           console.log('Created task:', task); // Add this line to print the created task
-          this.selectedPerson?.tasks.push(task);
+          this.selectedPerson?.taskEntities.push(task);
           this.newTask = {
             urltitle: '',
             description: '',
