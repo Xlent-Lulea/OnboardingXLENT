@@ -1,16 +1,136 @@
-.hem,
-.hem * {
-  box-sizing: border-box;
+body, html {
+  margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
-.hem {
-  background: #f2f2f2;
+
+
+
+@media only screen and (max-width: 768px) {
+  table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+
+
+
+}
+
+
+
+
+.mat-toolbar {
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  background-color: #ffff;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+div {
+  overflow: inherit;
+}
+
+.mat-sidenav-container {
+  min-height: 93vh !important;
   display: flex;
   flex-direction: column;
-  gap: 175px;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  //overflow: hidden;
 }
+
+a {
+  text-decoration: none;
+  white-space: normal;
+}
+
+button {
+
+  min-width: min-content;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-sidenav-content {
+
+  text-align: center;
+  flex: 1;
+}
+
+.mobile-nav-button {
+  display: block;
+}
+
+.desktop-nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.sidenav {
+  display: none;
+  flex-direction: column;
+}
+
+.sidenav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 25px;
+  overflow: hidden;
+
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* This will push the elements to the sides, centering the logo */
+  width: 94%; /* This will take the full width available */
+}
+
+.logo {
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+
+}
+
+
+@media (min-width: 768px) {
+  .mobile-nav-button {
+    display: none;
+  }
+
+  .sidenav {
+    display: none !important;
+  }
+
+  .desktop-nav-links {
+    display: flex;
+  }
+
+
+}
+
+@media (max-width: 767px) {
+  .desktop-nav-links {
+    display: none;
+  }
+
+  .sidenav {
+    display: flex;
+    width: 100%;
+  }
+  .logo{
+    margin: auto;
+  }
+
+}
+

@@ -49,6 +49,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+
 
 @NgModule({
   declarations: [
@@ -110,7 +114,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
       }
     }),
     MatProgressBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [
     TaskService,
