@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 
   }
 
@@ -21,10 +21,10 @@
   mat-accordion{
     display: flex;
     flex-direction: column;
-    flex: 1; /* This makes the element fill its container */
+    flex: 1; 
     max-width: 1000px;
     justify-content: center;
-    // margin: 0 auto;
+
   }
 
   .titel{
@@ -42,9 +42,7 @@
   }
 
 
-// .subheading {
-//   font-weight: bold;
-// }
+
 
 @media screen and (max-width: 768px) {
   .container {
@@ -55,9 +53,7 @@
     padding: 10px;
   }
 
-  // mat-expansion-panel-header{
-  //   padding: 20px;
-  // }
+
 
   mat-panel-description{
     display: none;

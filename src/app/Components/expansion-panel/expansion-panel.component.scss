@@ -1,14 +1,6 @@
 
 
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 10px;
-//   border-radius: 12px;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 20px; /* Lägger till lite padding runt containerns innehåll */
-// }
+
 
 .container {
   display: flex;
@@ -18,21 +10,7 @@
 
 }
 
-// .task-text {
-//   font-size: 15px;
-// }
 
-// .example-action-buttons {
-//     padding-bottom: 20px;
-//   }
-
-//   .example-headers-align .mat-expansion-panel-header-description {
-
-//   }
-
-//   .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
-//     margin-left: 8px;
-//   }
 
 mat-expansion-panel{
   margin-top: 1px;
@@ -50,10 +28,9 @@ mat-expansion-panel-header {
   mat-accordion{
     display: flex;
     flex-direction: column;
-    flex: 1; /* This makes the element fill its container */
+    flex: 1; 
     max-width: 1000px;
     justify-content: center;
-    // margin: 0 auto;
 
   }
   mat-progress-bar{
@@ -72,9 +49,7 @@ mat-expansion-panel-header {
       padding: 10px;
     }
 
-    // mat-expansion-panel-header{
-    //   padding: 20px;
-    // }
+
     mat-expansion-panel-header {
       margin-top: 10px;
       margin-bottom: 10px;

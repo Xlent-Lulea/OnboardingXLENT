@@ -8,16 +8,16 @@
 }
 
 .titlar {
-  width: 65%; /* Take up 65% of the container width */
+  width: 65%; 
   box-sizing: border-box;
-  padding-right: 20px; /* Some spacing between the text and the image */
+  padding-right: 20px;
 }
 
 .titel-rubrik {
   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
   text-align: left;
   font-size: 72px;
-  margin-bottom: 20px; /* Spacing between title and subtitle */
+  margin-bottom: 20px;
 }
 
 .titel-underrubrik {
@@ -27,31 +27,31 @@
 }
 
 .image-4 {
-  width: 30%; /* Take up 30% of the container width */
+  width: 30%;
   max-width: 342px;
-  height: auto; /* Adjusts the height based on the width while maintaining aspect ratio */
+  height: auto;
 }
 
-/* Media Query for Mobile Screens */
+
 @media only screen and (max-width: 768px) {
   .titlar {
-    width: 100%; /* Take up full width on mobile */
-    padding-right: 0; /* Remove padding */
+    width: 100%;
+    padding-right: 0;
   }
 
   .titel-rubrik {
-    font-size: 36px; /* Reduce font size for mobile */
+    font-size: 36px;
     line-height: 45px;
   }
 
   .titel-underrubrik {
-    font-size: 16px; /* Reduce font size for mobile */
+    font-size: 16px;
     line-height: 24px;
   }
 
   .image-4 {
     display: none;
-    width: 100%; /* Image takes full width on mobile */
-    margin-top: 20px; /* Spacing between the subtitle and the image */
+    width: 100%;
+    margin-top: 20px;
   }
 }
