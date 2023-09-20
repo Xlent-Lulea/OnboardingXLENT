@@ -1,46 +1,85 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
 
 
-
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+//   border-radius: 12px;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 20px; /* Lägger till lite padding runt containerns innehåll */
+// }
 
 .container {
-  width: 600px;
-  margin: 0 auto; /* Centrera horisontellt */
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: #ffffff;
-  border-radius: 12px;
-  justify-content: center;
   align-items: center;
-  padding: 20px; /* Lägger till lite padding runt containerns innehåll */
+
+
 }
 
+// .task-text {
+//   font-size: 15px;
+// }
 
-.task-text {
+// .example-action-buttons {
+//     padding-bottom: 20px;
+//   }
 
-  font: var(--xlent, 400 20px/28px "Franklin Gothic Book", sans-serif);
-  font-size: 15px;
+//   .example-headers-align .mat-expansion-panel-header-description {
+
+//   }
+
+//   .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+//     margin-left: 8px;
+//   }
+
+mat-expansion-panel{
+  margin-top: 1px;
+  margin-bottom: 1px;
+
+
+}
+mat-expansion-panel-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 600px;
+
 }
 
-.example-action-buttons {
-    padding-bottom: 20px;
+  mat-accordion{
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* This makes the element fill its container */
+    max-width: 1000px;
+    justify-content: center;
+    // margin: 0 auto;
+
+  }
+  mat-progress-bar{
+    width: 60%;
+    margin-right: 10px;
+
   }
 
-  .example-headers-align .mat-expansion-panel-header-description {
 
-  }
+  @media screen and (max-width: 768px) {
+    .container {
+      align-items: unset;
+    }
 
-  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
-    margin-left: 8px;
-  }
+    .mat-accordion{
+      padding: 10px;
+    }
 
-  .mat-expansion-panel {
-    width: 600px;
+    // mat-expansion-panel-header{
+    //   padding: 20px;
+    // }
+    mat-expansion-panel-header {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width:unset;
+    }
+
+
   }
