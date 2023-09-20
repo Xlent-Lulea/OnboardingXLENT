@@ -12,11 +12,10 @@
       <mat-panel-title>
         {{ group.heading }}
       </mat-panel-title>
-      <mat-panel-description>
-        <div class="subheading"> {{group.subheading}}</div>
-      </mat-panel-description>
+      
     </mat-expansion-panel-header>
     <mat-list>
+      <div class="subheading"> {{group.subheading}}</div>
       <mat-list-item *ngFor="let task of group.tasks">{{ task }}</mat-list-item>
     </mat-list>
   </mat-expansion-panel>

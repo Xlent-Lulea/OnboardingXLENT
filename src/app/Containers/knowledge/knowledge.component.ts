@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   selector: 'app-knowledge',
   templateUrl: './knowledge.component.html',
   styleUrls: ['./knowledge.component.scss'],
-  
+
 })
 export class KnowledgeComponent {
 
   focusGroups = [
     {
-      heading: 'VD, ledningsfrågor Anvsvarig: Veronica',
+      heading: 'VD, ledningsfrågor',
       subheading: 'Ansvarig: Veronica Andersson',
       tasks: [
         '•Formellt personalansvar, chef för XLUs anställda',
@@ -31,12 +31,12 @@ export class KnowledgeComponent {
       subheading: 'Ansvarig: Christian Werme',
       tasks: [
         '•	Skickar ut enkät och sammanställer resultat 2 ggr per år ',
-        
+
       ]
     },
 
     {
-      heading: 'Rekrytering (fokusgrupp) ',
+      heading: 'Rekrytering',
       subheading: 'Ansvarig: Alexandra Rönnkvist',
       tasks: [
         '•	Ansvarig för rekryteringsprocessen',
@@ -55,7 +55,7 @@ export class KnowledgeComponent {
         '•	Håller ihop arbete med budget och prognoser',
         '•	Ekonomisk uppföljning och rapportering till övriga inom XLU',
         '•	Attest av fakturor',
-        
+
       ]
     },
 
@@ -86,11 +86,11 @@ export class KnowledgeComponent {
       tasks: [
         '•	Upprätta och underhålla dokumentationen rörande lokaler och lösöre.',
         '•	Företagets kontakt med de servicebolag XLENT Luleå har avtal/kontakt med.'
-        
+
       ]
     },
     {
-      heading: 'Onboarding (fokusgrupp)',
+      heading: 'Onboarding',
       subheading: 'Ansvarig: Emmy Valfridsson',
       tasks: [
         '•	Ansvarar för och utvecklar processen för att ta emot nyanställda',
@@ -107,12 +107,12 @@ export class KnowledgeComponent {
     },
     {
       heading: 'IT & telefoni',
-      subheading: 'Ansvarig: Christian Wande',
+      subheading: 'Ansvarig: Christian Werme',
       tasks: [
         '•	Beställningar av utrustning kopplat till teknik såsom Telefoner, Datorer, teknisk utrustning till kontor.',
         '•	Telefonabonnemang.',
         '•	Vara behjälplig om någon har problem med teknik.'
-        
+
       ]
     },
     {
@@ -128,7 +128,7 @@ export class KnowledgeComponent {
       ]
     },
     {
-      heading: 'HR (fokusgrupp)',
+      heading: 'HR',
       subheading: 'Ansvarig: Christian Wande',
       tasks: [
         'Ta fram och utveckla processer för:',
@@ -137,7 +137,7 @@ export class KnowledgeComponent {
         '•	Uppföljning av uppsatta HR-mål',
         '•	Utvecklar koncept för kompetensutveckling',
         '•	Uppföljning medarbetarenkät'
-        
+
       ]
     },
     {
@@ -157,8 +157,8 @@ export class KnowledgeComponent {
         '•	Initiera Studentträffar',
       ]
     },
-    
-   
+
+
   ];
 }
 
