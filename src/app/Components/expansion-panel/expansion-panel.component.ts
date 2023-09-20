@@ -1,60 +1,39 @@
-import { Component, ViewChild, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task, TaskType } from '../../models/task.interface';
 import { Person } from 'src/app/models/task.interface';
-import { MatAccordion } from '@angular/material/expansion';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
-/**
- * @title Accordion with expand/collapse all toggles
- */
 @Component({
   selector: 'app-expansion-panel',
   templateUrl: 'expansion-panel.component.html',
   styleUrls: ['expansion-panel.component.scss'],
 })
-export class ExpansionPanelComponent {
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
-
-  tasksByType: { [key in TaskType]?: Task[] } = {};
-  taskTypes: TaskType[] = Object.keys(TaskType) as TaskType[];
-
+export class ExpansionPanelComponent implements OnChanges {
+  tasks: Task[] = [];
+  @Input() taskType: TaskType = TaskType.WELCOME;
   @Input() selectedPerson: Person | null = null;
+  @Output() onTaskStatusChange = new EventEmitter<Task>();
 
-  constructor(
-    private taskService: TaskService,
-  ) { }
+  constructor(private taskService: TaskService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
+    if (!changes['selectedPerson']) {
+      return;
+    }
+    this.tasks = this.selectedPerson?.taskEntities.filter(
+      (task) => task.taskType === this.taskType
+    ) || [];
+    console.log('tasks:', this.tasks);
+  }
 
   shouldShowDivider(task: Task, index: number, taskEntities: Task[]): boolean {
-     if (index === 0) return false;
-     return taskEntities[index - 1].taskType === task.taskType;
-   }
-
-  fetchTasksByType(taskType: TaskType, personId: number): void {
-    this.taskService
-      .getTasksByPersonAndType(personId, taskType as unknown as string)
-      .subscribe((taskEntities: Task[]) => {
-        console.log('Tasks for type', taskType, taskEntities);
-        this.tasksByType[taskType] = taskEntities;
-      });
+    if (index === 0) return false;
+    return taskEntities[index - 1].taskType === task.taskType;
   }
 
-  getCompletedTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type && task.completed).length;
-    }
-    return 0;
-  }
-
-  getTotalTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type).length;
-    }
-    return 0;
-  }
-
-  onTaskStatusChange(task: Task): void {
+  onTaskStatusChange1(task: Task): void {
     if (task.id !== undefined) {
       this.taskService.updateTaskCompletionStatus(task.id).subscribe(
         (updatedTask) => {
@@ -71,5 +50,4 @@ export class ExpansionPanelComponent {
       console.error('Task ID is undefined');
     }
   }
-
 }

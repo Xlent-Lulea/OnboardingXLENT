@@ -14,7 +14,6 @@ import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpanel.component';
 import { LinksComponent } from './Containers/links/links.component';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -50,6 +49,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ProgressBarComponent } from './Components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     TitleComponent,
     AboutComponent,
     WalkthroughComponent,
-    ExpansionpanelComponent,
     LinksComponent,
     LoginBoxComponent,
     KnowledgeComponent,
@@ -78,6 +77,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     OnboardingComponent,
     CarouselComponent,
     HelloComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

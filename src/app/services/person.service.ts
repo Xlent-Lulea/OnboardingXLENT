@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Person } from '../models/task.interface';
+import { Person, Task } from '../models/task.interface';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class PersonService {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
       tap((person) => {
       localStorage.setItem('personId', '' + id);
-      this.selectedPersonSubject.next(person);
+      this.updateSelectedPerson(person);
     })
     );
   }
@@ -60,12 +60,16 @@ export class PersonService {
     return this.http.post<Person>(url, person);
   }
 
+  updateSelectedPerson(person: Person): void {
+    this.selectedPersonSubject.next(person);
+  }
+
   updatePerson(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/updatePerson`;
     return this.http.post<Person>(url, person);
   }
 
-  addTask(personId: number, task: any[]): Observable<Person> {
+  addTask(personId: number, task: Task[]): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks`;
     return this.http.post<Person>(url, task);
   }
