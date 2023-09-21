@@ -5,7 +5,9 @@ body, html {
     overflow-x: hidden;
 }
 
-
+$size-default-px: 15;/* your default size value, e.g., 15px */;
+$width-content-max: 1200px; /* your maximum content width value, e.g., 1200px */
+$size-content-px: max(1rem, (60vw - 1280px) / 2);
 
 @media only screen and (max-width: 768px) {
   table {
@@ -18,7 +20,10 @@ body, html {
 
 }
 
+header{
+  background-color: #ffff;
 
+}
 
 
 .mat-toolbar {
@@ -27,8 +32,11 @@ body, html {
   align-items: center;
   background-color: #ffff;
   justify-content: space-between;
-  padding: 20px;
   margin: 0 auto;
+  // padding: 0 max(15px, (60vw - 1200px) / 2);
+  min-width: 768px;
+  max-width: 1050px;
+
 }
 
 div {
@@ -126,10 +134,14 @@ button {
 
   .sidenav {
     display: flex;
-    width: 100%;
+    width: 60%;
   }
   .logo{
     margin: auto;
+  }
+  .mat-toolbar {
+    min-width: 0;
+
   }
 
 }
