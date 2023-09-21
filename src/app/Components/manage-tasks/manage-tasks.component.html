@@ -6,7 +6,7 @@
 
     <mat-form-field>
       <mat-label>TaskType</mat-label>
-      <mat-select
+      <mat-select MatFormFieldControl
         [(value)]="selectedTaskType"
         (selectionChange)="filterTasksByTaskType(selectedTaskType)"
       >

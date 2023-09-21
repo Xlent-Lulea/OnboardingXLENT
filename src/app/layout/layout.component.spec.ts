@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutComponent } from './layout.component';
+import { HeaderComponent } from '../header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -8,7 +11,27 @@ describe('LayoutComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutComponent]
+      declarations: [LayoutComponent, HeaderComponent],
+      imports: [HttpClientModule, RouterModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            // Mock any properties or methods you need here
+            snapshot: {
+              paramMap: {
+                get: (key: string) => {
+                  // Provide mock data for paramMap
+                  if (key === 'yourParam') {
+                    return 'mockedParamValue';
+                  }
+                  return null; // Return null for other keys if needed
+                },
+              },
+            },
+          },
+        }
+      ],
     });
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
