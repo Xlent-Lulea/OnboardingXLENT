@@ -1,9 +1,0 @@
-.task-lists .header { 
-    margin-top: 500px;
-    padding-top: 200px;
-}
-
-router-outlet {
-    margin-top: 100px; /* Eller hur mycket höjd din header har, plus lite extra marginal. */
-    padding-top: 100px;
-}

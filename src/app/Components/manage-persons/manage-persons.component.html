@@ -1,5 +1,5 @@
 <!-- manage-persons.component.html -->
-
+<div class="person-list">
 <h2>Lägg till person</h2>
 <form [formGroup]="personForm" (ngSubmit)="submitForm()">
   <mat-form-field>
@@ -8,7 +8,7 @@
     <input matInput formControlName="name" placeholder="Enter name" required />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline" class="form-group">
     <mat-label>Email</mat-label>
     <input
       matInput
@@ -34,3 +34,4 @@
     <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)"><mat-icon>delete</mat-icon></button>
   </div>
 
+</div>
