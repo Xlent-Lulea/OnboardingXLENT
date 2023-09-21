@@ -83,8 +83,8 @@ export class PersonService {
     return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {});
   }
 
-  deletePerson(personId: number): Observable<Person> {
-    return this.http.delete<Person>(`${this.personsUrl}/person/${personId}`, {});
+  deletePerson(personId: number): Observable<void> {
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {});
   }
 }
 
