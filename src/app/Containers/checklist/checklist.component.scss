@@ -2,14 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30px;
-    width: 600px;
-    margin: 0 auto; /* Centrera horisontellt */
-    display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: 12px;
-    justify-content: center;
-    align-items: center;
     padding: 20px; /* Lägger till lite padding runt containerns innehåll */
   }
