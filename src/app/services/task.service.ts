@@ -11,11 +11,10 @@ import { PersonService } from './person.service';
   providedIn: 'root'
 })
 export class TaskService {
-  constructor(private http: HttpClient, private personService: PersonService) {}
+  constructor(private http: HttpClient, private personService: PersonService) { }
 
-  getTasksByPerson (personId: number): Observable<Task[]> {
-    let tasks: Observable<Task[]> = this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-    return tasks;
+  getTasksByPerson(personId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
   }
 
   getTasksByPersonId(personId: number): Observable<Task[]> {
@@ -33,8 +32,8 @@ export class TaskService {
     return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task);
   }
 
-  deleteTask(personId: number, taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
+  deleteTask(personId: number, taskId: number): Observable<Task> {
+    return this.http.delete<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
   }
 
   updateTaskCompletionStatus(taskId: number): Observable<Task> {

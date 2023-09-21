@@ -1,5 +1,5 @@
 <app-login-box
     [selectedPerson]="selectedPerson$ | async"
     [activePersons]="activePersons$ | async"
-    (onPersonSelected)="selectPerson($event)"
+    (selectPerson)="selectPerson($event)"
 ></app-login-box>
