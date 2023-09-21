@@ -5,9 +5,6 @@ body, html {
     overflow-x: hidden;
 }
 
-$size-default-px: 15;/* your default size value, e.g., 15px */;
-$width-content-max: 1200px; /* your maximum content width value, e.g., 1200px */
-$size-content-px: max(1rem, (60vw - 1280px) / 2);
 
 @media only screen and (max-width: 768px) {
   table {
@@ -33,7 +30,6 @@ header{
   background-color: #ffff;
   justify-content: space-between;
   margin: 0 auto;
-  // padding: 0 max(15px, (60vw - 1200px) / 2);
   min-width: 768px;
   max-width: 1050px;
 
@@ -99,8 +95,8 @@ button {
 .left-section {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* This will push the elements to the sides, centering the logo */
-  width: 94%; /* This will take the full width available */
+  justify-content: space-between; 
+  width: 94%;
 }
 
 .logo {
