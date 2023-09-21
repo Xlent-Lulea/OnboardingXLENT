@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Person } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -9,7 +9,9 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  activePersons$: Observable<Person[]> = this.personService.activePersons$;
+  activePersons$: Observable<Person[]> = this.personService.allPersons$.pipe(
+    map((persons) => persons.filter((person) => person.active))
+  );
   selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
 
   constructor(

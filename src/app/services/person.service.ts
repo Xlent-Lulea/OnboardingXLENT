@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Person } from '../models/task.interface';
-import { tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class PersonService {
-  private activePersonsSubject = new BehaviorSubject<Person[]>([]);
-  public activePersons$ = this.activePersonsSubject.asObservable();
+  private allPersonsSubject = new BehaviorSubject<Person[]>([]);
+  public allPersons$ = this.allPersonsSubject.asObservable();
 
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
@@ -29,35 +29,37 @@ export class PersonService {
 
   getAllPersons(): Observable<Person[]> {
     return this.http.get<Person[]>(`${this.personsUrl}/persons`).pipe(
-      tap((persons) => this.activePersonsSubject.next(persons))
+      tap((persons) => this.allPersonsSubject.next(persons))
     );
   }
 
   getPerson(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
       tap((person) => {
-      localStorage.setItem('personId', '' + id);
-      this.selectedPersonSubject.next(person);
-    })
-    );
-  }
-
-  getPersons(): Observable<Person[]> {
-    const url = `${this.personsUrl}/persons`;
-    return this.http.get<Person[]>(url).pipe(
-      tap((persons) => this.activePersonsSubject.next(persons))
+        localStorage.setItem('personId', '' + id);
+        this.selectedPersonSubject.next(person);
+      })
     );
   }
 
   getActivePersons(): Observable<Person[]> {
     const url = `${this.personsUrl}/activePersons`;
-    return this.http.get<Person[]>(url)
-      .pipe(tap((persons) => this.activePersonsSubject.next(persons)));
+    return this.http.get<Person[]>(url);
   }
 
   createPerson(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/createPerson`;
-    return this.http.post<Person>(url, person);
+    return this.http.post<Person>(url, person).pipe(
+      switchMap((person) => this.allPersons$.pipe(
+        map((allPersons) => {
+          if (!allPersons.find((p) => p.id === person.id)) {
+            allPersons.push(person);
+          }
+          this.allPersonsSubject.next(allPersons);
+          return person;
+        })
+      )),
+    );
   }
 
   updatePerson(person: Person): Observable<Person> {
@@ -76,15 +78,28 @@ export class PersonService {
   }
 
   deactivatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {});
+    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {}).pipe(
+      tap((person) => console.log('Person deactivated', person))
+    );
   }
 
   activatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
+    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {}).pipe(
+      tap((person) => console.log('Person activated', person))
+    );
   }
 
   deletePerson(personId: number): Observable<any> {
-    return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
+    return this.http.delete(`${this.personsUrl}/person/${personId}`, {}).pipe(
+      switchMap((person) => this.allPersons$.pipe(
+        map((allPersons) => allPersons.filter(person => person.id !== personId)),
+        map((allPersons) => {
+          this.allPersonsSubject.next(allPersons);
+          return person;
+        })
+      )),
+      tap((person) => console.log('Deleted person with id:', personId))
+    );
   }
 }
 
