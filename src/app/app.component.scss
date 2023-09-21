@@ -6,7 +6,6 @@ body, html {
 }
 
 
-
 @media only screen and (max-width: 768px) {
   table {
       display: block;
@@ -18,7 +17,10 @@ body, html {
 
 }
 
+header{
+  background-color: #ffff;
 
+}
 
 
 .mat-toolbar {
@@ -27,8 +29,10 @@ body, html {
   align-items: center;
   background-color: #ffff;
   justify-content: space-between;
-  padding: 20px;
   margin: 0 auto;
+  min-width: 768px;
+  max-width: 1050px;
+
 }
 
 div {
@@ -91,8 +95,8 @@ button {
 .left-section {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* This will push the elements to the sides, centering the logo */
-  width: 94%; /* This will take the full width available */
+  justify-content: space-between; 
+  width: 94%;
 }
 
 .logo {
@@ -126,10 +130,14 @@ button {
 
   .sidenav {
     display: flex;
-    width: 100%;
+    width: 60%;
   }
   .logo{
     margin: auto;
+  }
+  .mat-toolbar {
+    min-width: 0;
+
   }
 
 }
