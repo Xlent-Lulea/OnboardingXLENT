@@ -9,7 +9,7 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class CarouselComponent {
 
-  selectedPersonName$: Observable<String | null> = this.personService.selectedPerson$.pipe(
+  selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
     map((person) => person?.name || 'N/A' )
   );
 

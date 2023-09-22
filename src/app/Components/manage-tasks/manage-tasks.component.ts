@@ -1,12 +1,11 @@
 //task-list.component.ts
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/app/models/task.interface';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
@@ -17,10 +16,9 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
   templateUrl: './manage-tasks.component.html',
   styleUrls: ['./manage-tasks.component.scss'],
 })
-export class ManageTasksComponent implements OnInit, OnDestroy {
+export class ManageTasksComponent {
   private ngUnsubscribe = new Subject<void>();
   TaskType = TaskType;
-  selectAll: boolean = false;
   @Input() tasks: Task[] = [];
   allTasks: Task[] = [];
   @Input() selectedTaskType!: TaskType;
@@ -58,41 +56,6 @@ export class ManageTasksComponent implements OnInit, OnDestroy {
       active: true,
       url: '',
     };
-  }
-
-  ngOnInit(): void {
-    // this.personService
-    //   .getPersonId()
-    //   .pipe(takeUntil(this.ngUnsubscribe))
-    //   .subscribe((personId) => {
-    //     this.personId = personId;
-    //     console.log('PersonId:', this.personId);
-
-    //     if (this.personId) {
-    //       this.taskService
-    //         .getTasksByPerson(+this.personId)
-    //         .pipe(takeUntil(this.ngUnsubscribe))
-    //         .subscribe((tasks: Task[]) => {
-    //           this.tasks = tasks;
-    //           this.allTasks = tasks;
-    //           console.log('Alla tasks för personen:', this.tasks);
-    //         });
-
-    //       this.personService
-    //         .getPerson(+this.personId)
-    //         .pipe(takeUntil(this.ngUnsubscribe))
-    //         .subscribe((person: Person) => {
-    //           this.selectedPerson = person;
-    //           console.log('SelectedPerson:', this.selectedPerson);
-    //           this.cdr.detectChanges();
-    //         });
-    //     }
-    //   });
-  }
-
-  ngOnDestroy() {
-    // this.ngUnsubscribe.next();
-    // this.ngUnsubscribe.complete();
   }
 
   filterTasksByTaskType(taskType: string) {

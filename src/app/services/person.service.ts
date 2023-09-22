@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Person } from '../models/task.interface';
+import { Person, Task } from '../models/task.interface';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -65,7 +65,7 @@ export class PersonService {
     return this.http.post<Person>(url, person);
   }
 
-  addTask(personId: number, task: any[]): Observable<Person> {
+  addTask(personId: number, task: Task[]): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks`;
     return this.http.post<Person>(url, task);
   }
@@ -75,16 +75,16 @@ export class PersonService {
     return this.http.delete<Person>(url);
   }
 
-  deactivatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {});
+  deactivatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/deactivate`, {});
   }
 
-  activatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
+  activatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {});
   }
 
-  deletePerson(personId: number): Observable<any> {
-    return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
+  deletePerson(personId: number): Observable<void> {
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {});
   }
 }
 

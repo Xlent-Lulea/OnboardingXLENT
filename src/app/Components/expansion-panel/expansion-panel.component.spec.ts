@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpansionPanelComponent } from './expansion-panel.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ExpansionPanelComponent', () => {
   let component: ExpansionPanelComponent;
@@ -8,7 +9,8 @@ describe('ExpansionPanelComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ExpansionPanelComponent]
+      declarations: [ExpansionPanelComponent],
+      imports: [HttpClientModule]
     });
     fixture = TestBed.createComponent(ExpansionPanelComponent);
     component = fixture.componentInstance;

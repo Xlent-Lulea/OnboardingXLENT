@@ -1,9 +1,8 @@
-import { Component, ViewChild, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task, TaskType } from '../../models/task.interface';
 import { Person } from 'src/app/models/task.interface';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 /**
