@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Person } from '../models/task.interface';
+import { Person, Task } from '../models/task.interface';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -67,7 +67,7 @@ export class PersonService {
     return this.http.post<Person>(url, person);
   }
 
-  addTask(personId: number, task: any[]): Observable<Person> {
+  addTask(personId: number, task: Task[]): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks`;
     return this.http.post<Person>(url, task);
   }
@@ -98,7 +98,7 @@ export class PersonService {
           return person;
         })
       )),
-      tap((person) => console.log('Deleted person with id:', personId))
+      tap(() => console.log('Deleted person with id:', personId))
     );
   }
 }

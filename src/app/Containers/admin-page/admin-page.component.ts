@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { Person, Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -13,7 +13,9 @@ export class AdminPageComponent {
 
   allPersons$: Observable<Person[]> = this.personService.allPersons$;
   selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
-  tasks$!: Observable<Task[]>;
+  tasks$: Observable<Task[]> = this.selectedPerson$.pipe(
+    map((person) => person?.taskEntities || [])
+  );
 
   constructor(private personService: PersonService, private taskService: TaskService) { }
 

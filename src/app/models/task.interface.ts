@@ -7,7 +7,7 @@ export interface Task {
     completed: boolean;
     description: string;
     active: boolean;
-    person_id?: BigInt;
+    person_id?: bigint;
 }
 
 export enum TaskType {

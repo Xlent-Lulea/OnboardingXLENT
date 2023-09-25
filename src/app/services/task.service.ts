@@ -16,9 +16,8 @@ export class TaskService {
 
   constructor(private http: HttpClient, private personService: PersonService) {}
 
-  getTasksByPerson (personId: number): Observable<Task[]> {
-    let tasks: Observable<Task[]> = this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-    return tasks;
+  getTasksByPerson(personId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
   }
 
   getTasksByPersonId(personId: number): Observable<Task[]> {
@@ -48,8 +47,8 @@ export class TaskService {
     );
   }
 
-  deleteTask(personId: number, taskId: number): Observable<Task> {
-    return this.http.delete<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`).pipe(
+  deleteTask(personId: number, taskId: number): Observable<void> {
+    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`).pipe(
       switchMap((task) => this.selectedPerson$.pipe(
         map((person) => {
           person?.taskEntities.filter((t) => t.id !== taskId)
@@ -57,7 +56,7 @@ export class TaskService {
           return task;
         })
       )),
-      tap((task) => console.log('Deleted task with id:', task.id))
+      tap(() => console.log('Deleted task with id:', taskId))
     );
   }
 

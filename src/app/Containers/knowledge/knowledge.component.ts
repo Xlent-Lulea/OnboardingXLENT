@@ -16,25 +16,22 @@ export class KnowledgeComponent {
       tasks: [
         '•Formellt personalansvar, chef för XLUs anställda',
         '•Deltagande på ledningsmöten och andra möten mellan bolag',
-      	'•Signerar avtal och genomför säkerhetsavtal',
-      	'•Säkerhetsansvarig XLU',
-      	'•Huvudsaklig kontaktperson till/från andra XLENT-bolag samt VD XCG.',
-      	'•Medverkan i rekryteringar i 2a intervju.',
-      	'•Månadsrapport XCG',
-      	'•Attest av fakturor',
-      	'•Godkännande av tidrapporter',
+        '•Signerar avtal och genomför säkerhetsavtal',
+        '•Säkerhetsansvarig XLU',
+        '•Huvudsaklig kontaktperson till/från andra XLENT-bolag samt VD XCG.',
+        '•Medverkan i rekryteringar i 2a intervju.',
+        '•Månadsrapport XCG',
+        '•Attest av fakturor',
+        '•Godkännande av tidrapporter',
       ]
     },
-
     {
       heading: 'Medarbetarenkät',
       subheading: 'Ansvarig: Christian Werme',
       tasks: [
         '•	Skickar ut enkät och sammanställer resultat 2 ggr per år ',
-
       ]
     },
-
     {
       heading: 'Rekrytering',
       subheading: 'Ansvarig: Alexandra Rönnkvist',
@@ -47,7 +44,6 @@ export class KnowledgeComponent {
         '•	Informerar övriga och tar in input kring beslut'
       ]
     },
-
     {
       heading: 'Ekonomi',
       subheading: 'Ansvarig: Veronica Andersson',
@@ -58,7 +54,6 @@ export class KnowledgeComponent {
 
       ]
     },
-
     {
       heading: 'Sälj och relationsbyggande ',
       subheading: 'Ansvarig: Sofia Flodmark',
@@ -70,7 +65,6 @@ export class KnowledgeComponent {
         '•	Säljaktiviteter nya kunder'
       ]
     },
-
     {
       heading: 'Markad - Kund och event, synlighet',
       subheading: 'Ansvarig: Sofia Flodmark',
@@ -79,14 +73,12 @@ export class KnowledgeComponent {
         '•	Delta på externa event'
       ]
     },
-
     {
       heading: 'Lokaler',
       subheading: 'Ansvarig: Katja Perunka',
       tasks: [
         '•	Upprätta och underhålla dokumentationen rörande lokaler och lösöre.',
         '•	Företagets kontakt med de servicebolag XLENT Luleå har avtal/kontakt med.'
-
       ]
     },
     {
@@ -137,7 +129,6 @@ export class KnowledgeComponent {
         '•	Uppföljning av uppsatta HR-mål',
         '•	Utvecklar koncept för kompetensutveckling',
         '•	Uppföljning medarbetarenkät'
-
       ]
     },
     {
@@ -156,9 +147,7 @@ export class KnowledgeComponent {
         '•	Kontaktperson gentemot Universitet',
         '•	Initiera Studentträffar',
       ]
-    },
-
-
+    }
   ];
 }
 

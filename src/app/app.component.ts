@@ -10,12 +10,12 @@ import { Observable, map } from 'rxjs';
 })
 export class AppComponent {
   title = 'OnboardingXLENT';
-  selectedPersonName$: Observable<String | null> = this.personService.selectedPerson$.pipe(
+  selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
     map((person) => person?.name === 'test1' ? null : person),
     map((person) => person?.name || 'Login' )
   );
 
-  
+
 
   constructor(
     private personService: PersonService,

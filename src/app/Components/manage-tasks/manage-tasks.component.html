@@ -12,12 +12,13 @@
 
   <form (ngSubmit)="createTask.emit(newTask)">
     <mat-form-field appearance="outline" class="form-group">
-      <mat-label>Title</mat-label>
+      <mat-label>Titel</mat-label>
       <input matInput id="task-urltitle" [(ngModel)]="newTask.urltitle" name="urltitle" required />
     </mat-form-field>
+    <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox> -->
 
     <mat-form-field appearance="outline" class="form-group">
-      <mat-label>Description</mat-label>
+      <mat-label>Beskrivning</mat-label>
       <input matInput id="task-description" [(ngModel)]="newTask.description" name="description" required />
     </mat-form-field>
 

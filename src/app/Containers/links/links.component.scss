@@ -10,11 +10,9 @@ mat-list-item{
   justify-content: center;
   align-items: center;
   padding-top: 30px;
-  width: 600px;
-  margin: 0 auto; 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+
 }
 
 mat-card-header{
@@ -60,4 +58,18 @@ mat-card{
   border-radius: 12px;
   box-shadow: none;
   text-wrap:wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    gap: 5px;
+  }
+
+  .top-container{
+    flex-direction: column;
+  }
+  .bottom-container{
+    flex-direction: column;
+  }
+
 }

@@ -29,7 +29,7 @@
 
           <mat-select
             [(value)]="selectedPerson"
-            (selectionChange)="onPersonSelected.emit(selectedPerson!.id)"
+            (selectionChange)="selectPerson.emit(selectedPerson!.id)"
           >
             <mat-option *ngFor="let person of activePersons" [value]="person">
               {{ person.name }} {{ person.active ? "Aktiv" : "Inaktiv" }}
@@ -41,7 +41,10 @@
 
 
     </div>
-    <div class="knappar">
+
+      </div>
+
+      <div class="knappar">
 
         <button
 
@@ -64,6 +67,5 @@
             Gå till onboarding
           </button>
         </div>
-      </div>
     </div>
 

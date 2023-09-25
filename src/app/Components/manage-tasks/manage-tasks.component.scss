@@ -1,38 +1,38 @@
 
 
-.header {
+
+.task-list {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 500px;
+    min-width: 300px;
+
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
     margin-bottom: 20px;
-    margin-top: 10px;
-    margin-left: 150px;
-    margin-right: 150px;
+}
+
+form {
+    margin-bottom: 30px;
 
 }
 
-.form-group {
-    display: inline-flex;
-    gap: 10px;
+mat-form-field {
     width: 100%;
+    margin-bottom: 20px;
 }
 
-.task-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 10px 0;
+mat-checkbox {
+    margin: 10px 0;
 }
 
-.task {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+mat-icon {
+    margin-left: 20px;
+    cursor: pointer;
 }
 
-.task h3 {
-    margin: 0;
-    font-size: 18px;
-}
+
