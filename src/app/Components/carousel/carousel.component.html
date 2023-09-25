@@ -1,116 +1,14 @@
-<div class="carousel">
+
+<div class="carousel" [style.--total-slides]="totalSlides">
   <div class="carousel-container">
-    <div class="carousel-item" [class.active]="isActive === 1">
-      <h1> Hej! {{ selectedPersonName$ | async}}</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Vi är väldigt glada att du blir en del av vårt gäng! Under första
-          veckorna på XLENT så kommer det säkert bli många som du får hälsa på
-          och ”säga hej” till. Tag gärna chansen och surra en stund när du får
-          tillfälle, så kommer du snabbt in i gänget
-        </div>
-      </div>
-    </div>
+    <div *ngFor="let slide of slides; let i = index" class="carousel-item" [style.z-index]="totalSlides - i" [class.active]="isActive === (i + 1)">
+      <h1 *ngIf="i === 0 && slide.title === 'PLACEHOLDER'">Hej! {{ selectedPersonName$ | async }}</h1>
+      <h1 *ngIf="!(i === 0 && slide.title === 'PLACEHOLDER')">{{ slide.title }}</h1>
 
-    <div class="carousel-item" [class.active]="isActive === 2">
-      <h1>Buddy/coach</h1>
       <div class="item-content">
-        <img src="../../../assets/image 5.png" alt="" />
-        <p>
-          Du har säkert redan träffat din Buddy, som är den som håller ihop din
-          intro och har lite extra koll på att du får svar på dina frågor och
-          funderingar. Sen efter några månader när du kommit igång, så kommer du
-          få möjlighet att själv önska en coach.
-        </p>
-      </div>
-    </div>
-    <div class="carousel-item" [class.active]="isActive === 3">
-      <h1>Startklar</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
+        <img [src]="slide.imagePath" alt="" />
         <div>
-          Vi vill att du så snart som möjligt ska känna dig hemmastadd och redo
-          för uppdrag. Det är det vi menar med ”Startklar”. För at hålla koll på
-          vad som behöver göras under den första tiden på XLU så finns blomman
-          och den checklista som du får av din Buddy.
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item" [class.active]="isActive === 4">
-      <h1>
-        Anställning och <br />
-        admin
-      </h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Det finns en hel del praktisk formalia att fixa i samband med din
-          anställningsstart. Veronica är vår VD och den som har koll på vad som
-          behöver vara på plats när du börjar.
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-item" [class.active]="isActive === 5">
-      <h1>Digital setup</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Den digitala setupen handlar om att den utrustning och teknik som du
-          behöver för att jobba som konsult hos XLU. Vi har en IT-ansvarig som
-          heter Christian. Han hjälper dig om du stöter på problem
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-item" [class.active]="isActive === 6">
-      <h1>Konsultrollen</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          På XLENT är vi alla konsulter som arbetar i uppdrag hos olika
-          företag/organisationer. Som ny anställd får du en liten introduktion
-          till vad det innebär att vara konsult på XLENT. Hör av dig till Ola
-          när du vill ha din intro.
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-item" [class.active]="isActive === 7">
-      <h1>Trivselgrupper</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
-          nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.
-          Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam
-          elementum.
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-item" [class.active]="isActive === 8">
-      <h1>Jämställdhet</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
-          nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.
-          Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam
-          elementum.
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item" [class.active]="isActive === 9">
-      <h1>Avslut!</h1>
-      <div class="item-content">
-        <img src="../../../assets/image 4.png" alt="" />
-        <div>
-          Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
-          nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.
-          Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam
-          elementum.
+          {{ slide.content }}
         </div>
       </div>
     </div>
@@ -121,24 +19,22 @@
       mat-raised-button
       color="secondary"
       class="carousel-control pre"
-      (click)="pre()"
-    >
+      (click)="pre()">
       Tillbaka
     </button>
     <button
       mat-raised-button
       color="primary"
       class="carousel-control next"
-      (click)="next()"
-    >
+      (click)="next()">
       Nästa
     </button>
 
-    <div class="agree" *ngIf="isActive === 9">
+    <div class="agree" *ngIf="isActive === totalSlides">
       <button mat-raised-button color="primary" routerLink="/checklist">
         Gå till checklistan
       </button>
     </div>
-    <div class="activeNr">{{ isActive }}/9</div>
+    <div class="activeNr">{{ isActive }}/{{ totalSlides }}</div>
   </div>
 </div>
