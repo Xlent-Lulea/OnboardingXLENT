@@ -2,7 +2,7 @@
 //Purpose: To provide a service for the Task model
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, filter, map, switchMap, tap } from 'rxjs';
 import { Person, Task } from '../models/task.interface';
 import { PersonService } from './person.service';
 
@@ -35,9 +35,9 @@ export class TaskService {
     return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task).pipe(
       switchMap((task) => this.selectedPerson$.pipe(
         map((person) => {
-          if (!person?.taskEntities.find((t) => t.id === task.id)) {
-            person?.taskEntities.push(task);
-            this.personService.updatePerson(person!);
+          if (!!person && !person.taskEntities.find((t) => t.id === task.id)) {
+            person.taskEntities.push(task);
+            this.personService.updatePerson(person);
           }
 
           return task;
@@ -50,8 +50,10 @@ export class TaskService {
   deleteTask(personId: number, taskId: number): Observable<void> {
     return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`).pipe(
       switchMap((task) => this.selectedPerson$.pipe(
+        filter((person) => !!person),
         map((person) => {
           person?.taskEntities.filter((t) => t.id !== taskId)
+          // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
           this.personService.updatePerson(person!);
           return task;
         })

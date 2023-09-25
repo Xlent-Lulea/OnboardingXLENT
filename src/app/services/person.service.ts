@@ -23,6 +23,10 @@ export class PersonService {
     this.refreshActivePersons();
   }
 
+  updateSelectedPerson(person: Person | null): void {
+    this.selectedPersonSubject.next(person);
+  }
+
   refreshActivePersons(): void {
     this.getActivePersons().subscribe();
   }
@@ -37,7 +41,7 @@ export class PersonService {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
       tap((person) => {
         localStorage.setItem('personId', '' + id);
-        this.selectedPersonSubject.next(person);
+        this.updateSelectedPerson(person);
       })
     );
   }
@@ -67,30 +71,30 @@ export class PersonService {
     return this.http.post<Person>(url, person);
   }
 
-  addTask(personId: number, task: Task[]): Observable<Person> {
+  addTask(personId: number, task: Task[]): Observable<Task> {
     const url = `${this.personsUrl}/${personId}/tasks`;
-    return this.http.post<Person>(url, task);
+    return this.http.post<Task>(url, task);
   }
 
-  removeTask(personId: number, taskId: number): Observable<Person> {
+  removeTask(personId: number, taskId: number): Observable<void> {
     const url = `${this.personsUrl}/${personId}/tasks/${taskId}`;
-    return this.http.delete<Person>(url);
+    return this.http.delete<void>(url);
   }
 
-  deactivatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {}).pipe(
+  deactivatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/deactivate`, {}).pipe(
       tap((person) => console.log('Person deactivated', person))
     );
   }
 
-  activatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {}).pipe(
+  activatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {}).pipe(
       tap((person) => console.log('Person activated', person))
     );
   }
 
-  deletePerson(personId: number): Observable<any> {
-    return this.http.delete(`${this.personsUrl}/person/${personId}`, {}).pipe(
+  deletePerson(personId: number): Observable<void> {
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {}).pipe(
       switchMap((person) => this.allPersons$.pipe(
         map((allPersons) => allPersons.filter(person => person.id !== personId)),
         map((allPersons) => {

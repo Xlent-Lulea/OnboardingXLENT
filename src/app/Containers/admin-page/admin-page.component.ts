@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, filter, map, switchMap } from 'rxjs';
 import { Person, Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -28,21 +28,23 @@ export class AdminPageComponent {
   }
 
   toggleActivePerson(params: { id: number, active: boolean }): void {
-    if (params.active) {
+    params.active ?
+      this.personService.deactivatePerson(params.id).subscribe() :
       this.personService.activatePerson(params.id).subscribe();
-    } else {
-      this.personService.deactivatePerson(params.id).subscribe();
-    }
   }
 
   createTask(task: Task): void {
     this.selectedPerson$.pipe(
+      filter((person) => !!person),
+      // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
       switchMap((person) => this.taskService.createTask(person!.id, task.taskType, task))
     ).subscribe();
   }
 
   removeTask(taskId: number): void {
     this.selectedPerson$.pipe(
+      filter((person) => !!person),
+      // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
       switchMap((person) => this.taskService.deleteTask(person!.id, taskId))
     )
   }
