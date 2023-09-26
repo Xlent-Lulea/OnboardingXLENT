@@ -1,27 +1,28 @@
-<!-- manage-persons.component.html -->
-<div class="person-list">
 <h2>Lägg till person</h2>
 <form [formGroup]="personForm" (ngSubmit)="submitForm()" *ngIf="newPerson">
   <mat-form-field>
     <mat-label>Namn</mat-label>
-    <input matInput MatFormFieldControl formControlName="name" placeholder="Enter name" required />
+    <input
+      [(ngModel)]="newPerson.name"
+      matInput MatFormFieldControl
+      formControlName="name"
+      placeholder="Ange namn"
+      required />
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-group">
-    <mat-label>Email</mat-label>
+    <mat-label>E-post</mat-label>
     <input
       [(ngModel)]="newPerson.email"
-      matInput
-      MatFormFieldControl
+      matInput MatFormFieldControl
       formControlName="email"
-      placeholder="Enter email"
+      placeholder="Ange e-postadress"
       required
       type="email"
       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-      title="Please enter a valid email address"
-    />
+      title="Vänligen ange en giltig e-postadress" />
     <mat-error *ngIf="personForm.get('email')?.hasError('email')">
-      Please enter a valid email address.
+      Vänligen ange en giltig e-postadress
     </mat-error>
   </mat-form-field>
 
@@ -33,8 +34,7 @@
     (change)="toggleActive.emit({id: person.id, active: person.active})">
     {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
   </mat-checkbox>
-  <button mat-button color="warn"
-    (click)="openDeleteConfirmationDialog(person.id)">
+  <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
     <mat-icon>delete</mat-icon>
   </button>
 </div>

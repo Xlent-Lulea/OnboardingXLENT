@@ -36,7 +36,10 @@ export class ManagePersonsComponent {
   }
 
   openDeleteConfirmationDialog(personId: number): void {
-    const dialogData = new ConfirmDialogModel('Delete Person', 'Are you sure you want to delete this person?');
+    const dialogData = new ConfirmDialogModel(
+      'Bekräfta borttagning',
+      'Är du säker på att du vill ta bort den här personen?'
+    );
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',

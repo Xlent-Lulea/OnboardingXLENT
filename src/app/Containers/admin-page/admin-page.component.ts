@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, filter, map, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Person, Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -13,9 +13,6 @@ export class AdminPageComponent {
 
   allPersons$: Observable<Person[]> = this.personService.allPersons$;
   selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
-  tasks$: Observable<Task[]> = this.selectedPerson$.pipe(
-    map((person) => person?.taskEntities || [])
-  );
 
   constructor(private personService: PersonService, private taskService: TaskService) { }
 
@@ -29,23 +26,15 @@ export class AdminPageComponent {
 
   toggleActivePerson(params: { id: number, active: boolean }): void {
     params.active ?
-      this.personService.deactivatePerson(params.id).subscribe() :
-      this.personService.activatePerson(params.id).subscribe();
+      this.personService.activatePerson(params.id).subscribe() :
+      this.personService.deactivatePerson(params.id).subscribe();
   }
 
-  createTask(task: Task): void {
-    this.selectedPerson$.pipe(
-      filter((person) => !!person),
-      // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-      switchMap((person) => this.taskService.createTask(person!.id, task.taskType, task))
-    ).subscribe();
+  createTask(params: { personId: number, task: Task }): void {
+    this.taskService.createTask(params.personId, params.task.taskType, params.task).subscribe();
   }
 
-  removeTask(taskId: number): void {
-    this.selectedPerson$.pipe(
-      filter((person) => !!person),
-      // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-      switchMap((person) => this.taskService.deleteTask(person!.id, taskId))
-    )
+  removeTask(params: { personId: number, taskId: number }): void {
+    this.taskService.deleteTask(params.personId, params.taskId).subscribe();
   }
 }

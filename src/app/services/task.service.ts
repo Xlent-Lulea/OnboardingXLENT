@@ -37,7 +37,7 @@ export class TaskService {
         map((person) => {
           if (!!person && !person.taskEntities.find((t) => t.id === task.id)) {
             person.taskEntities.push(task);
-            this.personService.updatePerson(person);
+            this.personService.updateSelectedPerson(person);
           }
 
           return task;
@@ -54,7 +54,7 @@ export class TaskService {
         map((person) => {
           person?.taskEntities.filter((t) => t.id !== taskId)
           // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-          this.personService.updatePerson(person!);
+          this.personService.updateSelectedPerson(person!);
           return task;
         })
       )),

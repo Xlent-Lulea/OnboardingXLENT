@@ -1,9 +1,10 @@
 //task-list.component.ts
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from 'src/app/models/task.interface';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Person, Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,32 +12,55 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
   templateUrl: './manage-tasks.component.html',
   styleUrls: ['./manage-tasks.component.scss'],
 })
-export class ManageTasksComponent {
+export class ManageTasksComponent implements OnChanges {
+  TaskForm: FormGroup;
 
   taskTypes = Object.keys(TaskType);
-  newTask!: Task;
+  newTask?: Task;
   filteredTasks: Task[] = [];
 
-  @Input() tasks: Task[] | null = [];
-  @Output() createTask: EventEmitter<Task> = new EventEmitter<Task>();
-  @Output() removeTask: EventEmitter<number> = new EventEmitter<number>();
+  @Input() person: Person | null = null;;
+  @Output() createTask: EventEmitter<{ personId: number, task: Task }> = new EventEmitter<{ personId: number, task: Task }>();
+  @Output() removeTask: EventEmitter<{ personId: number, taskId: number }> = new EventEmitter<{ personId: number, taskId: number }>();
+  @Output() tasksChange: EventEmitter<Task[]> = new EventEmitter<Task[]>();
 
-  constructor(public dialog: MatDialog) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
+    this.TaskForm = this.fb.group({
+      taskType: ['', Validators.required],
+      urltitle: ['', Validators.required],
+      description: ['', Validators.required],
+      url: [''],
+    });
+
     this.restoreNewTask();
   }
 
-  // Filter tasks based on selected taskType
-  filterTasks() {
-    this.filteredTasks = this.newTask.taskType ?
-      this.tasks?.filter((task) => task.taskType === this.newTask.taskType) || [] :
-      this.tasks || [];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['person']) {
+      return;
+    }
+
+    this.filterTasks();
   }
 
+  // Filter tasks based on selected taskType
+  filterTasks(): void {
+    this.filteredTasks = this.newTask?.taskType ?
+      this.person?.taskEntities?.filter((task) => task.taskType === this.newTask?.taskType) || [] :
+      this.person?.taskEntities || [];
+  }
 
-  deleteTask(taskId: number): void {
+  save(personId: number, task: Task): void {
+    this.createTask.emit({ personId, task });
+    this.restoreNewTask();
+    this.person?.taskEntities.push(task);
+    this.filterTasks();
+  }
+
+  deleteTask(personId: number, taskId: number): void {
     const dialogData = new ConfirmDialogModel(
       'Bekräfta borttagning',
-      'Är du säker?'
+      'Är du säker på att du vill ta bort den här uppgiften?'
     );
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -47,13 +71,17 @@ export class ManageTasksComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If user clicked Yes, proceed with deletion
-        this.removeTask.emit(taskId);
+        this.removeTask.emit({ personId, taskId });
+        this.person?.taskEntities.filter((t) => t.id !== taskId);
+        this.filterTasks();
       }
     });
   }
 
   private restoreNewTask(): void {
+    const taskType = this.newTask?.taskType;
     this.newTask = {
+      taskType: taskType,
       urltitle: '',
       description: '',
       completed: false,
