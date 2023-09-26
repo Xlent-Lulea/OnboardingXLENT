@@ -49,7 +49,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { ProgressBarComponent } from './Components/progress-bar/progress-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -77,7 +77,6 @@ import { ProgressBarComponent } from './Components/progress-bar/progress-bar.com
     OnboardingComponent,
     CarouselComponent,
     HelloComponent,
-    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

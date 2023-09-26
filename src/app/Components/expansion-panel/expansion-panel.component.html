@@ -4,7 +4,7 @@
         <mat-expansion-panel-header>
             <mat-panel-title>{{  'taskType.' + taskType | translate }}</mat-panel-title>
 
-            <app-progress-bar  [tasks]="tasks"></app-progress-bar>
+            <mat-progress-bar mode="determinate" [value]="taskPercent"></mat-progress-bar>
 
         </mat-expansion-panel-header>
 
@@ -19,7 +19,8 @@
                         <div class="task" style="display: flex; align-items: center;">
                             <!-- Checkbox for each task -->
                             <mat-checkbox [(ngModel)]="task.completed" color="primary" style="margin-right: 10px;"
-                                (change)="onTaskStatusChange.emit(task)"> </mat-checkbox>
+  (ngModelChange)="onTaskStatusChange(task)"></mat-checkbox>
+
 
                             <div class="task-text">
                                 <p>
@@ -36,5 +37,3 @@
                 </ng-container>
             </ng-container>
         </ng-container>
-    </mat-expansion-panel>
-</div>

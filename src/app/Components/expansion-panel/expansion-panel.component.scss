@@ -7,6 +7,15 @@
 
 }
 
+.progressbar-container {
+  position: absolute;
+  bottom: 20px;   /* Positionera progress-baren nära botten av .container */
+  left: 107px;   /* Samma vänstermarginal som .img för konsistens */
+  width: 70%;    /* Anpassa efter hur bred du vill ha progress-baren */
+  height: 20px;
+  background-color: #e0e0e0;  /* Bakgrundsfärg för progress-baren */
+  border-radius: 10px;       /* Avrundade hörn */
+}
 
 
 mat-expansion-panel{
@@ -19,6 +28,16 @@ mat-expansion-panel-header {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 600px;
+  margin: 0 auto; /* Centrera horisontellt */
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  background: #ffffff;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px; /* Lägger till lite padding runt containerns innehåll */
+}
 
 }
 
