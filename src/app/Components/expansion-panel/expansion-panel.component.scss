@@ -10,6 +10,23 @@
 
 }
 
+.task-row{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.task-text {
+  text-align: left;
+  max-width: 450px;
+
+  p {
+    margin-bottom: 5px;
+
+  }
+
+
+}
 
 
 mat-expansion-panel{
@@ -28,7 +45,7 @@ mat-expansion-panel-header {
   mat-accordion{
     display: flex;
     flex-direction: column;
-    flex: 1; 
+    flex: 1;
     max-width: 1000px;
     justify-content: center;
 
