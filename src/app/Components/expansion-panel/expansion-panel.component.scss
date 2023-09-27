@@ -1,4 +1,3 @@
-
 .container {
   display: flex;
   flex-direction: column;
@@ -7,85 +6,70 @@
 
 }
 
-.progressbar-container {
-  position: absolute;
-  bottom: 20px;   /* Positionera progress-baren nära botten av .container */
-  left: 107px;   /* Samma vänstermarginal som .img för konsistens */
-  width: 70%;    /* Anpassa efter hur bred du vill ha progress-baren */
-  height: 20px;
-  background-color: #e0e0e0;  /* Bakgrundsfärg för progress-baren */
-  border-radius: 10px;       /* Avrundade hörn */
+.task-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.task-text {
+  text-align: left;
+  max-width: 450px;
+
+  p {
+    margin-bottom: 5px;
+
+  }
+
+
 }
 
 
-mat-expansion-panel{
+mat-expansion-panel {
   margin-top: 1px;
   margin-bottom: 1px;
 
 
 }
+
 mat-expansion-panel-header {
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 600px;
+
+}
+
+mat-accordion {
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  background: #ffffff;
-  border-radius: 12px;
+  flex: 1;
+  max-width: 1000px;
   justify-content: center;
-  align-items: center;
-  padding: 1px; /* Lägger till lite padding runt containerns innehåll */
+
+}
+
+mat-progress-bar {
+  width: 60%;
+  margin-right: 10px;
+
 }
 
 
+@media screen and (max-width: 768px) {
+  .container {
+    align-items: unset;
+  }
 
-  mat-accordion{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    max-width: 1000px;
-    justify-content: center;
-
+  .mat-accordion {
+    padding: 10px;
   }
 
 
-
-  @media screen and (max-width: 768px) {
-    .container {
-      align-items: unset;
-    }
-
-  mat-accordion{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    max-width: 1000px;
-    justify-content: center;
-
-  }
-  mat-progress-bar{
-    width: 60%;
-    margin-right: 10px;
-
+  mat-expansion-panel-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: unset;
   }
 
 
-  @media screen and (max-width: 768px) {
-    .container {
-      align-items: unset;
-    }
-
-    .mat-accordion{
-      padding: 10px;
-    }
-
-
-    mat-expansion-panel-header {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      width:unset;
-    }
-
-
-  }
 }

@@ -2,7 +2,7 @@
 
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            <mat-panel-title>{{  'taskType.' + taskType | translate }}</mat-panel-title>
+            <mat-panel-title>{{ 'taskType.' + taskType | translate }}</mat-panel-title>
 
             <mat-progress-bar mode="determinate" [value]="taskPercent"></mat-progress-bar>
 
@@ -19,17 +19,20 @@
                         <div class="task" style="display: flex; align-items: center;">
                             <!-- Checkbox for each task -->
                             <mat-checkbox [(ngModel)]="task.completed" color="primary" style="margin-right: 10px;"
-  (ngModelChange)="onTaskStatusChange(task)"></mat-checkbox>
+                                (ngModelChange)="onTaskStatusChange(task)"></mat-checkbox>
 
 
                             <div class="task-text">
                                 <p>
-                                    Titel:
+
                                     <ng-container *ngIf="task.url; else noLink">
                                         <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
                                     </ng-container>
                                     <ng-template #noLink>{{ task.urltitle }}</ng-template>
-                                    Beskrivning: {{ task.description }}
+
+                                </p>
+                                <p class="description">
+                                    {{ task.description }}
                                 </p>
                             </div>
                         </div>
