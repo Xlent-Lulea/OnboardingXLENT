@@ -11,11 +11,10 @@ import { PersonService } from './person.service';
   providedIn: 'root'
 })
 export class TaskService {
-  constructor(private http: HttpClient, private personService: PersonService) {}
+  constructor(private http: HttpClient, private personService: PersonService) { }
 
-  getTasksByPerson (personId: number): Observable<Task[]> {
-    let tasks: Observable<Task[]> = this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-    return tasks;
+  getTasksByPerson(personId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
   }
 
   getTasksByPersonId(personId: number): Observable<Task[]> {
@@ -40,6 +39,5 @@ export class TaskService {
   updateTaskCompletionStatus(taskId: number): Observable<Task> {
     return this.http.put<Task>(`${this.personService.personsUrl}/task/${taskId}/toggle-completed`, {});
   }
-
 }
 

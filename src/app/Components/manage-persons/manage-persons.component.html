@@ -1,17 +1,17 @@
 <!-- manage-persons.component.html -->
-
+<div class="person-list">
 <h2>Lägg till person</h2>
 <form [formGroup]="personForm" (ngSubmit)="submitForm()">
   <mat-form-field>
-   
     <mat-label>Namn</mat-label>
-    <input matInput formControlName="name" placeholder="Enter name" required />
+    <input matInput MatFormFieldControl formControlName="name" placeholder="Enter name" required />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline" class="form-group">
     <mat-label>Email</mat-label>
     <input
       matInput
+      MatFormFieldControl
       formControlName="email"
       placeholder="Enter email"
       required
@@ -23,15 +23,15 @@
       Please enter a valid email address.
     </mat-error>
   </mat-form-field>
-  
+
   <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid"> Lägg till</button>
 </form>
   <h2>Inaktivera/Aktivera Personer</h2>
   <div *ngFor="let person of allPersons">
-    <mat-checkbox [checked]="person.active" (change)="toggleActive(person)">
+    <mat-checkbox color="primary"  [checked]="person.active" (change)="toggleActive(person)">
       {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
     </mat-checkbox>
-    <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)"><mat-icon>delete</mat-icon></button> 
+    <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)"><mat-icon>delete</mat-icon></button>
   </div>
 
-  
+</div>

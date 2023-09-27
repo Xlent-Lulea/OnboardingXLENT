@@ -79,16 +79,16 @@ export class PersonService {
     return this.http.delete<Person>(url);
   }
 
-  deactivatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {});
+  deactivatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/deactivate`, {});
   }
 
-  activatePerson(personId: number): Observable<any> {
-    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
+  activatePerson(personId: number): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {});
   }
 
-  deletePerson(personId: number): Observable<any> {
-    return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
+  deletePerson(personId: number): Observable<void> {
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {});
   }
 }
 

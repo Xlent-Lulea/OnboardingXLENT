@@ -1,55 +1,56 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    width: 1214px;
-    position: relative;
-    margin-bottom: 50px;
-    background: #ffffff;
-    border-radius: 12px;
-    flex-shrink: 0;
-    width: 1214px;
-    height: 629px;
-    position: relative;
-  }
- 
- 
-  .img {
-    border-radius: 23px;
-    flex-shrink: 0;
-    width: 507px;
-    height: 285px;
-    position: absolute;
-    left: 107px;
-    top: calc(50% - 142.5px);
-  }
-  .textbox {
-    display: flex;
-    flex-direction: column;
-    gap: 49px;
-    position: absolute;
-    left: 739px;
-    top: calc(50% - 139.5px);
-  }
+  display: flex;
+  flex-direction: row;
+  gap: 45px;
+  align-items: center;
+  margin-bottom: 50px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.img {
+  border-radius: 23px;
+  width: 100%; 
+  max-width: 507px;
+  height: auto;
+}
+
+.textbox {
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.text {
+  color: #000000;
+  text-align: left;
+  max-width: 100%;
+
+}
+
+/* Media Queries for smaller screens */
+@media only screen and (max-width: 768px) {
   .title {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    position: relative;
-    font-size: 40px;
+      font-size: 30px;
   }
- 
   .text {
-    color: #000000;
-    text-align: left;
-    font: var(--xlent, 400 20px/28px "Franklin Gothic Book", sans-serif);
-    position: relative;
-    width: 400px;
-    height: 185px;
+      font-size: 18px;
   }
+  .container {
+      flex-direction: column;
+      padding: 35px;
+  }
+}

@@ -39,7 +39,6 @@ import { TaskService } from './services/task.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
-import { HelloComponent } from './Components/carousel/hello.component';
 import { PersonService } from './services/person.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -48,7 +47,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -76,7 +77,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ShowTasksComponent,
     OnboardingComponent,
     CarouselComponent,
-    HelloComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +88,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSelectModule,
     MatExpansionModule,
     MatIconModule,
-    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -111,7 +110,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
       }
     }),
     MatProgressBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [
     TaskService,

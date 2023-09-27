@@ -1,0 +1,38 @@
+
+
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 500px;
+    min-width: 300px;
+
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 30px;
+
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+mat-checkbox {
+    margin: 10px 0;
+}
+
+mat-icon {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+

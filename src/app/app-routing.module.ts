@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './Containers/home/home.component';
-import { LayoutComponent } from './layout/layout.component';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './Containers/login/login.component';
 import { ChecklistComponent } from './Containers/checklist/checklist.component';
@@ -9,12 +8,6 @@ import { LinksComponent } from './Containers/links/links.component';
 import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
-
-
-
-
-
-
 @NgModule({
   declarations: [],
   imports: [

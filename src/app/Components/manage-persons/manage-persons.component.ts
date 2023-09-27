@@ -39,7 +39,7 @@ export class ManagePersonsComponent implements OnInit {
   }
 
   submitForm(): void {
-    const nameValue = this.personForm.get('name')!.value;
+    const nameValue = this.personForm.get('name')?.value;
     if (!nameValue) {
       console.log('Name cannot be null. Cannot create person.');
       return; // Exit the function if name is null
@@ -48,8 +48,8 @@ export class ManagePersonsComponent implements OnInit {
     const newPerson: Person = {
       id: 0,
       name: nameValue,
-      email: this.personForm.get('email')!.value,
-      active: this.personForm.get('active')!.value,
+      email: this.personForm.get('email')?.value,
+      active: this.personForm.get('active')?.value,
       taskEntities: [],
     };
 

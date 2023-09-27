@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PersonService } from './services/person.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'OnboardingXLENT';
+  selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
+    map((person) => person?.name === 'test1' ? null : person),
+    map((person) => person?.name || 'Login' )
+  );
+
+
 
   constructor(
     private personService: PersonService,

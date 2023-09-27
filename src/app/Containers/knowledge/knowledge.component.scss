@@ -1,8 +1,11 @@
+
+
   .container {
     display: flex;
     flex-direction: column;
-    gap: 50px;
     align-items: center;
+
+
   }
 
   mat-expansion-panel{
@@ -15,14 +18,20 @@
     margin-bottom: 10px;
   }
 
+  mat-accordion{
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    max-width: 1000px;
+    justify-content: center;
+
+  }
 
   .titel{
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 30px;
-    width: 600px;
-    margin: 0 auto; /* Centrera horisontellt */
     display: flex;
     flex-direction: column;
 
@@ -33,7 +42,21 @@
   }
 
 
-// .subheading {
-//   font-weight: bold;
-// }
+
+
+@media screen and (max-width: 768px) {
+  .container {
+    align-items: unset;
+  }
+
+  .mat-accordion{
+    padding: 10px;
+  }
+
+
+
+  mat-panel-description{
+    display: none;
+  }
+}
 

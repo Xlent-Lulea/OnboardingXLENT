@@ -9,7 +9,7 @@ export class LoginBoxComponent {
   @Input() activePersons: Person[] | null = [];
   @Input() selectedPerson: Person | null = null;
 
-  @Output() onPersonSelected = new EventEmitter<number>();
+  @Output() selectPerson = new EventEmitter<number>();
   }
 
 

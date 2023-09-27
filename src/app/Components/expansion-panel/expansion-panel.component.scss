@@ -27,8 +27,6 @@ mat-expansion-panel{
 mat-expansion-panel-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 600px;
-  margin: 0 auto; /* Centrera horisontellt */
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -57,6 +55,26 @@ mat-expansion-panel-header {
       align-items: unset;
     }
 
+  mat-accordion{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 1000px;
+    justify-content: center;
+
+  }
+  mat-progress-bar{
+    width: 60%;
+    margin-right: 10px;
+
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .container {
+      align-items: unset;
+    }
+
     .mat-accordion{
       padding: 10px;
     }
@@ -66,11 +84,6 @@ mat-expansion-panel-header {
       margin-top: 10px;
       margin-bottom: 10px;
       width:unset;
-      font-size: small;
-
-    }
-    mat-panel-title{
-      max-width: 20px;
     }
 
 
