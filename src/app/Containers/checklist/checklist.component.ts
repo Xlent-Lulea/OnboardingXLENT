@@ -34,27 +34,12 @@ export class ChecklistComponent {
       Object.assign(foundTask, taskToUpdate);
     }
   }
-  reloadCurrentRoute() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
-  }
+
 
   updateTaskStatus(task: Task): void {
     this.taskService
       .updateTaskCompletionStatus(task.id!)
-      .pipe(
-        // withLatestFrom(this.selectedPerson$),
-        // tap(([task, person]) => {
-        //   this.updateTaskInEntities(updatedTask, person!.taskEntities);
-        //   this.personService.updateSelectedPerson(person!);
-        // })
-      )
+      .pipe( )
 
-      .subscribe(() => this.reloadCurrentRoute);
   }
 }
-// this.router.navigate(['/checklist']))
-        // switchMap(() => this.selectedPerson$),
-        // switchMap((person) => this.personService.getPerson(person!.id))
