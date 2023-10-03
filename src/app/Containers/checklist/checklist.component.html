@@ -1,10 +1,16 @@
-<div class="allt">
+<div class="body">
 <h1>Checklista</h1>
 <h4>Här får du en introduktion som nyanställd</h4>
 </div>
 
+
+<ng-container *ngFor="let type of taskTypes">
+
 <app-expansion-panel
 
     [selectedPerson]="selectedPerson$ | async"
+    [taskType]="type"
+    (taskStatusChanged)="updateTaskStatus($event)"
 
-></app-expansion-panel>
+    ></app-expansion-panel>
+  </ng-container>
