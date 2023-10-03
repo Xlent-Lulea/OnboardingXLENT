@@ -4,7 +4,6 @@ import { PersonService } from '../../services/person.service';
 import { Person, Task } from '../../models/task.interface';
 import { Observable, tap } from 'rxjs';
 import { TaskType } from '../../models/task.interface';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-checklist',
   templateUrl: './checklist.component.html',
@@ -19,8 +18,7 @@ export class ChecklistComponent {
 
   constructor(
     private taskService: TaskService,
-    private personService: PersonService,
-    private router: Router,
+    private personService: PersonService
   ) {}
 
   getTaskTypeValues(): TaskType[] {
@@ -35,7 +33,6 @@ export class ChecklistComponent {
   }
 
   updateTaskStatus(task: Task): void {
-    console.log('test123')
     if (task.id !== undefined) {
       this.taskService.updateTaskCompletionStatus(task.id).subscribe(
         (updatedTask) => {
@@ -53,4 +50,3 @@ export class ChecklistComponent {
     }
   }
 }
-
