@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Person, Task } from '../models/task.interface';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -56,34 +56,12 @@ export class PersonService {
 
   addTask(personId: number, task: Task[]): Observable<Task> {
     const url = `${this.personsUrl}/${personId}/tasks`;
-    return this.http.post<Task>(url, task).pipe(
-      switchMap((task) => this.selectedPerson$.pipe(
-        map((person) => {
-          if (!!person && !person.taskEntities.find((t) => t.id === task.id)) {
-            person.taskEntities.push(task);
-            this.updateSelectedPerson(person);
-          }
-
-          return task;
-        }),
-        tap((task) => console.log('Created task:', task))
-      ))
-    );
+    return this.http.post<Task>(url, task);
   }
 
   removeTask(personId: number, taskId: number): Observable<void> {
     const url = `${this.personsUrl}/${personId}/tasks/${taskId}`;
-    return this.http.delete<void>(url).pipe(
-      switchMap(() => this.selectedPerson$.pipe(
-        filter((person) => !!person),
-        map((person) => {
-          person?.taskEntities.filter((t) => t.id !== taskId)
-          // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-          this.updateSelectedPerson(person!);
-          console.log('Deleted task with id:', taskId);
-        })
-      ))
-    );
+    return this.http.delete<void>(url);
   }
 
   deactivatePerson(personId: number): Observable<Person> {

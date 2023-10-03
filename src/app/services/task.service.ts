@@ -1,8 +1,6 @@
-//task.service.ts
-//Purpose: To provide a service for the Task model
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, filter, map, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Person, Task } from '../models/task.interface';
 import { PersonService } from './person.service';
 
@@ -32,34 +30,11 @@ export class TaskService {
     if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
       task.url = 'https://' + task.url;
     }
-    return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task).pipe(
-      switchMap((task) => this.selectedPerson$.pipe(
-        map((person) => {
-          if (!!person && !person.taskEntities.find((t) => t.id === task.id)) {
-            person.taskEntities.push(task);
-            this.personService.updateSelectedPerson(person);
-          }
-
-          return task;
-        })
-      )),
-      tap((task) => console.log('Created task:', task))
-    );
+    return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task);
   }
 
   deleteTask(personId: number, taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`).pipe(
-      switchMap((task) => this.selectedPerson$.pipe(
-        filter((person) => !!person),
-        map((person) => {
-          person?.taskEntities.filter((t) => t.id !== taskId)
-          // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-          this.personService.updateSelectedPerson(person!);
-          return task;
-        })
-      )),
-      tap(() => console.log('Deleted task with id:', taskId))
-    );
+    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
   }
 
   updateTaskCompletionStatus(taskId: number): Observable<Task> {

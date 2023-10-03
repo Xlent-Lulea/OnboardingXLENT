@@ -21,11 +21,19 @@ export class AdminPageComponent {
   }
 
   createPerson(person: Person): void {
-    this.personService.createPerson(person).subscribe();
+    this.personService.createPerson(person).subscribe(() =>
+      this.personService.getAllPersons().pipe(
+        tap((persons) => this.allPersons = persons || [])
+      ).subscribe()
+    );
   }
 
   removePerson(personId: number): void {
-    this.personService.deletePerson(personId).subscribe();
+    this.personService.deletePerson(personId).subscribe(() =>
+      this.personService.getAllPersons().pipe(
+        tap((persons) => this.allPersons = persons || [])
+      ).subscribe()
+    );
   }
 
   toggleActivePerson(params: { id: number, active: boolean }): void {
@@ -35,10 +43,14 @@ export class AdminPageComponent {
   }
 
   createTask(params: { personId: number, task: Task }): void {
-    this.taskService.createTask(params.personId, params.task.taskType, params.task).subscribe();
+    this.taskService.createTask(params.personId, params.task.taskType, params.task).subscribe(() =>
+      this.personService.getPerson(params.personId).subscribe()
+    );
   }
 
   removeTask(params: { personId: number, taskId: number }): void {
-    this.taskService.deleteTask(params.personId, params.taskId).subscribe();
+    this.taskService.deleteTask(params.personId, params.taskId).subscribe(() =>
+      this.personService.getPerson(params.personId).subscribe()
+    );
   }
 }

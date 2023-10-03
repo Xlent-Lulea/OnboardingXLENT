@@ -1,4 +1,3 @@
-//task-list.component.ts
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Person, Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
@@ -53,8 +52,6 @@ export class ManageTasksComponent implements OnChanges {
   save(personId: number, task: Task): void {
     this.createTask.emit({ personId, task });
     this.restoreNewTask();
-    this.person?.taskEntities.push(task);
-    this.filterTasks();
   }
 
   deleteTask(personId: number, taskId: number): void {
@@ -69,11 +66,9 @@ export class ManageTasksComponent implements OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result && this.person) {
         // If user clicked Yes, proceed with deletion
         this.removeTask.emit({ personId, taskId });
-        this.person?.taskEntities.filter((t) => t.id !== taskId);
-        this.filterTasks();
       }
     });
   }

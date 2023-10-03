@@ -25,13 +25,6 @@ export class ChecklistComponent {
     return Object.keys(TaskType) as TaskType[];
   }
 
-  updateTaskInEntities(taskToUpdate: Task, tasks: Task[]): void {
-    const foundTask = tasks.find((t) => t.id === taskToUpdate.id);
-    if (foundTask) {
-      Object.assign(foundTask, taskToUpdate);
-    }
-  }
-
   updateTaskStatus(task: Task): void {
     if (task.id !== undefined) {
       this.taskService.updateTaskCompletionStatus(task.id).subscribe(
