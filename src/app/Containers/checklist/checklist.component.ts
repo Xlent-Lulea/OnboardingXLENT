@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { PersonService } from '../../services/person.service';
 import { Person, Task } from '../../models/task.interface';
-import { Observable, finalize, switchMap, tap, withLatestFrom } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { TaskType } from '../../models/task.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
@@ -29,17 +29,29 @@ export class ChecklistComponent {
   }
 
   updateTaskInEntities(taskToUpdate: Task, tasks: Task[]): void {
-    const foundTask = tasks.find(t => t.id === taskToUpdate.id);
+    const foundTask = tasks.find((t) => t.id === taskToUpdate.id);
     if (foundTask) {
       Object.assign(foundTask, taskToUpdate);
     }
   }
 
-
   updateTaskStatus(task: Task): void {
-    this.taskService
-      .updateTaskCompletionStatus(task.id!)
-      .pipe( )
-
+    console.log('test123')
+    if (task.id !== undefined) {
+      this.taskService.updateTaskCompletionStatus(task.id).subscribe(
+        (updatedTask) => {
+          console.log('Task updated:', updatedTask);
+          // Optionally, update local task state or UI here if needed.
+        },
+        (error) => {
+          console.error('Failed to update task:', error);
+          // Optionally, revert the checkbox state in case of an error
+          task.completed = !task.completed;
+        }
+      );
+    } else {
+      console.error('Task ID is undefined');
+    }
   }
 }
+

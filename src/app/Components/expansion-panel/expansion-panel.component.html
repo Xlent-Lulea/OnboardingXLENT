@@ -12,12 +12,12 @@
             <ng-container *ngFor="let task of selectedPerson.taskEntities; let taskIndex = index">
 
                 <ng-container *ngIf="task.taskType === taskType">
-                    <!-- Divider -->
-                    <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.taskEntities)"></mat-divider>
+
+
 
                     <div class="task-row">
                         <div class="task" style="display: flex; align-items: center;">
-                            <!-- Checkbox for each task -->
+
                             <mat-checkbox [(ngModel)]="task.completed" color="primary" style="margin-right: 10px;"
                                 (ngModelChange)="onTaskStatusChange(task)"></mat-checkbox>
 

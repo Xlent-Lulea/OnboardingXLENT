@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task, TaskType } from '../../models/task.interface';
 import { Person } from 'src/app/models/task.interface';
@@ -12,9 +12,8 @@ export class ExpansionPanelComponent implements OnChanges {
   tasks: Task[] = [];
   @Input() taskType: TaskType = TaskType.WELCOME;
   @Input() selectedPerson: Person | null = null;
-  completedTasksCount: number = 0;
-  totalTasksCount: number = 0;
   taskPercent: number = 0;
+  @Output() taskStatusChanged : EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor(private taskService: TaskService) {}
 
@@ -28,37 +27,21 @@ export class ExpansionPanelComponent implements OnChanges {
     this.calculateTaskProgress();
   }
 
-  shouldShowDivider(task: Task, index: number, taskEntities: Task[]): boolean {
-    if (index === 0) return false;
-    return taskEntities[index - 1].taskType === task.taskType;
+  onTaskStatusChange(task: Task): void {
+    this.taskStatusChanged.emit(task); // Emit the Task object
+    this.calculateTaskProgress();
   }
 
-  onTaskStatusChange(task: Task): void {
-    if (task.id !== undefined) {
-      this.taskService.updateTaskCompletionStatus(task.id).subscribe(
-        (updatedTask) => {
-          console.log('Task updated:', updatedTask);
-          // Optionally, update local task state or UI here if needed.
-          this.calculateTaskProgress();
-        },
-        (error) => {
-          console.error('Failed to update task:', error);
-          // Optionally, revert the checkbox state in case of an error
-          task.completed = !task.completed;
-        }
-      );
-    } else {
-      console.error('Task ID is undefined');
-    }
-  }
 
 
   calculateTaskProgress(): void {
-    this.completedTasksCount = this.tasks?.filter((task) => task.completed).length || 0;
-    this.totalTasksCount = this.tasks?.length || 0;
-    this.taskPercent =
-      this.totalTasksCount > 0
-        ? (this.completedTasksCount / this.totalTasksCount) * 100
-        : 0;
+    let completedTasksCount: number = 0;
+    let totalTasksCount: number = this.tasks?.length || 0;
+
+    if (totalTasksCount > 0) {
+      completedTasksCount = this.tasks?.filter((task) => task.completed).length || 0;
+    }
+
+    this.taskPercent = totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
   }
 }
