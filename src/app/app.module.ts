@@ -50,6 +50,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PortraitsComponent } from './Components/portraits/portraits.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ShowTasksComponent,
     OnboardingComponent,
     CarouselComponent,
+    PortraitsComponent,
   ],
   imports: [
     BrowserModule,
