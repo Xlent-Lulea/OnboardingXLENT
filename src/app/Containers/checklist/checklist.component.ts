@@ -4,7 +4,7 @@ import { PersonService } from '../../services/person.service';
 import { Person, Task } from '../../models/task.interface';
 import { Observable, tap } from 'rxjs';
 import { TaskType } from '../../models/task.interface';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checklist',
   templateUrl: './checklist.component.html',
@@ -21,7 +21,6 @@ export class ChecklistComponent {
     private taskService: TaskService,
     private personService: PersonService,
     private router: Router,
-    private route: ActivatedRoute
   ) {}
 
   getTaskTypeValues(): TaskType[] {
