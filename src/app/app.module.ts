@@ -14,7 +14,6 @@ import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpanel.component';
 import { LinksComponent } from './Containers/links/links.component';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -52,6 +51,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +63,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     TitleComponent,
     AboutComponent,
     WalkthroughComponent,
-    ExpansionpanelComponent,
     LinksComponent,
     LoginBoxComponent,
     KnowledgeComponent,

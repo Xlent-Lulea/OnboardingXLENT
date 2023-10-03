@@ -1,41 +1,42 @@
 <div class="container" *ngIf="selectedPerson">
-    <ng-container *ngFor="let type of taskTypes">
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>{{ "taskType." + type | translate }}</mat-panel-title>
-                <mat-progress-bar mode="determinate" [value]="getCompletedTasksForType(type) / getTotalTasksForType(type) * 100"></mat-progress-bar>
-            </mat-expansion-panel-header>
 
-            <ng-container>
-                <ng-container *ngFor="let task of selectedPerson.taskEntities; let taskIndex = index">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{ 'taskType.' + taskType | translate }}</mat-panel-title>
 
-                    <ng-container *ngIf="task.taskType === type">
-                        <!-- Divider -->
-                       <mat-divider *ngIf="shouldShowDivider(task, taskIndex, selectedPerson.taskEntities)"></mat-divider>
+            <mat-progress-bar mode="determinate" [value]="taskPercent"></mat-progress-bar>
 
-                        <div class="task-row">
-                            <div class="task" style="display: flex; align-items: center;">
-                                <!-- Checkbox for each task -->
-                                <mat-checkbox  [(ngModel)]="task.completed" color="primary"  style="margin-right: 10px;"(change)="onTaskStatusChange(task)"> </mat-checkbox>
+        </mat-expansion-panel-header>
 
-                                <div class="task-text">
-                                    <p>
+        <ng-container>
+            <ng-container *ngFor="let task of selectedPerson.taskEntities; let taskIndex = index">
 
-                                        <ng-container *ngIf="task.url; else noLink">
-                                            <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
-                                        </ng-container>
-                                        <ng-template #noLink>{{ task.urltitle }}</ng-template>
+                <ng-container *ngIf="task.taskType === taskType">
 
-                                    </p>
-                                    <p class="description">
-                                         {{ task.description }}
-                                    </p>
-                                </div>
+
+
+                    <div class="task-row">
+                        <div class="task" style="display: flex; align-items: center;">
+
+                            <mat-checkbox [(ngModel)]="task.completed" color="primary" style="margin-right: 10px;"
+                                (ngModelChange)="onTaskStatusChange(task)"></mat-checkbox>
+
+
+                            <div class="task-text">
+                                <p>
+
+                                    <ng-container *ngIf="task.url; else noLink">
+                                        <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+                                    </ng-container>
+                                    <ng-template #noLink>{{ task.urltitle }}</ng-template>
+
+                                </p>
+                                <p class="description">
+                                    {{ task.description }}
+                                </p>
                             </div>
                         </div>
-                    </ng-container>
+                    </div>
                 </ng-container>
             </ng-container>
-        </mat-expansion-panel>
-    </ng-container>
-</div>
+        </ng-container>

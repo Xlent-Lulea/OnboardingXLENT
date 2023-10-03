@@ -6,6 +6,7 @@ import { WalkthroughComponent } from 'src/app/Components/walkthrough/walkthrough
 import { AboutComponent } from 'src/app/Components/about/about.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,8 +14,13 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, TitleComponent, WalkthroughComponent, AboutComponent],
-      imports: [MatCardModule, MatIconModule]
+      declarations: [
+        HomeComponent,
+        TitleComponent,
+        WalkthroughComponent,
+        AboutComponent,
+      ],
+      imports: [MatCardModule, MatIconModule, HttpClientModule],
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;

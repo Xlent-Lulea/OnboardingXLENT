@@ -6,12 +6,20 @@
   flex-direction: column;
   gap: 70px;
   align-items: center;
-
   justify-content: center;
   flex-wrap: wrap;
   align-self: stretch;
   flex: 1;
   position: relative;
 }
+
+.progressbar {
+  height: 100%;
+  width: 0;       /* Startvärde */
+  background-color: #4CAF50;  /* Färg för progress */
+  border-radius: 10px;       /* Avrundade hörn */
+}
+
+
 
 

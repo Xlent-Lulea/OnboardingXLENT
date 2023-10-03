@@ -37,7 +37,7 @@ export class PersonService {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
       tap((person) => {
       localStorage.setItem('personId', '' + id);
-      this.selectedPersonSubject.next(person);
+      this.updateSelectedPerson(person);
     })
     );
   }
@@ -58,6 +58,10 @@ export class PersonService {
   createPerson(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/createPerson`;
     return this.http.post<Person>(url, person);
+  }
+
+  updateSelectedPerson(person: Person): void {
+    this.selectedPersonSubject.next(person);
   }
 
   updatePerson(person: Person): Observable<Person> {

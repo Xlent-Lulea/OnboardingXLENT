@@ -1,74 +1,48 @@
-import { Component, ViewChild, Input } from '@angular/core';
-import { TaskService } from 'src/app/services/task.service';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Task, TaskType } from '../../models/task.interface';
 import { Person } from 'src/app/models/task.interface';
-import { MatAccordion } from '@angular/material/expansion';
 
-
-/**
- * @title Accordion with expand/collapse all toggles
- */
 @Component({
   selector: 'app-expansion-panel',
   templateUrl: 'expansion-panel.component.html',
   styleUrls: ['expansion-panel.component.scss'],
 })
-export class ExpansionPanelComponent {
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
-
-  tasksByType: { [key in TaskType]?: Task[] } = {};
-  taskTypes: TaskType[] = Object.keys(TaskType) as TaskType[];
-
+export class ExpansionPanelComponent implements OnChanges {
+  tasks: Task[] = [];
+  @Input() taskType: TaskType = TaskType.WELCOME;
   @Input() selectedPerson: Person | null = null;
+  taskPercent = 0;
+  @Output() taskStatusChanged: EventEmitter<Task> = new EventEmitter<Task>();
 
-  constructor(
-    private taskService: TaskService,
-  ) { }
-
-  shouldShowDivider(task: Task, index: number, taskEntities: Task[]): boolean {
-     if (index === 0) return false;
-     return taskEntities[index - 1].taskType === task.taskType;
-   }
-
-  fetchTasksByType(taskType: TaskType, personId: number): void {
-    this.taskService
-      .getTasksByPersonAndType(personId, taskType as unknown as string)
-      .subscribe((taskEntities: Task[]) => {
-        console.log('Tasks for type', taskType, taskEntities);
-        this.tasksByType[taskType] = taskEntities;
-      });
-  }
-
-  getCompletedTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type && task.completed).length;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['selectedPerson']) {
+      return;
     }
-    return 0;
-  }
-
-  getTotalTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type).length;
-    }
-    return 0;
+    this.tasks =
+      this.selectedPerson?.taskEntities.filter(
+        (task) => task.taskType === this.taskType
+      ) || [];
+    this.calculateTaskProgress();
   }
 
   onTaskStatusChange(task: Task): void {
-    if (task.id !== undefined) {
-      this.taskService.updateTaskCompletionStatus(task.id).subscribe(
-        (updatedTask) => {
-          console.log('Task updated:', updatedTask);
-          // Optionally, update local task state or UI here if needed.
-        },
-        (error) => {
-          console.error('Failed to update task:', error);
-          // Optionally, revert the checkbox state in case of an error
-          task.completed = !task.completed;
-        }
-      );
-    } else {
-      console.error('Task ID is undefined');
-    }
+    this.taskStatusChanged.emit(task);
+    this.calculateTaskProgress();
   }
 
+  calculateTaskProgress(): void {
+    const completedTasksCount = this.tasks?.filter((task) => task.completed).length || 0;
+    const totalTasksCount = this.tasks?.length || 0;
+
+    this.taskPercent =
+      totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
+  }
 }
+
