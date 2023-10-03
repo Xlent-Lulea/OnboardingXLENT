@@ -14,8 +14,8 @@
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Titel</mat-label>
-        <input MatFormFieldControl matInput id="task-urltitle" [(ngModel)]="newTask.urltitle" formControlName="urltitle" placeholder="Ange titel"
-          required />
+        <input MatFormFieldControl matInput id="task-urltitle" [(ngModel)]="newTask.urltitle" formControlName="urltitle"
+          placeholder="Ange titel" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
@@ -26,7 +26,8 @@
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>URL</mat-label>
-        <input MatFormFieldControl matInput id="task-url" [(ngModel)]="newTask.url" formControlName="url" placeholder="Ange URL"/>
+        <input MatFormFieldControl matInput id="task-url" [(ngModel)]="newTask.url" formControlName="url"
+          placeholder="Ange URL" />
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit">Add task</button>
@@ -37,15 +38,24 @@
   <ng-container *ngFor="let task of filteredTasks">
     <div class="task-row">
       <div class="task">
-        <h3>
-          Titel:
-          <ng-container *ngIf="task.url; else noLink">
-            <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
-          </ng-container>
-          <ng-template #noLink>{{ task.urltitle }}</ng-template>
-          Beskrivning: {{ task.description }}
-          <mat-icon (click)="deleteTask(person.id, task.id!)">delete_forever</mat-icon>
-        </h3>
+        <div class="task-text">
+
+          <p>
+            <ng-container *ngIf="task.url; else noLink">
+              <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+              <mat-icon (click)="deleteTask(person.id, task.id!)">delete_forever</mat-icon>
+            </ng-container>
+            <ng-template #noLink>
+              {{ task.urltitle }}
+              <mat-icon (click)="deleteTask(person.id, task.id!)">delete_forever</mat-icon>
+            </ng-template>
+          </p>
+
+          <p class="description">
+            {{ task.description }}
+          </p>
+
+        </div>
       </div>
     </div>
   </ng-container>

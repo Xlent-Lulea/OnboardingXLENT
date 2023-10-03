@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Person, Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -11,10 +11,14 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class AdminPageComponent {
 
-  allPersons$: Observable<Person[]> = this.personService.allPersons$;
+  allPersons: Person[] = [];
   selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
 
-  constructor(private personService: PersonService, private taskService: TaskService) { }
+  constructor(private personService: PersonService, private taskService: TaskService) {
+    this.personService.getAllPersons().pipe(
+      tap((persons) => this.allPersons = persons || [])
+    ).subscribe();
+  }
 
   createPerson(person: Person): void {
     this.personService.createPerson(person).subscribe();

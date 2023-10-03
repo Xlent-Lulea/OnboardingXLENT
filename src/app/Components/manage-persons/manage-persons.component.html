@@ -1,7 +1,9 @@
 <h2>Lägg till person</h2>
+
 <form [formGroup]="personForm" (ngSubmit)="submitForm()" *ngIf="newPerson">
   <mat-form-field>
     <mat-label>Namn</mat-label>
+
     <input
       [(ngModel)]="newPerson.name"
       matInput MatFormFieldControl
@@ -12,6 +14,7 @@
 
   <mat-form-field appearance="outline" class="form-group">
     <mat-label>E-post</mat-label>
+
     <input
       [(ngModel)]="newPerson.email"
       matInput MatFormFieldControl
@@ -21,6 +24,7 @@
       type="email"
       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
       title="Vänligen ange en giltig e-postadress" />
+
     <mat-error *ngIf="personForm.get('email')?.hasError('email')">
       Vänligen ange en giltig e-postadress
     </mat-error>
@@ -28,13 +32,18 @@
 
   <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid"> Lägg till</button>
 </form>
+
+
 <h2>Inaktivera/Aktivera Personer</h2>
 <div *ngFor="let person of allPersons">
+
   <mat-checkbox color="primary" [(ngModel)]="person.active"
     (change)="toggleActive.emit({id: person.id, active: person.active})">
     {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
   </mat-checkbox>
+
   <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
     <mat-icon>delete</mat-icon>
   </button>
+
 </div>

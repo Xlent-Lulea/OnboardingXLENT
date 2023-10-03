@@ -9,9 +9,6 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 })
 
 export class PersonService {
-  private allPersonsSubject = new BehaviorSubject<Person[]>([]);
-  public allPersons$ = this.allPersonsSubject.asObservable();
-
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
 
@@ -30,9 +27,7 @@ export class PersonService {
   }
 
   getAllPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(`${this.personsUrl}/persons`).pipe(
-      tap((persons) => this.allPersonsSubject.next(persons))
-    );
+    return this.http.get<Person[]>(`${this.personsUrl}/persons`);
   }
 
   getPerson(id: number): Observable<Person> {
@@ -51,17 +46,7 @@ export class PersonService {
 
   createPerson(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/createPerson`;
-    return this.http.post<Person>(url, person).pipe(
-      switchMap((person) => this.allPersons$.pipe(
-        map((allPersons) => {
-          if (!allPersons.find((p) => p.id === person.id)) {
-            allPersons.push(person);
-            this.allPersonsSubject.next(allPersons);
-          }
-          return person;
-        })
-      )),
-    );
+    return this.http.post<Person>(url, person);
   }
 
   updatePerson(person: Person): Observable<Person> {
@@ -114,15 +99,7 @@ export class PersonService {
   }
 
   deletePerson(personId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {}).pipe(
-      switchMap(() => this.allPersons$.pipe(
-        map((allPersons) => allPersons.filter(person => person.id !== personId)),
-        map((allPersons) => {
-          this.allPersonsSubject.next(allPersons);
-          tap(() => console.log('Deleted person with id:', personId));
-        })
-      )),
-    );
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {});
   }
 }
 

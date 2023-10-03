@@ -6,6 +6,21 @@
     min-width: 300px;
 }
 
+.task-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.task-text {
+    text-align: left;
+    max-width: 450px;
+
+    p {
+        margin-bottom: 5px;
+    }
+}
+
 h2 {
     color: #333;
     font-size: 24px;

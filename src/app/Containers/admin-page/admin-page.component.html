@@ -10,7 +10,7 @@
   ></app-manage-tasks>
 
   <app-manage-persons
-    [allPersons]="allPersons$ | async"
+    [allPersons]="allPersons"
     (createPerson)="createPerson($event)"
     (removePerson)="removePerson($event)"
     (toggleActive)="toggleActivePerson($event)"
