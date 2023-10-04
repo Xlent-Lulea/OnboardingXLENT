@@ -3,6 +3,16 @@
   <h4>Sida för att administrera personer och checklista</h4>
 </div>
 <div class="container">
-  <app-manage-tasks></app-manage-tasks>
-  <app-manage-persons></app-manage-persons>
+  <app-manage-tasks
+  [person]="selectedPerson$ | async"
+  (createTask)="createTask($event)"
+  (removeTask)="removeTask($event)"
+  ></app-manage-tasks>
+
+  <app-manage-persons
+    [allPersons]="allPersons"
+    (createPerson)="createPerson($event)"
+    (removePerson)="removePerson($event)"
+    (toggleActive)="toggleActivePerson($event)"
+    ></app-manage-persons>
 </div>

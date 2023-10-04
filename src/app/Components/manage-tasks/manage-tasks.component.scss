@@ -1,13 +1,24 @@
-
-
-
 .task-list {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     max-width: 500px;
     min-width: 300px;
+}
 
+.task-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.task-text {
+    text-align: left;
+    max-width: 450px;
+
+    p {
+        margin-bottom: 5px;
+    }
 }
 
 h2 {
@@ -18,7 +29,6 @@ h2 {
 
 form {
     margin-bottom: 30px;
-
 }
 
 mat-form-field {

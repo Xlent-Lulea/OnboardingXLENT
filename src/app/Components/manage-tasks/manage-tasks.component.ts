@@ -1,14 +1,9 @@
-//task-list.component.ts
-import { Component, Input } from '@angular/core';
-import { TaskService } from 'src/app/services/task.service';
-import { Task } from 'src/app/models/task.interface';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Person, Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
-import { PersonService } from 'src/app/services/person.service';
-import { Person } from 'src/app/models/task.interface';
-import { Observable, Subject } from 'rxjs';
-import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,105 +11,53 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
   templateUrl: './manage-tasks.component.html',
   styleUrls: ['./manage-tasks.component.scss'],
 })
-export class ManageTasksComponent {
-  private ngUnsubscribe = new Subject<void>();
-  TaskType = TaskType;
-  @Input() tasks: Task[] = [];
-  allTasks: Task[] = [];
-  @Input() selectedTaskType!: TaskType;
-  person: Person | undefined;
-  personId: string | undefined;
+export class ManageTasksComponent implements OnChanges {
+  TaskForm: FormGroup;
 
-  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+  taskTypes = Object.keys(TaskType);
+  newTask?: Task;
+  filteredTasks: Task[] = [];
 
+  @Input() person: Person | null = null;
+  @Output() createTask: EventEmitter<{ personId: number, task: Task }> = new EventEmitter<{ personId: number, task: Task }>();
+  @Output() removeTask: EventEmitter<{ personId: number, taskId: number }> = new EventEmitter<{ personId: number, taskId: number }>();
+  @Output() tasksChange: EventEmitter<Task[]> = new EventEmitter<Task[]>();
 
-  taskTypes = Object.values(TaskType).filter(
-    (value) => typeof value === 'string'
-  );
-  selectedPerson: Person | null = null;
-  activePersons: Person[] = [];
-  newTask: Task = {
-    urltitle: '',
-    description: '',
-    taskType: this.selectedTaskType,
-    completed: false,
-    active: true,
-    url: '',
-  };
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
+    this.TaskForm = this.fb.group({
+      taskType: ['', Validators.required],
+      urltitle: ['', Validators.required],
+      description: ['', Validators.required],
+      url: [''],
+    });
 
-  constructor(
-    private taskService: TaskService,
-    private personService: PersonService,
-    private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
-  ) {
-    this.newTask = {
-      urltitle: '',
-      description: '',
-      taskType: this.selectedTaskType,
-      completed: false,
-      active: true,
-      url: '',
-    };
+    this.restoreNewTask();
   }
 
-  filterTasksByTaskType(taskType: string) {
-    if (this.personId) {
-      this.personService
-        .getPerson(+this.personId)
-        .subscribe((person: Person) => {
-          this.selectedPerson = person;
-          if (this.selectedPerson) {
-            this.taskService
-              .getTasksByPersonAndType(this.selectedPerson.id, taskType)
-              .subscribe((tasks: Task[]) => {
-                this.tasks = tasks;
-                if (this.selectedPerson) {
-                  this.selectedPerson.taskEntities = tasks; // update selectedPerson tasks
-                }
-                console.log('Specifika tasks efter TaskType:', this.tasks);
-              });
-          } else {
-            console.log('selectedPerson is not defined');
-          }
-        });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['person']) {
+      return;
     }
+
+    this.filterTasks();
   }
 
-  createTask() {
-    if (this.selectedPerson && this.selectedTaskType) {
-      this.taskService
-        .createTask(this.selectedPerson.id, this.selectedTaskType, this.newTask)
-        .subscribe((task: Task) => {
-          console.log('Created task:', task); // Add this line to print the created task
-          this.selectedPerson?.taskEntities.push(task);
-          this.newTask = {
-            urltitle: '',
-            description: '',
-            taskType: this.selectedTaskType,
-            completed: false,
-            active: true,
-            url: '',
-          };
-        });
-    }
+  // Filter tasks based on selected taskType
+  filterTasks(): void {
+    this.filteredTasks = this.newTask?.taskType ?
+      this.person?.taskEntities?.filter((task) => task.taskType === this.newTask?.taskType) || [] :
+      this.person?.taskEntities || [];
   }
 
-  getNewestPersonId(): string {
-    // TODO: Implement this function properly
-    return '1'; // Placeholder
+  save(personId: number, task: Task): void {
+    this.createTask.emit({ personId, task });
+    this.restoreNewTask();
   }
-
-  onCheckboxChange() {
-    // Add your logic for handling the checkbox change event here
-    console.log('Checkbox state changed');
-  }
-
 
   deleteTask(personId: number, taskId: number): void {
     const dialogData = new ConfirmDialogModel(
       'Bekräfta borttagning',
-      'Är du säker?'
+      'Är du säker på att du vill ta bort den här uppgiften?'
     );
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -123,13 +66,22 @@ export class ManageTasksComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result && this.person) {
         // If user clicked Yes, proceed with deletion
-        this.taskService.deleteTask(personId, taskId).subscribe(() => {
-          this.tasks = this.tasks.filter((task) => task.id !== taskId);
-          console.log('Deleted task with id:', taskId);
-        });
+        this.removeTask.emit({ personId, taskId });
       }
     });
+  }
+
+  private restoreNewTask(): void {
+    const taskType = this.newTask?.taskType;
+    this.newTask = {
+      taskType: taskType,
+      urltitle: '',
+      description: '',
+      completed: false,
+      active: true,
+      url: '',
+    } as Task
   }
 }

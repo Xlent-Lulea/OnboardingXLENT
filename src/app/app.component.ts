@@ -21,8 +21,9 @@ export class AppComponent {
     private personService: PersonService,
     private translate: TranslateService
   ) {
+
     translate.setDefaultLang('sv');
     const storedPersonId = localStorage.getItem('personId') || '';
-    this.personService.getPerson(+storedPersonId).subscribe();
+    this.personService.getPerson(+storedPersonId).subscribe(); // Initialize selectedPerson
   }
 }

@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('ManageTasksComponent', () => {
   let component: ManageTasksComponent;
@@ -24,7 +25,13 @@ describe('ManageTasksComponent', () => {
         MatInputModule,
         ReactiveFormsModule,
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader, // Use TranslateFakeLoader for testing
+          },
+        })
       ]
     })
       .compileComponents();

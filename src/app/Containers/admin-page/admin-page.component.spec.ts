@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('AdminPageComponent', () => {
   let component: AdminPageComponent;
@@ -28,7 +29,13 @@ describe('AdminPageComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader, // Use TranslateFakeLoader for testing
+          },
+        })
       ],
       providers: [
         {
