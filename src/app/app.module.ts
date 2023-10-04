@@ -34,7 +34,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
-import { ShowTasksComponent } from './Components/show-tasks/show-tasks.component';
 import { TaskService } from './services/task.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
@@ -74,7 +73,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ConfirmDialogComponent,
     LoginBoxComponent,
     KnowledgeComponent,
-    ShowTasksComponent,
     OnboardingComponent,
     CarouselComponent,
   ],

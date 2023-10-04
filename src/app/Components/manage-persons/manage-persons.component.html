@@ -1,11 +1,10 @@
 <h2>Lägg till person</h2>
 
-<form [formGroup]="personForm" (ngSubmit)="submitForm()" *ngIf="newPerson">
+<form #myForm="ngForm" [formGroup]="personForm" (ngSubmit)="submitForm(); myForm.resetForm()">
   <mat-form-field>
     <mat-label>Namn</mat-label>
 
     <input
-      [(ngModel)]="newPerson.name"
       matInput MatFormFieldControl
       formControlName="name"
       placeholder="Ange namn"
@@ -16,12 +15,11 @@
     <mat-label>E-post</mat-label>
 
     <input
-      [(ngModel)]="newPerson.email"
       matInput MatFormFieldControl
       formControlName="email"
       placeholder="Ange e-postadress"
       required
-      type="email"
+      type="text"
       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
       title="Vänligen ange en giltig e-postadress" />
 

@@ -12,7 +12,6 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
 
 export class ManagePersonsComponent {
   personForm: FormGroup;
-  newPerson!: Person;
 
   @Input() allPersons: Person[] | null = [];
 
@@ -26,13 +25,10 @@ export class ManagePersonsComponent {
       email: ['', Validators.required],
       active: [true],  // set the active field as true
     });
-
-    this.restoreNewPerson();
   }
 
   submitForm(): void {
-    this.createPerson.emit(this.newPerson);
-    this.restoreNewPerson();
+    this.createPerson.emit(this.personForm.value);
   }
 
   openDeleteConfirmationDialog(personId: number): void {
@@ -51,14 +47,5 @@ export class ManagePersonsComponent {
         this.removePerson.emit(personId);
       }
     });
-  }
-
-  private restoreNewPerson(): void {
-    this.newPerson = {
-      name: '',
-      email: '',
-      taskEntities: [],
-      active: true
-    } as unknown as Person;
   }
 }

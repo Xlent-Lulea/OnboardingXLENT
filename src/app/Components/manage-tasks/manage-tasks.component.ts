@@ -15,7 +15,6 @@ export class ManageTasksComponent implements OnChanges {
   TaskForm: FormGroup;
 
   taskTypes = Object.keys(TaskType);
-  newTask?: Task;
   filteredTasks: Task[] = [];
 
   @Input() person: Person | null = null;
@@ -30,8 +29,6 @@ export class ManageTasksComponent implements OnChanges {
       description: ['', Validators.required],
       url: [''],
     });
-
-    this.restoreNewTask();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,14 +41,15 @@ export class ManageTasksComponent implements OnChanges {
 
   // Filter tasks based on selected taskType
   filterTasks(): void {
-    this.filteredTasks = this.newTask?.taskType ?
-      this.person?.taskEntities?.filter((task) => task.taskType === this.newTask?.taskType) || [] :
+    const type: TaskType | null = this.TaskForm.get('taskType')?.value;
+    this.filteredTasks = type ?
+      this.person?.taskEntities?.filter((task) => task.taskType === type) || [] :
       this.person?.taskEntities || [];
   }
 
-  save(personId: number, task: Task): void {
-    this.createTask.emit({ personId, task });
-    this.restoreNewTask();
+  save(personId: number): void {
+    const task: Task = this.TaskForm.value;
+    this.createTask.emit({ personId, task});
   }
 
   deleteTask(personId: number, taskId: number): void {
@@ -71,17 +69,5 @@ export class ManageTasksComponent implements OnChanges {
         this.removeTask.emit({ personId, taskId });
       }
     });
-  }
-
-  private restoreNewTask(): void {
-    const taskType = this.newTask?.taskType;
-    this.newTask = {
-      taskType: taskType,
-      urltitle: '',
-      description: '',
-      completed: false,
-      active: true,
-      url: '',
-    } as Task
   }
 }

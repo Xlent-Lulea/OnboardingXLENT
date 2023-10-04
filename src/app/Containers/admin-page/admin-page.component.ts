@@ -7,7 +7,7 @@ import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.css'],
+  styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent {
 
