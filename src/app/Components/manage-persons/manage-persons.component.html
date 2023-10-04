@@ -20,7 +20,7 @@
       placeholder="Ange e-postadress"
       required
       type="text"
-      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      email
       title="Vänligen ange en giltig e-postadress" />
 
     <mat-error *ngIf="personForm.get('email')?.hasError('email')">
