@@ -1,10 +1,10 @@
 <ng-container *ngIf="person">
-  <ng-container class="task-list" *ngIf="newTask">
+  <ng-container class="task-list">
     <h2>Lägg till task</h2>
-    <form [formGroup]="TaskForm" (ngSubmit)="save(person.id, newTask)">
+    <form [formGroup]="TaskForm" #myForm="ngForm" (ngSubmit)="save(person.id); myForm.resetForm()">
       <mat-form-field>
         <mat-label>Tasktyp</mat-label>
-        <mat-select MatFormFieldControl [(value)]="newTask.taskType" (selectionChange)="filterTasks()"
+        <mat-select MatFormFieldControl (selectionChange)="filterTasks()"
           formControlName="taskType" required>
           <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
             {{ 'taskType.' + taskType | translate }}
@@ -14,19 +14,19 @@
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Titel</mat-label>
-        <input MatFormFieldControl matInput id="task-urltitle" [(ngModel)]="newTask.urltitle" formControlName="urltitle"
+        <input MatFormFieldControl matInput id="task-urltitle" formControlName="urltitle"
           placeholder="Ange titel" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Beskrivning</mat-label>
-        <input MatFormFieldControl matInput id="task-description" [(ngModel)]="newTask.description"
+        <input MatFormFieldControl matInput id="task-description"
           formControlName="description" required placeholder="Ange beskrivning" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>URL</mat-label>
-        <input MatFormFieldControl matInput id="task-url" [(ngModel)]="newTask.url" formControlName="url"
+        <input MatFormFieldControl matInput id="task-url" formControlName="url"
           placeholder="Ange URL" />
       </mat-form-field>
 

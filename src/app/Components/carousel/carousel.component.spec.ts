@@ -7,6 +7,7 @@ import { PersonService } from 'src/app/services/person.service';
 describe('CarouselComponent', () => {
   let component: CarouselComponent;
   let fixture: ComponentFixture<CarouselComponent>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let mockPersonService: any;
 
 
