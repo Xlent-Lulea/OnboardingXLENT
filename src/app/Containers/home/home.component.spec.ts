@@ -7,6 +7,7 @@ import { AboutComponent } from 'src/app/Components/about/about.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { PortraitsComponent } from 'src/app/Components/portraits/portraits.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -19,6 +20,7 @@ describe('HomeComponent', () => {
         TitleComponent,
         WalkthroughComponent,
         AboutComponent,
+        PortraitsComponent
       ],
       imports: [MatCardModule, MatIconModule, HttpClientModule],
     });
