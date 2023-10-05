@@ -6,8 +6,8 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Task, TaskType } from '../../models/task.interface';
-import { Person } from 'src/app/models/task.interface';
+import { PersonTask } from 'src/app/models/person-task.interface';
+import { TaskType } from 'src/app/models/task-type.interface';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -15,34 +15,37 @@ import { Person } from 'src/app/models/task.interface';
   styleUrls: ['expansion-panel.component.scss'],
 })
 export class ExpansionPanelComponent implements OnChanges {
-  tasks: Task[] = [];
-  @Input() taskType: TaskType = TaskType.WELCOME;
-  @Input() selectedPerson: Person | null = null;
   taskPercent = 0;
-  @Output() taskStatusChanged: EventEmitter<Task> = new EventEmitter<Task>();
+
+  @Input() taskType: TaskType | null = null;
+  @Input() personTasks: PersonTask[] | null = [];
+
+  @Output() taskStatusChanged: EventEmitter<PersonTask> = new EventEmitter<PersonTask>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['selectedPerson']) {
+    if (!changes['personTasks']) {
       return;
     }
-    this.tasks =
-      this.selectedPerson?.taskEntities.filter(
-        (task) => task.taskType === this.taskType
-      ) || [];
+
+    this.filterTasks();
     this.calculateTaskProgress();
   }
 
-  onTaskStatusChange(task: Task): void {
+  private filterTasks(): void {
+    this.personTasks = this.personTasks?.filter((personTask) =>
+      personTask.task.typeId === this.taskType?.id) || [];
+  }
+
+  onTaskStatusChange(task: PersonTask): void {
     this.taskStatusChanged.emit(task);
     this.calculateTaskProgress();
   }
 
   calculateTaskProgress(): void {
-    const completedTasksCount = this.tasks?.filter((task) => task.completed).length || 0;
-    const totalTasksCount = this.tasks?.length || 0;
+    const completedTasksCount = this.personTasks?.filter((task) => task.isCompleted).length || 0;
+    const totalTasksCount = this.personTasks?.length || 0;
 
     this.taskPercent =
       totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
   }
 }
-

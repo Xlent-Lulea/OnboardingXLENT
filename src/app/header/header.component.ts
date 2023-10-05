@@ -9,7 +9,6 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class HeaderComponent {
   selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
-    map((person) => person?.name === 'test1' ? null : person),
     map((person) => person?.name || 'Login' )
   );
 

@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Person, Task } from 'src/app/models/task.interface';
-import { TaskType } from 'src/app/models/task.interface';
+import { Task } from 'src/app/models/task.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { TaskType } from 'src/app/models/task-type.interface';
 
 @Component({
   selector: 'app-manage-tasks',
@@ -14,25 +13,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ManageTasksComponent implements OnChanges {
   TaskForm: FormGroup;
 
-  taskTypes = Object.keys(TaskType);
   filteredTasks: Task[] = [];
 
-  @Input() person: Person | null = null;
-  @Output() createTask: EventEmitter<{ personId: number, task: Task }> = new EventEmitter<{ personId: number, task: Task }>();
-  @Output() removeTask: EventEmitter<{ personId: number, taskId: number }> = new EventEmitter<{ personId: number, taskId: number }>();
-  @Output() tasksChange: EventEmitter<Task[]> = new EventEmitter<Task[]>();
+  @Input() tasks: Task[] | null = [];
+  @Input() taskTypes: TaskType[] | null = [];
+  @Output() createTask: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() removeTask: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.TaskForm = this.fb.group({
-      taskType: ['', Validators.required],
-      urltitle: ['', Validators.required],
+      taskType: [null, Validators.required],
+      title: ['', Validators.required],
       description: ['', Validators.required],
       url: [''],
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['person']) {
+    if (!changes['tasks']) {
       return;
     }
 
@@ -43,16 +41,16 @@ export class ManageTasksComponent implements OnChanges {
   filterTasks(): void {
     const type: TaskType | null = this.TaskForm.get('taskType')?.value;
     this.filteredTasks = type ?
-      this.person?.taskEntities?.filter((task) => task.taskType === type) || [] :
-      this.person?.taskEntities || [];
+      this.tasks?.filter((task) => task.typeId === type.id) || [] :
+      this.tasks || [];
   }
 
-  save(personId: number): void {
+  save(): void {
     const task: Task = this.TaskForm.value;
-    this.createTask.emit({ personId, task});
+    this.createTask.emit(task);
   }
 
-  deleteTask(personId: number, taskId: number): void {
+  deleteTask(taskId: number): void {
     const dialogData = new ConfirmDialogModel(
       'Bekräfta borttagning',
       'Är du säker på att du vill ta bort den här uppgiften?'
@@ -64,9 +62,9 @@ export class ManageTasksComponent implements OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && this.person) {
+      if (result) {
         // If user clicked Yes, proceed with deletion
-        this.removeTask.emit({ personId, taskId });
+        this.removeTask.emit(taskId);
       }
     });
   }

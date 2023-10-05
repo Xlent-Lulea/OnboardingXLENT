@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Person, Task } from '../models/task.interface';
-import { PersonService } from './person.service';
+import { Observable, of } from 'rxjs';
+import { Task } from '../models/task.interface';
+import { TaskType } from '../models/task-type.interface';
 
 
 @Injectable({
@@ -10,35 +10,77 @@ import { PersonService } from './person.service';
 })
 export class TaskService {
 
-  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
-  constructor(private http: HttpClient, private personService: PersonService) {}
+  // TODO: remove
+  tasks: Task[] =
+    [
+      {
+        id: 543,
+        title: 'Test task',
+        description: 'test beskrivning',
+        url: '',
+        typeId: 0
+      }
+    ]
 
-  getTasksByPerson(personId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
+  constructor(private http: HttpClient) { }
+
+  // TODO: implement
+  getAll(): Observable<Task[]> {
+    return of(this.tasks);
   }
 
-  getTasksByPersonId(personId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-  }
-
-  getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`);
-  }
-
-  createTask(personId: number, taskType: string, task: Task): Observable<Task> {
+  //TODO: implement
+  create(task: Task): Observable<Task> {
+    return of(task);
+/*
     if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
       task.url = 'https://' + task.url;
-    }
-    return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task);
+    }*/
   }
 
-  deleteTask(personId: number, taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
+  // TODO: implement
+  remove(taskId: number): Observable<void> {
+    return of();
   }
 
-  updateTaskCompletionStatus(taskId: number): Observable<Task> {
-    return this.http.put<Task>(`${this.personService.personsUrl}/task/${taskId}/toggle-completed`, {});
+  // TODO: implement
+  getTypes(): Observable<TaskType[]> {
+    const taskTypes: TaskType[] =
+      [
+        {
+          id: 0,
+          name: "Välkommen",
+        },
+        {
+          id: 1,
+          name: "Buddy/Coach",
+        },
+        {
+          id: 2,
+          name: "Startklar",
+        },
+        {
+          id: 3,
+          name: "Anställning och admin",
+        },
+        {
+          id: 4,
+          name: "Digital Setup",
+        }
+        , {
+          id: 5,
+          name: "Konsultrollen",
+        },
+        {
+          id: 6,
+          name: "Avslut!",
+        }
+      ]
+
+
+    return of(taskTypes);
   }
 }
 
