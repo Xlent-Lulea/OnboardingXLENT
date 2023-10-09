@@ -1,24 +1,23 @@
-<div class="titel">
-  <h1>Kunskap</h1>
-    <h4>Här kan du se saker som kan vara bra att veta</h4>
-
-</div>
 <div class="container">
   <mat-accordion>
-  <h1>Fokusgrupper</h1>
-  <p>Detta är grupper som...</p>
-  <mat-expansion-panel *ngFor="let group of focusGroups">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{ group.heading }}
-      </mat-panel-title>
-      
-    </mat-expansion-panel-header>
-    <mat-list>
-      <div class="subheading"> {{group.subheading}}</div>
-      <mat-list-item *ngFor="let task of group.tasks">{{ task }}</mat-list-item>
-    </mat-list>
-  </mat-expansion-panel>
+    <h1>Såhär jobbar vi på XLU</h1>
+    <p>På XLU finns det ett antal fokusgrupper, detta för att vi effektivt ska kunna jobba med allt från hur vi mår till
+      hur vi ska växa och frodas som bolag. Det är frivilligt att vara med i en eller flera fokusgrupper, men då det är
+      viktigt för oss att alla känner sig delaktiga så uppmuntrar vi det. </p>
+    <p>Läs mer om vad de olika fokusgrupperna gör, samt vem som är asnvarig, nedan.</p>
+    <p>Vissa områden ligger utanför våra fokusgrupper, info om dessa finns också att läsa nedan </p>
+    <mat-expansion-panel *ngFor="let group of focusGroups">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ group.heading }}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <mat-list>
+        <div class="subheading"> {{group.subheading}}</div>
+        <mat-list-item *ngFor="let task of group.tasks">{{ task }}</mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
   </mat-accordion>
 
   <h1>Annat</h1>
