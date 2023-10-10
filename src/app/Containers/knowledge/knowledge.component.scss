@@ -1,62 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-expansion-panel {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+mat-expansion-panel-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+mat-accordion {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1000px;
+  justify-content: center;
+}
+
+.mat-accordion.mat-accordion {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1000px;
+  justify-content: center;
+}
 
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.titel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
 
+p {
+  padding-bottom: 20px;
+}
 
-  }
+/* Apply the same styling to both lists */
+mat-list {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 
-  mat-expansion-panel{
-    margin-top: 1px;
-    margin-bottom: 1px;
-
-  }
-  mat-expansion-panel-header {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  mat-accordion{
-    display: flex;
-    flex-direction: column;
-    flex: 1; 
-    max-width: 1000px;
-    justify-content: center;
-
-  }
-
-  .titel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-
-  }
-
-  p{
-    padding-bottom: 20px;
-  }
-
-
-
+mat-list-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 @media screen and (max-width: 768px) {
   .container {
     align-items: unset;
   }
 
-  .mat-accordion{
+  .mat-accordion {
     padding: 10px;
   }
 
-
-
-  mat-panel-description{
+  mat-panel-description {
     display: none;
   }
 }
-
+.heading-width {
+  width: 200px; /* Adjust the width as needed */
+  display: inline-block; /* Ensures the width applies to the heading content */
+}
