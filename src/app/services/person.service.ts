@@ -82,21 +82,22 @@ export class PersonService {
   create(person: Person): Observable<Person> {
     this.persons.push(person);
     return of(person);
-    /*const url = `${this.personsUrl}/createPerson`;
+    /*const url = `${this.personsUrl}/person`;
     return this.http.post<Person>(url, person);*/
   }
 
   // TODO: remove mock
   update(person: Person): Observable<Person> {
     return of();
-    /*const url = `${this.personsUrl}/updatePerson`;
-    return this.http.post<Person>(url, person);*/
+    /*
+    const url = `${this.personsUrl}/person/${person.id}`;
+    return this.http.put<Person>(url, person);*/
   }
 
   // TODO: remove mock
   remove(personId: number): Observable<void> {
     return of();
-    //return this.http.delete<void>(`${this.personsUrl}/person/${personId}`, {});
+    //return this.http.delete<void>(`${this.personsUrl}/person/${personId}`);
   }
 
   // TODO: remove mock
@@ -135,13 +136,6 @@ export class PersonService {
   getTasksById(personId: number): Observable<PersonTask[]> {
     return of();
     //return this.http.get<PersonTask[]>(`${this.personsUrl}/person/${personId}/tasks`);
-  }
-
-  // TODO: remove mock
-  getTasksByPersonAndType(personId: number, taskType: string): Observable<PersonTask[]> {
-    return of();
-
-    //return this.http.get<PersonTask[]>(`${this.personsUrl}/person/${personId}/tasks/type/${taskType}`);
   }
 
   // TODO: remove mock
