@@ -31,6 +31,8 @@ export class HomeComponent {
       this.isAllTasksCompleted = completedTasksCount === totalTasksCount;
     });
 
-    return totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
+    const percentage = totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
+
+    return Math.trunc(percentage);
   }
 }
