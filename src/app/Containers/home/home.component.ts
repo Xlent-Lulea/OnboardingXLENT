@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PersonService } from 'src/app/services/person.service';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { PersonTask } from 'src/app/models/person-task.interface';
 

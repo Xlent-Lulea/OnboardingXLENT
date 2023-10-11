@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { PersonService } from '../../services/person.service';
-import { take, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { TaskType } from 'src/app/models/task-type.interface';
 import { PersonTask } from 'src/app/models/person-task.interface';
 @Component({
