@@ -22,7 +22,10 @@ export class AdminPageComponent {
       tap((persons) => this.allPersons = persons || [])
     ).subscribe();
     this.taskService.getAll().pipe(
-      tap((tasks) => this.tasks = tasks)
+      tap((tasks) => this.tasks = tasks),
+    ).subscribe();
+    this.taskService.getTypes().pipe(
+      tap((types) => this.taskTypes = types || []),
     ).subscribe();
   }
 
@@ -50,13 +53,17 @@ export class AdminPageComponent {
 
   createTask(task: Task): void {
     this.taskService.create(task).subscribe(() =>
-      this.taskService.getAll().subscribe()
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
     );
   }
 
   removeTask(taskId: number): void {
     this.taskService.remove(taskId).subscribe(() =>
-      this.taskService.getAll().subscribe()
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
     );
   }
 }

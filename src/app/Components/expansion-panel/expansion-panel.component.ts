@@ -33,7 +33,7 @@ export class ExpansionPanelComponent implements OnChanges {
 
   private filterTasks(): void {
     this.personTasks = this.personTasks?.filter((personTask) =>
-      personTask.task.typeId === this.taskType?.id) || [];
+      personTask.task.type.id === this.taskType?.id) || [];
   }
 
   onTaskStatusChange(task: PersonTask): void {

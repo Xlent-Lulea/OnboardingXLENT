@@ -4,6 +4,5 @@ export interface Person {
     id: number;
     name: string;
     email: string;
-    personTasks: PersonTask[];
-    active: boolean;
+    isActive: boolean;
 }

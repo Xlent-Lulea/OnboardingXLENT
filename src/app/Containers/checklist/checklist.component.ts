@@ -17,17 +17,10 @@ export class ChecklistComponent {
     private taskService: TaskService,
     private personService: PersonService
   ) {
-    // TODO: uncomment
-    // Get person to make sure all tasks are up to date
-    /*const storedPersonId = localStorage.getItem('personId') || '';
-    this.personService.getById(+storedPersonId).pipe(
-      tap((person) => this.personTasks = person?.personTasks || [])
-    ).subscribe();*/
+    const storedPersonId = localStorage.getItem('personId') || '';
 
-    // TODO: remove
-    this.personService.selectedPerson$.pipe(
-      tap((person) => this.personTasks = person?.personTasks || []),
-      take(1)
+    this.personService.getTasksByPersonId(+storedPersonId).pipe(
+      tap((tasks) => this.personTasks = tasks || []),
     ).subscribe();
 
     this.taskService.getTypes().pipe(

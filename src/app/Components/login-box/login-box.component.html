@@ -32,7 +32,7 @@
             (selectionChange)="selectPerson.emit(selectedPerson!.id)"
           >
             <mat-option *ngFor="let person of activePersons" [value]="person">
-              {{ person.name }} {{ person.active ? "Aktiv" : "Inaktiv" }}
+              {{ person.name }} {{ person.isActive ? "Aktiv" : "Inaktiv" }}
               {{ person.id }}
             </mat-option>
           </mat-select>

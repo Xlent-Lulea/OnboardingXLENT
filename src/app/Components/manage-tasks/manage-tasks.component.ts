@@ -22,7 +22,7 @@ export class ManageTasksComponent implements OnChanges {
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.TaskForm = this.fb.group({
-      taskType: [null, Validators.required],
+      type: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
       url: [''],
@@ -39,9 +39,9 @@ export class ManageTasksComponent implements OnChanges {
 
   // Filter tasks based on selected taskType
   filterTasks(): void {
-    const type: TaskType | null = this.TaskForm.get('taskType')?.value;
+    const type: TaskType | null = this.TaskForm.get('type')?.value;
     this.filteredTasks = type ?
-      this.tasks?.filter((task) => task.typeId === type.id) || [] :
+      this.tasks?.filter((task) => task.type.id === type.id) || [] :
       this.tasks || [];
   }
 

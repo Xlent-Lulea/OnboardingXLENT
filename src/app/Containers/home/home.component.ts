@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PersonService } from 'src/app/services/person.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { PersonTask } from 'src/app/models/person-task.interface';
 
@@ -12,9 +12,13 @@ import { PersonTask } from 'src/app/models/person-task.interface';
 export class HomeComponent {
   selectedPerson$: Observable<Person | null> =
     this.personService.selectedPerson$;
-  tasks$: Observable<PersonTask[]> = this.selectedPerson$.pipe(
-    map((person) => person?.personTasks || [])
-  );
+  personTasks: PersonTask[] = [];
 
-  constructor(private personService: PersonService) {}
+  constructor(private personService: PersonService) {
+    const storedPersonId = localStorage.getItem('personId') || '';
+
+    this.personService.getTasksByPersonId(+storedPersonId).pipe(
+      tap((tasks) => this.personTasks = tasks || []),
+    ).subscribe();
+  }
 }

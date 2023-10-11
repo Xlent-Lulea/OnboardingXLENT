@@ -12,75 +12,26 @@ export class TaskService {
 
   private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
-  // TODO: remove
-  tasks: Task[] =
-    [
-      {
-        id: 543,
-        title: 'Test task',
-        description: 'test beskrivning',
-        url: '',
-        typeId: 0
-      }
-    ]
-
   constructor(private http: HttpClient) { }
 
-  // TODO: implement
   getAll(): Observable<Task[]> {
-    return of(this.tasks);
+    return this.http.get<Task[]>(`${this.tasksUrl}/tasks`);
   }
 
-  //TODO: implement
   create(task: Task): Observable<Task> {
-    return of(task);
-/*
-    if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
       task.url = 'https://' + task.url;
-    }*/
+    }
+
+    return this.http.post<Task>(`${this.tasksUrl}/tasks`, task);
   }
 
-  // TODO: implement
   remove(taskId: number): Observable<void> {
-    return of();
+    return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`);
   }
 
-  // TODO: implement
   getTypes(): Observable<TaskType[]> {
-    const taskTypes: TaskType[] =
-      [
-        {
-          id: 0,
-          name: "Välkommen",
-        },
-        {
-          id: 1,
-          name: "Buddy/Coach",
-        },
-        {
-          id: 2,
-          name: "Startklar",
-        },
-        {
-          id: 3,
-          name: "Anställning och admin",
-        },
-        {
-          id: 4,
-          name: "Digital Setup",
-        }
-        , {
-          id: 5,
-          name: "Konsultrollen",
-        },
-        {
-          id: 6,
-          name: "Avslut!",
-        }
-      ]
-
-
-    return of(taskTypes);
+    return this.http.get<TaskType[]>(`${this.tasksUrl}/taskTypes`);
   }
 }
 
