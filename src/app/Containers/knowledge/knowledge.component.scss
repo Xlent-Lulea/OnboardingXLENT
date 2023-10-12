@@ -41,10 +41,11 @@ mat-accordion {
 .title {
   display: flex;
   justify-content: center;
-  align-items: center;
+
   padding-top: 50px;
   display: flex;
   flex-direction: column;
+
 
 }
 
@@ -52,17 +53,20 @@ mat-accordion {
   // background-color: #ffffff;
   border-radius: 12px;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   flex: 1;
   max-width: 500px;
   justify-content: center;
-  min-width: 500px;
+  min-width: 1000px;
   text-align: left;
   padding-top: 10px;
   padding-left: 15px;
   gap: 5px;
 
+  p{
+    max-width: 500px;
+  }
 }
 
 .subheading{
