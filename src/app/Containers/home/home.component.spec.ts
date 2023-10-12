@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { PortraitsComponent } from 'src/app/Components/portraits/portraits.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -22,7 +24,7 @@ describe('HomeComponent', () => {
         AboutComponent,
         PortraitsComponent
       ],
-      imports: [MatCardModule, MatIconModule, HttpClientModule],
+      imports: [MatCardModule, MatIconModule, HttpClientModule, MatProgressBarModule],
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;

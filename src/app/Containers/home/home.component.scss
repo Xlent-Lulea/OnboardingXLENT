@@ -13,13 +13,52 @@
   position: relative;
 }
 
+.overall-progress{
+  min-width: 1000px;
+  margin-top: 20px;
+}
+
+.title{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+mat-card{
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+mat-progress-bar{
+ max-width: 900px;
+  padding-left: 50px;
+}
+
+.progress-text{
+  padding-bottom: 10px;
+}
+
+
+
 .progressbar {
   height: 100%;
   width: 0;       /* Startvärde */
   background-color: #4CAF50;  /* Färg för progress */
   border-radius: 10px;       /* Avrundade hörn */
+
 }
 
 
 
 
+.checkmark-icon {
+  font-size: 24px; /* Adjust the size as needed */
+  color: green;
+  margin-left: 10px; /* Add spacing from the progress text */
+}
+
+
+@media screen and (max-width: 768px){
+  .container{
+    flex-direction: column;
+  }
+}
