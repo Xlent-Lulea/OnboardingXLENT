@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Person } from 'src/app/models/task.interface';
+import { Person } from 'src/app/models/person.interface';
 @Component({
   selector: 'app-login-box',
   templateUrl: './login-box.component.html',
@@ -10,10 +10,4 @@ export class LoginBoxComponent {
   @Input() selectedPerson: Person | null = null;
 
   @Output() selectPerson = new EventEmitter<number>();
-  }
-
-
-
-
-
-
+}

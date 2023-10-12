@@ -11,11 +11,8 @@ import { Observable, map } from 'rxjs';
 export class AppComponent {
   title = 'OnboardingXLENT';
   selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
-    map((person) => person?.name === 'test1' ? null : person),
     map((person) => person?.name || 'Login' )
   );
-
-
 
   constructor(
     private personService: PersonService,
@@ -24,6 +21,6 @@ export class AppComponent {
 
     translate.setDefaultLang('sv');
     const storedPersonId = localStorage.getItem('personId') || '';
-    this.personService.getPerson(+storedPersonId).subscribe(); // Initialize selectedPerson
+    this.personService.getById(+storedPersonId).subscribe(); // Initialize selectedPerson
   }
 }

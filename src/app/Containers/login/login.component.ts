@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Person } from 'src/app/models/task.interface';
+import { Person } from 'src/app/models/person.interface';
 import { PersonService } from 'src/app/services/person.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(
     private personService: PersonService
   ) {
-    this.personService.getActivePersons().pipe(
+    this.personService.getActive().pipe(
       map((persons) => this.activePersons = persons || [])
     ).subscribe();
   }
@@ -24,6 +24,6 @@ export class LoginComponent {
     console.log('onPersonSelected:', personId);
 
     // Fetch the selected person details
-    this.personService.getPerson(personId).subscribe();
+    this.personService.getById(personId).subscribe();
   }
 }

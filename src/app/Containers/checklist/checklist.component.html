@@ -8,7 +8,7 @@
 
 <app-expansion-panel
 
-    [selectedPerson]="selectedPerson$ | async"
+    [personTasks]="personTasks"
     [taskType]="type"
     (taskStatusChanged)="updateTaskStatus($event)"
 

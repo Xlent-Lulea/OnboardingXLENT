@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Person, Task } from '../models/task.interface';
-import { PersonService } from './person.service';
+import { Task } from '../models/task.interface';
+import { TaskType } from '../models/task-type.interface';
 
 
 @Injectable({
@@ -10,35 +10,28 @@ import { PersonService } from './person.service';
 })
 export class TaskService {
 
-  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
-  constructor(private http: HttpClient, private personService: PersonService) {}
+  constructor(private http: HttpClient) { }
 
-  getTasksByPerson(personId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
+  getAll(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.tasksUrl}/tasks`);
   }
 
-  getTasksByPersonId(personId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-  }
-
-  getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`);
-  }
-
-  createTask(personId: number, taskType: string, task: Task): Observable<Task> {
-    if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+  create(task: Task): Observable<Task> {
+    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
       task.url = 'https://' + task.url;
     }
-    return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task);
+
+    return this.http.post<Task>(`${this.tasksUrl}/tasks`, task);
   }
 
-  deleteTask(personId: number, taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
+  remove(taskId: number): Observable<void> {
+    return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`);
   }
 
-  updateTaskCompletionStatus(taskId: number): Observable<Task> {
-    return this.http.put<Task>(`${this.personService.personsUrl}/task/${taskId}/toggle-completed`, {});
+  getTypes(): Observable<TaskType[]> {
+    return this.http.get<TaskType[]>(`${this.tasksUrl}/taskTypes`);
   }
 }
 
