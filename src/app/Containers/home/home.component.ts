@@ -22,19 +22,19 @@ export class HomeComponent {
 
     this.personService.getTasksByPersonId(+storedPersonId).pipe(
       tap((tasks) => {
-        this.personTasks = tasks || []; 
-        this.calculateOveallTaskProgress();
+        this.personTasks = tasks || [];
+        this.calculateOverallTaskProgress();
       }),
     ).subscribe();
   }
-  
+
   calculateOverallTaskProgress(): number {
-     const totalTasksCount = tasks.length;
-     const completedTasksCount = tasks.filter((task) => task.completed).length;
+     const totalTasksCount = this.personTasks.length;
+     const completedTasksCount = this.personTasks.filter((task) => task.isCompleted).length;
 
       // Check if all tasks are completed
       this.isAllTasksCompleted = completedTasksCount === totalTasksCount;
- 
+
 
 
     const percentage = totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
