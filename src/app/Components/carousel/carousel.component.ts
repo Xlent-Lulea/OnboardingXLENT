@@ -33,7 +33,7 @@ export class CarouselComponent {
     },
     {
       title: "Startklar",
-      content: "Vi vill att du så snart som möjligt ska känna dig hemmastadd och redo för uppdrag. Det är det vi menar med ”Startklar”. För at hålla koll på vad som behöver göras under den första tiden på XLU så checklista som du får av din Buddy.",
+      content: "Vi vill att du så snart som möjligt ska känna dig hemmastadd och redo för uppdrag. Det är det vi menar med ”Startklar”. För att hålla koll på vad som behöver göras under den första tiden på XLU så checklista som du får av din Buddy.",
       imagePath: "../../../assets/image 4.png"
     },
     {
@@ -53,7 +53,7 @@ export class CarouselComponent {
     },
     {
       title: "Fokusgrupper",
-      content: "Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam elementum.",
+      content: "På XLU finns det ett antal fokusgrupper, detta för att vi effektivt ska kunna jobba med allt från hur vi mår till hur vi ska växa och frodas som bolag. Det är frivilligt att vara med i en eller flera fokusgrupper, men då det är viktigt för oss att alla känner sig delaktiga så uppmuntrar vi det.",
       imagePath: "../../../assets/image 4.png"
     },
     {

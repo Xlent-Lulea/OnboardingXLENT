@@ -11,7 +11,7 @@
 
 .img {
   border-radius: 23px;
-  width: 100%; 
+  width: 100%;
   max-width: 507px;
   height: auto;
 }
@@ -20,7 +20,6 @@
   display: flex;
   flex-direction: column;
   gap: 49px;
-  align-items: center;
   width: 80%;
   max-width: 400px;
 }
@@ -29,9 +28,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: center;
-  justify-content: center;
+
   font-size: 40px;
+  text-align: left;
+
 }
 
 .text {

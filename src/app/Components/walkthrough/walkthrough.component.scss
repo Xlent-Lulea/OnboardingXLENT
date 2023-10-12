@@ -2,9 +2,11 @@
 
 #c1{
   border-radius: 12px 0px 0px 12px;
+
 }
 #c2{
   border-radius: 0;
+
 }
 #c3{
   border-radius: 0px 12px 12px 0px;
@@ -27,6 +29,11 @@ mat-card-title{
 
 }
 
+.directions_walk{
+  width: 22px;
+  height: 22px;
+}
+
 
 .benefits{
   display: flex;
@@ -34,19 +41,19 @@ mat-card-title{
   width: 100%; /* Or adjust to your preferred width */
   margin-bottom: 5px; /* Spacing between cards */
   max-width: 1000px;
-
+  text-align: left;
 }
 
 mat-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%; /* Or adjust to your preferred width */
   margin-bottom: 5px; /* Spacing between cards */
   box-shadow: none;
   max-width: 500px;
   min-height: 200px;
   padding: 0px 12px 0px 12px;
+  font-size: 15px;
 }
 
 @media only screen and (max-width: 768px) {

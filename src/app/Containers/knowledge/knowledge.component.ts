@@ -11,28 +11,6 @@ export class KnowledgeComponent {
 
   focusGroups = [
     {
-      heading: 'VD, ledningsfrågor',
-      subheading: 'Ansvarig: Veronica Andersson',
-      tasks: [
-        '•Formellt personalansvar, chef för XLUs anställda',
-        '•Deltagande på ledningsmöten och andra möten mellan bolag',
-        '•Signerar avtal och genomför säkerhetsavtal',
-        '•Säkerhetsansvarig XLU',
-        '•Huvudsaklig kontaktperson till/från andra XLENT-bolag samt VD XCG.',
-        '•Medverkan i rekryteringar i 2a intervju.',
-        '•Månadsrapport XCG',
-        '•Attest av fakturor',
-        '•Godkännande av tidrapporter',
-      ]
-    },
-    {
-      heading: 'Medarbetarenkät',
-      subheading: 'Ansvarig: Christian Werme',
-      tasks: [
-        '•	Skickar ut enkät och sammanställer resultat 2 ggr per år ',
-      ]
-    },
-    {
       heading: 'Rekrytering',
       subheading: 'Ansvarig: Alexandra Rönnkvist',
       tasks: [
@@ -66,14 +44,6 @@ export class KnowledgeComponent {
       ]
     },
     {
-      heading: 'Markad - Kund och event, synlighet',
-      subheading: 'Ansvarig: Sofia Flodmark',
-      tasks: [
-        '•	Marknadsföring av XLU',
-        '•	Delta på externa event'
-      ]
-    },
-    {
       heading: 'Lokaler',
       subheading: 'Ansvarig: Katja Perunka',
       tasks: [
@@ -88,13 +58,6 @@ export class KnowledgeComponent {
         '•	Ansvarar för och utvecklar processen för att ta emot nyanställda',
         '•	Initiera onboardingprocessen vid nyanställning enligt överenskommelse i dokumentation',
         '•	Ansvara för samordning av årlig fotografering'
-      ]
-    },
-    {
-      heading: 'Hälsoundersökning',
-      subheading: 'Ansvarig: Emmy Valfridsson',
-      tasks: [
-        '•	Att hälsoundersökning genomförs vartannat år'
       ]
     },
     {
@@ -139,15 +102,55 @@ export class KnowledgeComponent {
         '•	Utvecklar processen för att säkerställa att fånga upp medarbetarnas mående'
       ]
     },
-    {
-      heading: 'Studentambassadör',
-      subheading: 'Ansvarig: August Wande',
-      tasks: [
-        '•	Ansvarig LITA',
-        '•	Kontaktperson gentemot Universitet',
-        '•	Initiera Studentträffar',
-      ]
-    }
+
   ];
+areaofResponsibility = [
+  {
+    heading: 'Studentambassadör',
+    subheading: 'Ansvarig: August Wande',
+    tasks: [
+      '•	Ansvarig LITA',
+      '•	Kontaktperson gentemot Universitet',
+      '•	Initiera Studentträffar',
+    ]
+  },
+  {
+    heading: 'Hälsoundersökning',
+    subheading: 'Ansvarig: Emmy Valfridsson',
+    tasks: [
+      '•	Att hälsoundersökning genomförs vartannat år'
+    ]
+  },
+  {
+    heading: 'VD, ledningsfrågor',
+    subheading: 'Ansvarig: Veronica Andersson',
+    tasks: [
+      '•Formellt personalansvar, chef för XLUs anställda',
+      '•Deltagande på ledningsmöten och andra möten mellan bolag',
+      '•Signerar avtal och genomför säkerhetsavtal',
+      '•Säkerhetsansvarig XLU',
+      '•Huvudsaklig kontaktperson till/från andra XLENT-bolag samt VD XCG.',
+      '•Medverkan i rekryteringar i 2a intervju.',
+      '•Månadsrapport XCG',
+      '•Attest av fakturor',
+      '•Godkännande av tidrapporter',
+    ]
+  },
+  {
+    heading: 'Medarbetarenkät',
+    subheading: 'Ansvarig: Christian Werme',
+    tasks: [
+      '•	Skickar ut enkät och sammanställer resultat 2 ggr per år ',
+    ]
+  },
+  {
+    heading: 'Marknad - Kund och event, synlighet',
+    subheading: 'Ansvarig: Sofia Flodmark',
+    tasks: [
+      '•	Marknadsföring av XLU',
+      '•	Delta på externa event'
+    ]
+  },
+];
 }
 

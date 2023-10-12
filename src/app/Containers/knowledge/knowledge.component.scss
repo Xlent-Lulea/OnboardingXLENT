@@ -1,62 +1,101 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+mat-expansion-panel {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+mat-expansion-panel-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+mat-accordion {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1000px;
+  justify-content: center;
+  min-width: 1000px;
+}
 
-  }
+.mat-accordion.mat-accordion {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1000px;
+  justify-content: center;
+}
 
-  mat-expansion-panel{
-    margin-top: 1px;
-    margin-bottom: 1px;
+.responsibility{
+  padding-bottom: 100px;
+}
 
-  }
-  mat-expansion-panel-header {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
 
-  mat-accordion{
-    display: flex;
-    flex-direction: column;
-    flex: 1; 
-    max-width: 1000px;
-    justify-content: center;
+}
 
-  }
-
-  .titel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-
-  }
+.subheading{
+  // background-color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  max-width: 500px;
+  justify-content: center;
+  min-width: 500px;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 15px;
+  gap: 5px;
 
   p{
-    padding-bottom: 20px;
+
+
   }
+}
 
 
+p {
+  padding-bottom: 20px;
+}
 
+/* Apply the same styling to both lists */
+mat-list {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+mat-list-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 @media screen and (max-width: 768px) {
   .container {
     align-items: unset;
   }
 
-  .mat-accordion{
+  .mat-accordion {
     padding: 10px;
   }
 
-
-
-  mat-panel-description{
+  mat-panel-description {
     display: none;
   }
 }
-
+.heading-width {
+  width: 200px; /* Adjust the width as needed */
+  display: inline-block; /* Ensures the width applies to the heading content */
+}
