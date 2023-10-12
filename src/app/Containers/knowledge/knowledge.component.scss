@@ -31,6 +31,9 @@ mat-accordion {
   justify-content: center;
 }
 
+.responsibility{
+  padding-bottom: 100px;
+}
 
 .titel {
   display: flex;
@@ -39,6 +42,11 @@ mat-accordion {
   padding-top: 30px;
   display: flex;
   flex-direction: column;
+}
+
+.subheading{
+  background-color: #ffffff;
+  border-radius: 12px;
 }
 
 p {

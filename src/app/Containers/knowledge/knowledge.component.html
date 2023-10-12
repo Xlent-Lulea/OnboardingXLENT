@@ -1,9 +1,13 @@
 <div class="container">
   <mat-accordion>
   <h1>Såhär jobbar vi på XLU</h1>
+  <div class="subheading">
   <p>På XLU finns det ett antal fokusgrupper, detta för att vi effektivt ska kunna jobba med allt från hur vi mår till hur vi ska växa och frodas som bolag. Det är frivilligt att vara med i en eller flera fokusgrupper, men då det är viktigt för oss att alla känner sig delaktiga så uppmuntrar vi det.  </p>
+  </div>
+
+
+  <h1>Fokusgrupper</h1>
   <p>Läs mer om vad de olika fokusgrupperna gör, samt vem som är ansvarig, nedan.</p>
-  <p>Vissa områden ligger utanför våra fokusgrupper, info om dessa finns också att läsa</p>
   <mat-expansion-panel *ngFor="let group of focusGroups">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -19,8 +23,9 @@
   </mat-accordion>
 
   <h1>Ansvarsområde</h1>
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let group of areaofResponsibility">
+  <p>Vissa områden ligger utanför våra fokusgrupper, info om dessa finns också att läsa nedan</p>
+<mat-accordion class="responsibility">
+  <mat-expansion-panel  *ngFor="let group of areaofResponsibility">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{ group.heading }}
