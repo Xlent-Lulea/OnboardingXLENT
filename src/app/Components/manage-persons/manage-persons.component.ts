@@ -13,7 +13,7 @@ import { Person } from 'src/app/models/person.interface';
 export class ManagePersonsComponent {
   personForm: FormGroup;
 
-  @Input() allPersons: Person[] | null = [];
+  @Input({ required: true }) allPersons: Person[] | null = [];
 
   @Output() createPerson: EventEmitter<Person> = new EventEmitter<Person>();
   @Output() removePerson: EventEmitter<number> = new EventEmitter<number>();

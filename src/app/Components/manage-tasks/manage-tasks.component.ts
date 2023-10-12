@@ -15,8 +15,8 @@ export class ManageTasksComponent implements OnChanges {
 
   filteredTasks: Task[] = [];
 
-  @Input() tasks: Task[] | null = [];
-  @Input() taskTypes: TaskType[] | null = [];
+  @Input({ required: true }) tasks: Task[] | null = [];
+  @Input({ required: true }) taskTypes: TaskType[] | null = [];
   @Output() createTask: EventEmitter<Task> = new EventEmitter<Task>();
   @Output() removeTask: EventEmitter<number> = new EventEmitter<number>();
 
