@@ -1,20 +1,20 @@
-<ng-container *ngIf="person">
+<ng-container>
   <ng-container class="task-list">
     <h2>Lägg till task</h2>
-    <form [formGroup]="TaskForm" #myForm="ngForm" (ngSubmit)="save(person.id); myForm.resetForm()">
+    <form [formGroup]="TaskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
       <mat-form-field>
         <mat-label>Tasktyp</mat-label>
         <mat-select MatFormFieldControl (selectionChange)="filterTasks()"
-          formControlName="taskType" required>
-          <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
-            {{ 'taskType.' + taskType | translate }}
+          formControlName="type" required>
+          <mat-option *ngFor="let type of taskTypes" [value]="type">
+            {{ type.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Titel</mat-label>
-        <input MatFormFieldControl matInput id="task-urltitle" formControlName="urltitle"
+        <input MatFormFieldControl matInput id="task-title" formControlName="title"
           placeholder="Ange titel" required />
       </mat-form-field>
 
@@ -42,12 +42,12 @@
 
           <p>
             <ng-container *ngIf="task.url; else noLink">
-              <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
-              <mat-icon (click)="deleteTask(person.id, task.id!)">delete_forever</mat-icon>
+              <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
+              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
             </ng-container>
             <ng-template #noLink>
-              {{ task.urltitle }}
-              <mat-icon (click)="deleteTask(person.id, task.id!)">delete_forever</mat-icon>
+              {{ task.title }}
+              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
             </ng-template>
           </p>
 

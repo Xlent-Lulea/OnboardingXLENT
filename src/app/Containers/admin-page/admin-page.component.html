@@ -4,7 +4,8 @@
 </div>
 <div class="container">
   <app-manage-tasks
-  [person]="selectedPerson$ | async"
+  [tasks]="tasks"
+  [taskTypes]="taskTypes"
   (createTask)="createTask($event)"
   (removeTask)="removeTask($event)"
   ></app-manage-tasks>

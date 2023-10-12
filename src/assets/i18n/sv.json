@@ -1,11 +1,3 @@
 {
-    "taskType": {
-        "WELCOME": "Välkommen",
-        "BUDDY": "Buddy/Coach",
-        "START": "Startklar",
-        "ADMIN": "Anställning och admin",
-        "DIGITAL_SETUP": "Digital Setup",
-        "CONSULTANT": "Konsultrollen",
-        "FINISH": "Avslut!"
-    }
+
 }

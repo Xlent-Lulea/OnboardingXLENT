@@ -35,9 +35,9 @@
 <h2>Inaktivera/Aktivera Personer</h2>
 <div *ngFor="let person of allPersons">
 
-  <mat-checkbox color="primary" [(ngModel)]="person.active"
-    (change)="toggleActive.emit({id: person.id, active: person.active})">
-    {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
+  <mat-checkbox color="primary" [(ngModel)]="person.isActive"
+    (change)="toggleActive.emit({id: person.id, active: person.isActive})">
+    {{ person.name }} ({{ person.isActive ? 'Aktiv' : 'Inaktiv' }})
   </mat-checkbox>
 
   <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { Person, Task } from 'src/app/models/task.interface';
+import { tap } from 'rxjs';
+import { Person } from 'src/app/models/person.interface';
+import { TaskType } from 'src/app/models/task-type.interface';
+import { Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -12,25 +14,32 @@ import { TaskService } from 'src/app/services/task.service';
 export class AdminPageComponent {
 
   allPersons: Person[] = [];
-  selectedPerson$: Observable<Person | null> = this.personService.selectedPerson$;
+  taskTypes: TaskType[] = [];
+  tasks: Task[] = [];
 
   constructor(private personService: PersonService, private taskService: TaskService) {
-    this.personService.getAllPersons().pipe(
+    this.personService.getAll().pipe(
       tap((persons) => this.allPersons = persons || [])
+    ).subscribe();
+    this.taskService.getAll().pipe(
+      tap((tasks) => this.tasks = tasks),
+    ).subscribe();
+    this.taskService.getTypes().pipe(
+      tap((types) => this.taskTypes = types || []),
     ).subscribe();
   }
 
   createPerson(person: Person): void {
-    this.personService.createPerson(person).subscribe(() =>
-      this.personService.getAllPersons().pipe(
+    this.personService.create(person).subscribe(() =>
+      this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
       ).subscribe()
     );
   }
 
   removePerson(personId: number): void {
-    this.personService.deletePerson(personId).subscribe(() =>
-      this.personService.getAllPersons().pipe(
+    this.personService.remove(personId).subscribe(() =>
+      this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
       ).subscribe()
     );
@@ -38,19 +47,23 @@ export class AdminPageComponent {
 
   toggleActivePerson(params: { id: number, active: boolean }): void {
     params.active ?
-      this.personService.activatePerson(params.id).subscribe() :
-      this.personService.deactivatePerson(params.id).subscribe();
+      this.personService.activate(params.id).subscribe() :
+      this.personService.deactivate(params.id).subscribe();
   }
 
-  createTask(params: { personId: number, task: Task }): void {
-    this.taskService.createTask(params.personId, params.task.taskType, params.task).subscribe(() =>
-      this.personService.getPerson(params.personId).subscribe()
+  createTask(task: Task): void {
+    this.taskService.create(task).subscribe(() =>
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
     );
   }
 
-  removeTask(params: { personId: number, taskId: number }): void {
-    this.taskService.deleteTask(params.personId, params.taskId).subscribe(() =>
-      this.personService.getPerson(params.personId).subscribe()
+  removeTask(taskId: number): void {
+    this.taskService.remove(taskId).subscribe(() =>
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
     );
   }
 }
