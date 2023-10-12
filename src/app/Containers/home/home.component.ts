@@ -21,20 +21,20 @@ export class HomeComponent {
     const storedPersonId = localStorage.getItem('personId') || '';
 
     this.personService.getTasksByPersonId(+storedPersonId).pipe(
-      tap((tasks) => this.personTasks = tasks || []),
+      tap((tasks) => {
+        this.personTasks = tasks || []; 
+        this.calculateOveallTaskProgress();
+      }),
     ).subscribe();
   }
+  
   calculateOverallTaskProgress(): number {
-    let totalTasksCount = 0;
-    let completedTasksCount = 0;
-
-    this.tasks$.subscribe((tasks) => {
-      totalTasksCount = tasks.length;
-      completedTasksCount = tasks.filter((task) => task.completed).length;
+     const totalTasksCount = tasks.length;
+     const completedTasksCount = tasks.filter((task) => task.completed).length;
 
       // Check if all tasks are completed
       this.isAllTasksCompleted = completedTasksCount === totalTasksCount;
-    });
+ 
 
 
     const percentage = totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
