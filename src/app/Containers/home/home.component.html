@@ -3,10 +3,13 @@
 
     <div class="overall-progress">
         <mat-card>
-        <h2 class="title">Onboarding status</h2>
+            <div class="title">
+                <h2>Onboarding status</h2>
+                <mat-icon *ngIf="isAllTasksCompleted" class="checkmark-icon">check_circle</mat-icon>
+            </div>
         <mat-progress-bar mode="determinate" [value]="calculateOverallTaskProgress()"></mat-progress-bar>
         <span class="progress-text">{{ calculateOverallTaskProgress() }}% klart</span>
-        <mat-icon *ngIf="isAllTasksCompleted" class="checkmark-icon">check_circle</mat-icon>
+
 </mat-card>
 </div>
     <app-walkthrough></app-walkthrough>
