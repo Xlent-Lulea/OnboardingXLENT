@@ -107,17 +107,26 @@ button {
 }
 
 .secretButton {
-  width: 5px;
-  height: 5px;
+  display: flex;
+
   background-color: transparent;
   border: none;
   padding: 0;
-  outline: none;
+  outline: white;
+  color: white;
+  position: absolute;
+  right: 0; /* Position it on the far right */
+  margin-left: 0; /* Remove the margin-left */
+
+
 
 }
 
 .secretButton:hover {
-  background-color: red;
+  color: white;
+  outline: black;
+  border: black;
+  background-color: gray;
 }
 
 
