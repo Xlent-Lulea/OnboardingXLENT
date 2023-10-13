@@ -50,7 +50,10 @@
       font-size: 18px;
   }
   .container {
+      margin: 0 auto;
       flex-direction: column;
       padding: 35px;
+      width: 65%;
+      justify-content: center;
   }
 }
