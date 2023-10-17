@@ -2,8 +2,8 @@
 <div class="carousel" [style.--total-slides]="totalSlides">
   <div class="carousel-container">
     <div *ngFor="let slide of slides; let i = index" class="carousel-item" [style.z-index]="totalSlides - i" [class.active]="isActive === (i + 1)">
-      <h1 *ngIf="i === 0 && slide.title === 'PLACEHOLDER'">Hej {{ selectedPersonName$ | async }}!</h1>
-      <h1 *ngIf="!(i === 0 && slide.title === 'PLACEHOLDER')">{{ slide.title }}</h1>
+      <h1 class="personTitle" *ngIf="i === 0 && slide.title === 'PLACEHOLDER'">Hej {{ selectedPersonName$ | async }}!</h1>
+      <h1 class="slideTitle" *ngIf="!(i === 0 && slide.title === 'PLACEHOLDER')">{{ slide.title }}</h1>
 
       <div class="item-content">
         <img [src]="slide.imagePath" alt="" />
