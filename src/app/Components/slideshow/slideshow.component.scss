@@ -1,0 +1,24 @@
+.journey-container {
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #FFFFFF;
+      border: 1px solid #BEBEBE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+
+    
+  }
