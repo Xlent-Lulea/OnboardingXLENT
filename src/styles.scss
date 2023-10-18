@@ -54,12 +54,13 @@ $OnboardingXLENT-theme: mat.define-light-theme((
 @include mat.all-component-themes($OnboardingXLENT-theme);
 
 /* Global styles */
-html, body { 
-    height: 100%; 
-    margin: 0; 
+html, body {
+    height: 100%;
+    margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #f2f2f2;
-    
+
 }
+
 
 

@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;  /* Center vertically */
-  height: 60vh;
+  height: 50vh;
   width: 100vw;
   padding: 20px;  /* Some padding to ensure boxes aren't touching the edges */
 
@@ -38,4 +38,9 @@
   #odd{
     width: 145px;
   }
+}
+
+
+h1{
+  padding-top: 25px;
 }
