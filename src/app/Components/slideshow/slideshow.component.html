@@ -1,26 +1,22 @@
 <div class="journey-container">
+    <div class="row end">
+        <div class="box" id="odd" (click)="openDialogForFirstBox()">{{boxes[0].title}}</div>
+    </div>
     <div class="row">
-        <div class="box">1</div>
-        <div class="box">2</div>
+        <div class="box" (click)="openDialog(boxes[3])">{{boxes[3].title}}</div>
+        <div class="box" (click)="openDialog(boxes[2])">{{boxes[2].title}}</div>
+        <div class="box" (click)="openDialog(boxes[1])">{{boxes[1].title}}</div>
+    </div>
+    <div class="row start">
+        <div class="box" id="odd" (click)="openDialog(boxes[4])">{{boxes[4].title}}</div>
+    </div>
 
-        <div class="group">
-            <div class="box">3</div>
-            <div class="column">
-                <div class="box">4</div>
-                <div class="row">
-                    <div class="box">5</div>
-                    <div class="box">6</div>
-                    <div class="group">
-                        <div class="box">7</div>
-                        <div class="column">
-                            <div class="box">8</div>
-                            <div class="row">
-                            <div class="box">9</div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row">
+        <div class="box" (click)="openDialog(boxes[5])">{{boxes[5].title}}</div>
+        <div class="box" (click)="openDialog(boxes[6])">{{boxes[6].title}}</div>
+        <div class="box" (click)="openDialog(boxes[7])">{{boxes[7].title}}</div>
+    </div>
+    <div class="row end">
+        <div class="box" id="odd" (click)="openDialog(boxes[8])">{{boxes[8].title}}</div>
     </div>
 </div>

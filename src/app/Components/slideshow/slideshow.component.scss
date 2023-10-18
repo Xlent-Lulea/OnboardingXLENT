@@ -1,24 +1,41 @@
 .journey-container {
-    .row {
-      display: flex;
-      flex-direction: row;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* Center vertically */
+  height: 60vh;
+  width: 100vw;
+  padding: 20px;  /* Some padding to ensure boxes aren't touching the edges */
 
-    .column {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .box {
-      width: 100px;
-      height: 100px;
-      background-color: #FFFFFF;
-      border: 1px solid #BEBEBE;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px;
-    }
-
-    
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    max-width: 465px;  /* This is 3 boxes + margins */
   }
+
+  .end {
+    justify-content: flex-end;
+  }
+
+  .start {
+    justify-content: flex-start;
+  }
+
+  .box {
+    width: 150px;
+    height: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #bebebe64;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 12px;
+  }
+
+  #odd{
+    width: 145px;
+  }
+}

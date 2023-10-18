@@ -51,6 +51,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PortraitsComponent } from './Components/portraits/portraits.component';
 import { SlideshowComponent } from './Components/slideshow/slideshow.component';
+import { BoxDialogComponent } from './Components/box-dialog/box-dialog.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { SlideshowComponent } from './Components/slideshow/slideshow.component';
     CarouselComponent,
     PortraitsComponent,
     SlideshowComponent,
+    BoxDialogComponent,
   ],
   imports: [
     BrowserModule,
