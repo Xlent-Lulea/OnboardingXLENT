@@ -50,6 +50,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PortraitsComponent } from './Components/portraits/portraits.component';
+import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-tasktypes.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { PortraitsComponent } from './Components/portraits/portraits.component';
     OnboardingComponent,
     CarouselComponent,
     PortraitsComponent,
+    ManageTasktypesComponent,
   ],
   imports: [
     BrowserModule,

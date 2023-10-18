@@ -5,6 +5,7 @@ import { TaskType } from 'src/app/models/task-type.interface';
 import { Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
+import { TaskTypeService } from 'src/app/services/tasktype.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -17,7 +18,7 @@ export class AdminPageComponent {
   taskTypes: TaskType[] = [];
   tasks: Task[] = [];
 
-  constructor(private personService: PersonService, private taskService: TaskService) {
+  constructor(private personService: PersonService, private taskService: TaskService, private taskTypeService: TaskTypeService) {
     this.personService.getAll().pipe(
       tap((persons) => this.allPersons = persons || [])
     ).subscribe();
@@ -58,6 +59,14 @@ export class AdminPageComponent {
       ).subscribe()
     );
   }
+  createTaskType(taskTypeName: string) {
+    // Make a request to your backend to create a new task type
+    this.taskTypeService.create(taskTypeName).subscribe((newTaskType) => {
+      // Handle the newly created task type, e.g., add it to your taskTypes array
+      this.taskTypes.push(newTaskType);
+    });
+  }
+
 
   removeTask(taskId: number): void {
     this.taskService.remove(taskId).subscribe(() =>
