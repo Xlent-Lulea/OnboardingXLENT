@@ -3,6 +3,14 @@
   <h4>Sida för att administrera personer och checklista</h4>
 </div>
 <div class="container">
+
+<div>
+  <app-manage-tasktypes
+    [taskTypes]="taskTypes"
+    (createTaskType)="createTaskType($event)"
+  ></app-manage-tasktypes>
+</div>
+
   <app-manage-tasks
   [tasks]="tasks"
   [taskTypes]="taskTypes"
