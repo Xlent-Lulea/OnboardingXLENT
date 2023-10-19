@@ -11,7 +11,7 @@ export class ManageTasktypesComponent {
   @Input() taskTypes: TaskType[] = [];
   @Output() createTaskType = new EventEmitter<string>();
 
-  newTaskType: string = '';
+  newTaskType = '';
 
   addTaskType() {
     if (this.newTaskType) {
