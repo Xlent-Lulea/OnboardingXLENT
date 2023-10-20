@@ -1,6 +1,8 @@
-<!-- manage-tasktypes.component.html -->
-<div>
-    <h2>Lägg till tasktype</h2>
-    <input [(ngModel)]="newTaskType" placeholder="Tasktype namn" />
-    <button (click)="addTaskType()">Lägg till tasktype</button>
-  </div>
+<div class="form">
+  <h2>Lägg till tasktype</h2>
+  <mat-form-field appearance="outline">
+      <mat-label>Tasktype namn</mat-label>
+      <input matInput [(ngModel)]="newTaskType" placeholder="Tasktype namn" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addTaskType()">Lägg till tasktype</button>
+</div>
