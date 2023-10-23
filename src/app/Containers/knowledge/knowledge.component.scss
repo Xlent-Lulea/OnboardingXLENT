@@ -7,6 +7,7 @@
 mat-expansion-panel {
   margin-top: 1px;
   margin-bottom: 1px;
+  text-align: left;
 }
 
 mat-expansion-panel-header {
@@ -21,6 +22,7 @@ mat-accordion {
   max-width: 1000px;
   justify-content: center;
   min-width: 1000px;
+  text-align: left;
 }
 
 .mat-accordion.mat-accordion {
@@ -33,39 +35,43 @@ mat-accordion {
 
 .responsibility{
   padding-bottom: 100px;
+
 }
 
 .title {
   display: flex;
   justify-content: center;
-  align-items: center;
+
   padding-top: 50px;
   display: flex;
   flex-direction: column;
 
+
 }
 
-.subheading{
+.heading{
   // background-color: #ffffff;
   border-radius: 12px;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   flex: 1;
   max-width: 500px;
   justify-content: center;
-  min-width: 500px;
+  min-width: 1000px;
   text-align: left;
   padding-top: 10px;
   padding-left: 15px;
   gap: 5px;
 
   p{
-
-
+    max-width: 500px;
   }
 }
 
+.subheading{
+  text-align: left;
+}
 
 p {
   padding-bottom: 20px;
