@@ -4,3 +4,8 @@
     <input [(ngModel)]="newTaskType" placeholder="Tasktype namn" />
     <button (click)="addTaskType()">Lägg till tasktype</button>
   </div>
+
+  <div *ngFor="let taskType of taskTypes">
+    {{ taskType.name }}
+    <button (click)="deleteTaskType.emit(taskType.id)">Delete</button>
+  </div>

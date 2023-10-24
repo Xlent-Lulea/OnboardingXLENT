@@ -8,8 +8,10 @@
   <app-manage-tasktypes
     [taskTypes]="taskTypes"
     (createTaskType)="createTaskType($event)"
+    (deleteTaskType)="deleteTaskType($event)"
   ></app-manage-tasktypes>
 </div>
+
 
   <app-manage-tasks
   [tasks]="tasks"
@@ -25,3 +27,5 @@
     (toggleActive)="toggleActivePerson($event)"
     ></app-manage-persons>
 </div>
+
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { TaskType } from 'src/app/models/task-type.interface';
@@ -73,6 +73,18 @@ export class AdminPageComponent {
       this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)
       ).subscribe()
+    );
+  }
+  deleteTaskType(taskTypeId: number) {
+    this.taskTypeService.delete(taskTypeId).subscribe(
+      () => {
+        // Handle the success case (e.g., removing the deleted task type from your list)
+        // You might want to update your list of task types after a successful deletion.
+      },
+      (error) => {
+        // Handle the error case (e.g., displaying an error message)
+        console.error('Error deleting task type:', error);
+      }
     );
   }
 }

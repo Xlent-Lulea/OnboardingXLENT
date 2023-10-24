@@ -10,6 +10,7 @@ import { TaskType } from 'src/app/models/task-type.interface';
 export class ManageTasktypesComponent {
   @Input() taskTypes: TaskType[] = [];
   @Output() createTaskType = new EventEmitter<string>();
+  @Output() deleteTaskType = new EventEmitter<number>();
 
   newTaskType = '';
 
