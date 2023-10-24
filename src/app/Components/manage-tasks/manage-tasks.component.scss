@@ -27,6 +27,19 @@ form {
     height: 150px;
   }
 
+  .task-row{
+    text-align: left;
+  }
+
+  .title{
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .description{
+    font-size: 12px;
+  }
+
   @media only screen and (max-width: 768px) {
     mat-form-field {
         width: 350px;

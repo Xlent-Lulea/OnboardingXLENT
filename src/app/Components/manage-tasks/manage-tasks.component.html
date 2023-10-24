@@ -40,7 +40,7 @@
       <div class="task">
         <div class="task-text">
 
-          <p>
+          <p class="title">
             <ng-container *ngIf="task.url; else noLink">
               <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
               <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
