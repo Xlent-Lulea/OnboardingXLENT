@@ -11,10 +11,12 @@
     </form>
   </ng-container>
 
-  <div *ngFor="let taskType of taskTypes">
-    {{ taskType.name }}
-    <button (click)="deleteTaskType.emit(taskType.id)">Delete</button>
-  </div>
+
 
 </ng-container>
+
+<div class="deleteTask" *ngFor="let taskType of taskTypes">
+  {{ taskType.name }}
+  <mat-icon (click)="deleteTaskType.emit(taskType.id)">delete_forever</mat-icon>
+</div>
 
