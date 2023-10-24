@@ -10,4 +10,11 @@
       <button mat-raised-button color="primary" type="submit">Lägg till tasktype</button>
     </form>
   </ng-container>
+
+  <div *ngFor="let taskType of taskTypes">
+    {{ taskType.name }}
+    <button (click)="deleteTaskType.emit(taskType.id)">Delete</button>
+  </div>
+
 </ng-container>
+
