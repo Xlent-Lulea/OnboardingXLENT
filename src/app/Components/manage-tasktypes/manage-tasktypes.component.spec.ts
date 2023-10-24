@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManageTasktypesComponent } from './manage-tasktypes.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 describe('ManageTasktypesComponent', () => {
   let component: ManageTasktypesComponent;
@@ -9,7 +13,15 @@ describe('ManageTasktypesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ManageTasktypesComponent],
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+
+
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ManageTasktypesComponent);
