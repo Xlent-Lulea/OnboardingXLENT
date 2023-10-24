@@ -1,5 +1,5 @@
-// manage-tasktypes.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';  // Import FormBuilder and FormGroup
 import { TaskType } from 'src/app/models/task-type.interface';
 
 @Component({
@@ -11,12 +11,23 @@ export class ManageTasktypesComponent {
   @Input() taskTypes: TaskType[] = [];
   @Output() createTaskType = new EventEmitter<string>();
 
-  newTaskType = '';
+  taskTypeForm: FormGroup;  // Declare a FormGroup instance
+
+  constructor(private fb: FormBuilder) {  // Inject FormBuilder
+    this.taskTypeForm = this.fb.group({  // Initialize the FormGroup
+      newTaskType: ['']  // Create a FormControl instance for 'newTaskType'
+    });
+  }
 
   addTaskType() {
-    if (this.newTaskType) {
-      this.createTaskType.emit(this.newTaskType);
-      this.newTaskType = ''; // Clear the input field
+    const newTaskTypeControl = this.taskTypeForm.get('newTaskType');
+    if (newTaskTypeControl) {
+      const newTaskTypeValue = newTaskTypeControl.value;
+      if (newTaskTypeValue) {
+        this.createTaskType.emit(newTaskTypeValue);
+        this.taskTypeForm.reset();  // Reset the form
+      }
     }
   }
+
 }
