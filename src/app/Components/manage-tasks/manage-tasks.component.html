@@ -18,16 +18,23 @@
           placeholder="Ange titel" required />
       </mat-form-field>
 
-      <mat-form-field id="description" appearance="outline" class="form-group">
-        <mat-label>Beskrivning</mat-label>
-        <input MatFormFieldControl matInput id="task-description"
-          formControlName="description" required placeholder="Ange beskrivning" />
-      </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>URL</mat-label>
         <input MatFormFieldControl matInput id="task-url" formControlName="url"
           placeholder="Ange URL" />
+      </mat-form-field>
+
+      <mat-form-field id="description" appearance="outline" class="form-group">
+        <mat-label>Beskrivning</mat-label>
+        <textarea
+          style="white-space: pre-wrap;"
+          MatFormFieldControl
+          matInput
+          id="task-description"
+          formControlName="description"
+          required
+          placeholder="Ange beskrivning"></textarea>
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit">Add task</button>

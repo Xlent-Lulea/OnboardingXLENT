@@ -23,10 +23,6 @@ form {
     overflow: auto;
   }
 
-  #description {
-    height: 150px;
-  }
-
   .task-row{
     text-align: left;
   }
@@ -38,6 +34,7 @@ form {
 
   .description{
     font-size: 12px;
+    white-space: pre-line;
   }
 
   @media only screen and (max-width: 768px) {
