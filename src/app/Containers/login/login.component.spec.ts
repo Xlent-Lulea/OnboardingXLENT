@@ -6,6 +6,7 @@ import { LoginBoxComponent } from 'src/app/Components/login-box/login-box.compon
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,7 +15,13 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent, LoginBoxComponent],
-      imports: [HttpClientModule, MatFormFieldModule, MatSelectModule, BrowserAnimationsModule]
+      imports: [
+        HttpClientModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule
+      ]
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
