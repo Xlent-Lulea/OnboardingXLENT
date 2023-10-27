@@ -1,11 +1,10 @@
 <ng-container>
   <ng-container class="task-list">
     <h2>Lägg till task</h2>
-    <form [formGroup]="TaskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
+    <form [formGroup]="TaskForm" #taskForm="ngForm" (ngSubmit)="save(); taskForm.resetForm()">
       <mat-form-field>
-        <mat-label>Tasktyp</mat-label>
-        <mat-select MatFormFieldControl (selectionChange)="filterTasks()"
-          formControlName="type" required>
+        <mat-label>Kategori</mat-label>
+        <mat-select MatFormFieldControl (selectionChange)="filterTasks()" formControlName="type" required>
           <mat-option *ngFor="let type of taskTypes" [value]="type">
             {{ type.name }}
           </mat-option>
@@ -14,23 +13,21 @@
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Titel</mat-label>
-        <input MatFormFieldControl matInput id="task-title" formControlName="title"
-          placeholder="Ange titel" required />
+        <input MatFormFieldControl matInput id="task-title" formControlName="title" placeholder="Ange titel" required />
       </mat-form-field>
 
       <mat-form-field id="description" appearance="outline" class="form-group">
         <mat-label>Beskrivning</mat-label>
-        <input MatFormFieldControl matInput id="task-description"
-          formControlName="description" required placeholder="Ange beskrivning" />
+        <input MatFormFieldControl matInput id="task-description" formControlName="description" required
+          placeholder="Ange beskrivning" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>URL</mat-label>
-        <input MatFormFieldControl matInput id="task-url" formControlName="url"
-          placeholder="Ange URL" />
+        <input MatFormFieldControl matInput id="task-url" formControlName="url" placeholder="Ange URL" />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Add task</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Lägg till task</button>
     </form>
   </ng-container>
 
@@ -43,11 +40,15 @@
           <p class="title">
             <ng-container *ngIf="task.url; else noLink">
               <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
-              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
+              <button mat-button color="warn" (click)="deleteTask(task.id)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
             </ng-container>
             <ng-template #noLink>
               {{ task.title }}
-              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
+              <button mat-button color="warn" (click)="deleteTask(task.id)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
             </ng-template>
           </p>
 

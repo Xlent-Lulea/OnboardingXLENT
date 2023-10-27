@@ -1,22 +1,21 @@
 <ng-container>
   <ng-container class="form">
-    <h2>Lägg till tasktype</h2>
+    <h2>Lägg till kategori</h2>
     <form [formGroup]="taskTypeForm" (ngSubmit)="addTaskType();">
       <mat-form-field appearance="outline">
-        <mat-label>Tasktype namn</mat-label>
-        <input matInput formControlName="newTaskType" placeholder="Tasktype namn" />
+        <mat-label>Namn</mat-label>
+        <input matInput formControlName="newTaskType" placeholder="Namn" placeholder="Ange namn" required />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Lägg till tasktype</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskTypeForm.invalid">Lägg till
+        kategori</button>
     </form>
   </ng-container>
-
-
-
 </ng-container>
 
 <div class="deleteTask" *ngFor="let taskType of taskTypes">
   {{ taskType.name }}
-  <mat-icon (click)="deleteTaskType.emit(taskType.id)">delete_forever</mat-icon>
+  <button mat-button color="warn" (click)="deleteTaskTypeDialog(taskType.id)">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
 </div>
-

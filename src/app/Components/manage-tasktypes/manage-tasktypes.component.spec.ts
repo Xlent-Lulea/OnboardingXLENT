@@ -4,6 +4,7 @@ import { ManageTasktypesComponent } from './manage-tasktypes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 describe('ManageTasktypesComponent', () => {
@@ -19,8 +20,7 @@ describe('ManageTasktypesComponent', () => {
         ReactiveFormsModule,
         MatInputModule,
         BrowserAnimationsModule,
-
-
+        MatDialogModule
       ],
     }).compileComponents();
 
