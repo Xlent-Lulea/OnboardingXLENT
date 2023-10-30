@@ -13,10 +13,16 @@
 .task-text {
   text-align: left;
   max-width: 450px;
-
+  white-space: pre-line;
   p {
     margin-bottom: 5px;
   }
+}
+
+
+
+.title {
+  font-weight: 600;
 }
 
 mat-expansion-panel {
