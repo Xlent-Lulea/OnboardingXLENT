@@ -1,4 +1,4 @@
-<h2>Lägg till person</h2>
+<h2>Lägg till/redigera person</h2>
 
 <form #myForm="ngForm" [formGroup]="personForm" (ngSubmit)="submitForm(); myForm.resetForm()">
   <mat-form-field>
@@ -28,7 +28,7 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid"> Lägg till person</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid">Spara</button>
 </form>
 
 
@@ -40,6 +40,9 @@
   <span [ngClass]="{'gray-text': !person.isActive}">{{ person.name }}</span>
 </mat-checkbox>
 
+  <button mat-button color="primary" (click)="select(person)">
+    <mat-icon>edit</mat-icon>
+  </button>
 
   <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
     <mat-icon>delete_forever</mat-icon>
