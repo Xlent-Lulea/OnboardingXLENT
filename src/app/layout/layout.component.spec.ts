@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -12,7 +13,7 @@ describe('LayoutComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LayoutComponent, HeaderComponent],
-      imports: [HttpClientModule, RouterModule],
+      imports: [HttpClientModule, RouterModule, MatSnackBarModule],
       providers: [
         {
           provide: ActivatedRoute,

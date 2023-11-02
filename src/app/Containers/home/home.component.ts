@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { PersonService } from 'src/app/services/person.service';
-import { Observable, tap } from 'rxjs';
-import { Person } from 'src/app/models/person.interface';
+import { tap } from 'rxjs';
 import { PersonTask } from 'src/app/models/person-task.interface';
 
 @Component({
@@ -10,15 +9,18 @@ import { PersonTask } from 'src/app/models/person-task.interface';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit {
-  selectedPerson$: Observable<Person | null> =
-    this.personService.selectedPerson$;
-
   personTasks: PersonTask[] = [];
   isAllTasksCompleted = false; // Initialize as false
+  personId: string | null;
 
   constructor(private personService: PersonService, private cdr: ChangeDetectorRef) {
-    const storedPersonId = localStorage.getItem('personId') || '';
-    this.personService.getTasksByPersonId(+storedPersonId).pipe(
+    this.personId = localStorage.getItem('personId');
+
+    if (!this.personId) {
+      return;
+    }
+
+    this.personService.getTasksByPersonId(+this.personId).pipe(
       tap((tasks) => {
         this.personTasks = tasks || [];
       }),

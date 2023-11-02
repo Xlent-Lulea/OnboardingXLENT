@@ -35,7 +35,7 @@ import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
 import { TaskService } from './services/task.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { PersonService } from './services/person.service';
@@ -49,8 +49,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { PortraitsComponent } from './Components/portraits/portraits.component';
 import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-tasktypes.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { TaskTypeService } from './services/tasktype.service';
+import { SnackBarService } from './services/snack-bar-service';
+import { SnackBarComponent } from './Components/snack-bar/snack-bar.component';
 
 
 @NgModule({
@@ -79,6 +84,7 @@ import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-t
     CarouselComponent,
     PortraitsComponent,
     ManageTasktypesComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -114,11 +120,23 @@ import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-t
     MatProgressBarModule,
     MatGridListModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
   ],
   providers: [
     TaskService,
-    PersonService
+    PersonService,
+    TaskTypeService,
+    SnackBarService,
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { panelClass: ['snackbar-confirm'] },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [
     AppComponent
