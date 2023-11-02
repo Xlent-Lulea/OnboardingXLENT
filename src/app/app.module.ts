@@ -55,6 +55,7 @@ import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-t
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { TaskTypeService } from './services/tasktype.service';
 import { SnackBarService } from './services/snack-bar-service';
+import { SnackBarComponent } from './Components/snack-bar/snack-bar.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { SnackBarService } from './services/snack-bar-service';
     CarouselComponent,
     PortraitsComponent,
     ManageTasktypesComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +121,7 @@ import { SnackBarService } from './services/snack-bar-service';
     MatGridListModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
     TaskService,
