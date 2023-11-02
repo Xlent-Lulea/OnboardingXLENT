@@ -12,14 +12,19 @@ import { PersonTask } from 'src/app/models/person-task.interface';
 export class ChecklistComponent {
   taskTypes: TaskType[] = [];
   personTasks: PersonTask[] = [];
+  personId: string | null;
 
   constructor(
     private taskService: TaskService,
     private personService: PersonService
   ) {
-    const storedPersonId = localStorage.getItem('personId') || '';
+    this.personId = localStorage.getItem('personId');
 
-    this.personService.getTasksByPersonId(+storedPersonId).pipe(
+    if (!this.personId) {
+      return;
+    }
+
+    this.personService.getTasksByPersonId(+this.personId).pipe(
       tap((tasks) => this.personTasks = tasks || []),
     ).subscribe();
 
