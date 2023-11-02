@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { TaskType } from 'src/app/models/task-type.interface';

@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Person } from '../models/person.interface';
 import { PersonTask } from '../models/person-task.interface';
+import { SnackBarService } from './snack-bar-service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class PersonService {
 
   private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
   updateSelectedPerson(person: Person | null): void {
     this.selectedPersonSubject.next(person);
@@ -41,16 +42,22 @@ export class PersonService {
 
   create(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/person`;
-    return this.http.post<Person>(url, person);
+    return this.http.post<Person>(url, person).pipe(
+      tap((person) => this.snackBarService.show(person.name + ' tillagd!'))
+    );
   }
 
   update(person: Person): Observable<Person> {
     const url = `${this.personsUrl}/person/${person.id}`;
-    return this.http.put<Person>(url, person);
+    return this.http.put<Person>(url, person).pipe(
+      tap((person) => this.snackBarService.show(person.name + ' sparad!'))
+    );
   }
 
   remove(personId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`);
+    return this.http.delete<void>(`${this.personsUrl}/person/${personId}`).pipe(
+      tap(() => this.snackBarService.show('Person borttagen'))
+    );
   }
 
   deactivate(personId: number): Observable<Person> {

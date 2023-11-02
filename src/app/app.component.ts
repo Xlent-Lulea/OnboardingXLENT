@@ -20,7 +20,12 @@ export class AppComponent {
   ) {
 
     translate.setDefaultLang('sv');
-    const storedPersonId = localStorage.getItem('personId') || '';
+    const storedPersonId = localStorage.getItem('personId');
+
+    if (!storedPersonId) {
+      return;
+    }
+
     this.personService.getById(+storedPersonId).subscribe(); // Initialize selectedPerson
   }
 }
