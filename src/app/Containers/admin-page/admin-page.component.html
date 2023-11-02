@@ -11,10 +11,11 @@
   ></app-manage-tasktypes>
 
   <app-manage-tasks
-    [tasks]="tasks"
-    [taskTypes]="taskTypes"
-    (createTask)="createTask($event)"
-    (removeTask)="removeTask($event)"
+  [tasks]="tasks"
+  [taskTypes]="taskTypes"
+  (createTask)="createTask($event)"
+  (updateTask)="updateTask($event)"
+  (removeTask)="removeTask($event)"
   ></app-manage-tasks>
 
   <app-manage-persons

@@ -11,17 +11,18 @@ import { TaskType } from 'src/app/models/task-type.interface';
   styleUrls: ['./manage-tasks.component.scss'],
 })
 export class ManageTasksComponent implements OnChanges {
-  TaskForm: FormGroup;
-
+  taskForm: FormGroup;
   filteredTasks: Task[] = [];
+  selectedTask: Task | null = null;
 
   @Input({ required: true }) tasks: Task[] | null = [];
   @Input({ required: true }) taskTypes: TaskType[] | null = [];
   @Output() createTask: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() updateTask: EventEmitter<Task> = new EventEmitter<Task>();
   @Output() removeTask: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
-    this.TaskForm = this.fb.group({
+    this.taskForm = this.fb.group({
       type: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -39,15 +40,42 @@ export class ManageTasksComponent implements OnChanges {
 
   // Filter tasks based on selected taskType
   filterTasks(): void {
-    const type: TaskType | null = this.TaskForm.get('type')?.value;
+    const type: TaskType | null = this.taskForm.get('type')?.value;
     this.filteredTasks = type ?
       this.tasks?.filter((task) => task.type.id === type.id) || [] :
       this.tasks || [];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  select(task: Record<string, any>) {
+    this.selectedTask = task as Task;
+
+    for (const controlName of Object.keys(this.taskForm.controls)) {
+      const control = this.taskForm.get(controlName);
+
+      if (controlName === 'type') {
+        control?.setValue(this.taskTypes?.find((type) => type.id === task['type'].id));
+      } else if (controlName in task) {
+        control?.setValue(task[controlName])
+      }
+    }
+
+    this.filterTasks();
+  }
+
   save(): void {
-    const task: Task = this.TaskForm.value;
-    this.createTask.emit(task);
+    if (!this.selectedTask) {
+      return this.createTask.emit(this.taskForm.value);
+    }
+
+    this.selectedTask = {
+      ...this.selectedTask,
+      ...this.taskForm.value
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.updateTask.emit(this.selectedTask!);
+    this.selectedTask = null;
   }
 
   deleteTask(taskId: number): void {
