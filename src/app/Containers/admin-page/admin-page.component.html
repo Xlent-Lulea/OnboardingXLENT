@@ -2,30 +2,28 @@
   <h1>Admin</h1>
   <h4>Sida för att administrera personer och checklista</h4>
 </div>
-<div class="container">
 
-<div>
+<div class="container">
   <app-manage-tasktypes
     [taskTypes]="taskTypes"
     (createTaskType)="createTaskType($event)"
     (deleteTaskType)="deleteTaskType($event)"
   ></app-manage-tasktypes>
-</div>
-
 
   <app-manage-tasks
-  [tasks]="tasks"
-  [taskTypes]="taskTypes"
-  (createTask)="createTask($event)"
-  (removeTask)="removeTask($event)"
+    [tasks]="tasks"
+    [taskTypes]="taskTypes"
+    (createTask)="createTask($event)"
+    (removeTask)="removeTask($event)"
   ></app-manage-tasks>
 
   <app-manage-persons
     [allPersons]="allPersons"
     (createPerson)="createPerson($event)"
+    (updatePerson)="updatePerson($event)"
     (removePerson)="removePerson($event)"
     (toggleActive)="toggleActivePerson($event)"
-    ></app-manage-persons>
+  ></app-manage-persons>
 </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { TaskType } from 'src/app/models/task-type.interface';
@@ -18,12 +18,16 @@ export class AdminPageComponent {
   taskTypes: TaskType[] = [];
   tasks: Task[] = [];
 
-  constructor(private personService: PersonService, private taskService: TaskService, private taskTypeService: TaskTypeService) {
+  constructor(
+    private personService: PersonService,
+    private taskService: TaskService,
+    private taskTypeService: TaskTypeService
+  ) {
     this.personService.getAll().pipe(
       tap((persons) => this.allPersons = persons || [])
     ).subscribe();
     this.taskService.getAll().pipe(
-      tap((tasks) => this.tasks = tasks),
+      tap((tasks) => this.tasks = tasks || []),
     ).subscribe();
     this.taskService.getTypes().pipe(
       tap((types) => this.taskTypes = types || []),
@@ -32,6 +36,14 @@ export class AdminPageComponent {
 
   createPerson(person: Person): void {
     this.personService.create(person).subscribe(() =>
+      this.personService.getAll().pipe(
+        tap((persons) => this.allPersons = persons || [])
+      ).subscribe()
+    );
+  }
+
+  updatePerson(person: Person) {
+    this.personService.update(person).subscribe(() =>
       this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
       ).subscribe()
@@ -59,6 +71,7 @@ export class AdminPageComponent {
       ).subscribe()
     );
   }
+
   createTaskType(taskTypeName: string) {
     // Make a request to your backend to create a new task type
     this.taskTypeService.create(taskTypeName).subscribe((newTaskType) => {
@@ -67,7 +80,6 @@ export class AdminPageComponent {
     });
   }
 
-
   removeTask(taskId: number): void {
     this.taskService.remove(taskId).subscribe(() =>
       this.taskService.getAll().pipe(
@@ -75,6 +87,7 @@ export class AdminPageComponent {
       ).subscribe()
     );
   }
+
   deleteTaskType(taskTypeId: number) {
     this.taskTypeService.delete(taskTypeId).subscribe(
       () => {

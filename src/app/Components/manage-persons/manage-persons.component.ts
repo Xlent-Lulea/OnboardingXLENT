@@ -12,10 +12,12 @@ import { Person } from 'src/app/models/person.interface';
 
 export class ManagePersonsComponent {
   personForm: FormGroup;
+  selectedPerson: Person | null = null;
 
   @Input({ required: true }) allPersons: Person[] | null = [];
 
   @Output() createPerson: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output() updatePerson: EventEmitter<Person> = new EventEmitter<Person>();
   @Output() removePerson: EventEmitter<number> = new EventEmitter<number>();
   @Output() toggleActive: EventEmitter<{ id: number, active: boolean }> = new EventEmitter<{ id: number, active: boolean }>();
 
@@ -27,8 +29,26 @@ export class ManagePersonsComponent {
     });
   }
 
+  select(person: Person) {
+    this.selectedPerson = person;
+
+    this.personForm.get('name')?.setValue(person.name);
+    this.personForm.get('email')?.setValue(person.email);
+  }
+
   submitForm(): void {
-    this.createPerson.emit(this.personForm.value);
+    if (!this.selectedPerson) {
+      return this.createPerson.emit(this.personForm.value);
+    }
+
+    this.selectedPerson = {
+      ...this.selectedPerson,
+      ...this.personForm.value
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.updatePerson.emit(this.selectedPerson!);
+    this.selectedPerson = null;
   }
 
   openDeleteConfirmationDialog(personId: number): void {
