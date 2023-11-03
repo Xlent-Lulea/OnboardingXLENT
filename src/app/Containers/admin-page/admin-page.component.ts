@@ -72,6 +72,14 @@ export class AdminPageComponent {
     );
   }
 
+  updateTask(task: Task) {
+    this.taskService.update(task).subscribe(() =>
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
+    );
+  }
+
   createTaskType(taskTypeName: string) {
     // Make a request to your backend to create a new task type
     this.taskTypeService.create(taskTypeName).subscribe((newTaskType) => {

@@ -28,6 +28,16 @@ export class TaskService {
     );
   }
 
+  update(task: Task): Observable<Task> {
+    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+      task.url = 'https://' + task.url;
+    }
+
+    return this.http.put<Task>(`${this.tasksUrl}/tasks/${task.id}`, task).pipe(
+      tap(() => this.snackBarService.show('Task uppdaterad!'))
+    );
+  }
+
   remove(taskId: number): Observable<void> {
     return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`).pipe(
       tap(() => this.snackBarService.show('Task borttagen'))

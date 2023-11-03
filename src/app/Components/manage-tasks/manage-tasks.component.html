@@ -1,10 +1,11 @@
 <ng-container>
   <ng-container class="task-list">
-    <h2>Lägg till task</h2>
-    <form [formGroup]="TaskForm" #taskForm="ngForm" (ngSubmit)="save(); taskForm.resetForm()">
+    <h2>Lägg till/redigera task</h2>
+    <form [formGroup]="taskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
       <mat-form-field>
         <mat-label>Kategori</mat-label>
         <mat-select MatFormFieldControl (selectionChange)="filterTasks()" formControlName="type" required>
+          <mat-option [value]="null"></mat-option>
           <mat-option *ngFor="let type of taskTypes" [value]="type">
             {{ type.name }}
           </mat-option>
@@ -21,7 +22,6 @@
         <input MatFormFieldControl matInput id="task-url" formControlName="url" placeholder="Ange URL" />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Lägg till task</button>
       <mat-form-field id="description" appearance="outline" class="form-group">
         <mat-label>Beskrivning</mat-label>
         <textarea
@@ -33,6 +33,8 @@
           required
           placeholder="Ange beskrivning"></textarea>
       </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Spara</button>
     </form>
   </ng-container>
 
@@ -45,16 +47,16 @@
           <p class="title">
             <ng-container *ngIf="task.url; else noLink">
               <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
-              <button mat-button color="warn" (click)="deleteTask(task.id)">
-                <mat-icon>delete_forever</mat-icon>
-              </button>
             </ng-container>
             <ng-template #noLink>
               {{ task.title }}
-              <button mat-button color="warn" (click)="deleteTask(task.id)">
-                <mat-icon>delete_forever</mat-icon>
-              </button>
             </ng-template>
+            <button mat-button color="primary" (click)="select(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
           </p>
 
           <p class="description">
