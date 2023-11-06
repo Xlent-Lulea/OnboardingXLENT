@@ -6,6 +6,7 @@
         <mat-label>Namn</mat-label>
         <input matInput formControlName="newTaskType" placeholder="Namn" placeholder="Ange namn" required />
       </mat-form-field>
+      <app-form-error-message [control]="taskTypeForm.get('newTaskType')"></app-form-error-message>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="taskTypeForm.invalid">Lägg till
         kategori</button>

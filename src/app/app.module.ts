@@ -56,6 +56,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { TaskTypeService } from './services/tasktype.service';
 import { SnackBarService } from './services/snack-bar-service';
 import { SnackBarComponent } from './Components/snack-bar/snack-bar.component';
+import { FormErrorMessageComponent } from './Components/form-error-message/form-error-message.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { SnackBarComponent } from './Components/snack-bar/snack-bar.component';
     CarouselComponent,
     PortraitsComponent,
     ManageTasktypesComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    FormErrorMessageComponent,
   ],
   imports: [
     BrowserModule,

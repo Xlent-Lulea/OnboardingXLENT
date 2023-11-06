@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 
 
 describe('ManageTasktypesComponent', () => {
@@ -13,7 +14,7 @@ describe('ManageTasktypesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageTasktypesComponent],
+      declarations: [ManageTasktypesComponent, FormErrorMessageComponent],
       imports: [
         FormsModule,
         MatFormFieldModule,

@@ -24,9 +24,9 @@ export class ManageTasksComponent implements OnChanges {
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.taskForm = this.fb.group({
       type: [null, Validators.required],
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      url: [''],
+      title: ['', [Validators.required, Validators.maxLength(255)]],
+      description: ['', [Validators.required, Validators.maxLength(255)]],
+      url: ['', Validators.maxLength(255)],
     });
   }
 
@@ -47,7 +47,7 @@ export class ManageTasksComponent implements OnChanges {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  select(task: Record<string, any>) {
+  select(task: Record<string, any>): void {
     this.selectedTask = task as Task;
 
     for (const controlName of Object.keys(this.taskForm.controls)) {

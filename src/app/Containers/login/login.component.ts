@@ -21,9 +21,6 @@ export class LoginComponent {
   }
 
   selectPerson(personId: number) {
-    console.log('onPersonSelected:', personId);
-
-    // Fetch the selected person details
     this.personService.getById(personId).subscribe();
   }
 }

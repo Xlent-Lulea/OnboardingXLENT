@@ -56,20 +56,21 @@ export class PersonService {
 
   remove(personId: number): Observable<void> {
     return this.http.delete<void>(`${this.personsUrl}/person/${personId}`).pipe(
-      tap(() => this.snackBarService.show('Person borttagen'))
+      tap(() => {
+        this.snackBarService.show('Person borttagen');
+        this.resetSelectedPerson(personId);
+      })
     );
   }
 
   deactivate(personId: number): Observable<Person> {
     return this.http.put<Person>(`${this.personsUrl}/person/${personId}/deactivate`, {}).pipe(
-      tap((person) => console.log('Person deactivated', person))
+      tap(() => this.resetSelectedPerson(personId))
     );
   }
 
   activate(personId: number): Observable<Person> {
-    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {}).pipe(
-      tap((person) => console.log('Person activated', person))
-    );
+    return this.http.put<Person>(`${this.personsUrl}/person/${personId}/activate`, {});
   }
 
   getTasksByPersonId(personId: number): Observable<PersonTask[]> {
@@ -79,6 +80,15 @@ export class PersonService {
   updateTaskCompletionStatus(taskId: number): Observable<PersonTask> {
     const personId = localStorage.getItem('personId');
     return this.http.put<PersonTask>(`${this.personsUrl}/person/${personId}/tasks/${taskId}/toggle-completed`, {});
+  }
+
+  private resetSelectedPerson(id: number) {
+    const storedId = localStorage.getItem('personId');
+
+    if (storedId && +storedId === id) {
+      localStorage.setItem('personId', '');
+      this.selectedPersonSubject.next(null);
+    }
   }
 }
 

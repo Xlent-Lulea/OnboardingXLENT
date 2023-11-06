@@ -42,7 +42,7 @@ export class AdminPageComponent {
     );
   }
 
-  updatePerson(person: Person) {
+  updatePerson(person: Person): void {
     this.personService.update(person).subscribe(() =>
       this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
@@ -72,7 +72,7 @@ export class AdminPageComponent {
     );
   }
 
-  updateTask(task: Task) {
+  updateTask(task: Task): void {
     this.taskService.update(task).subscribe(() =>
       this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)

@@ -19,7 +19,7 @@ mat-form-field {
 }
 
 @media only screen and (max-width: 768px) {
-  mat-form-field {
+  mat-form-field, .form-error {
     width: 350px;
   }
 }

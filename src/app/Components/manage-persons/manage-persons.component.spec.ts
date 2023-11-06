@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 
 describe('ManagePersonsComponent', () => {
   let component: ManagePersonsComponent;
@@ -14,7 +15,7 @@ describe('ManagePersonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagePersonsComponent],
+      declarations: [ManagePersonsComponent, FormErrorMessageComponent],
       imports: [
         MatDialogModule,
         MatFormFieldModule,
