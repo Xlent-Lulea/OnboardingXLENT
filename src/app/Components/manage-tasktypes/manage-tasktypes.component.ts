@@ -18,7 +18,7 @@ export class ManageTasktypesComponent {
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.taskTypeForm = this.fb.group({
-      newTaskType: ['', [Validators.required, Validators.maxLength(255)]]
+      name: ['', [Validators.required, Validators.maxLength(255)]]
     });
   }
 

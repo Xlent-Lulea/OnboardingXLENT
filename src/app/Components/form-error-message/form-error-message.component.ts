@@ -14,5 +14,5 @@ export class FormErrorMessageComponent {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  @Input() control: AbstractControl<any, any> | null = null;
+  @Input({ required: true }) control: AbstractControl<any, any> | null = null;
 }

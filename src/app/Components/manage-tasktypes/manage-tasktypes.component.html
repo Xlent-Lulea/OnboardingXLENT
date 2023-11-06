@@ -4,9 +4,9 @@
     <form [formGroup]="taskTypeForm" (ngSubmit)="addTaskType();">
       <mat-form-field appearance="outline">
         <mat-label>Namn</mat-label>
-        <input matInput formControlName="newTaskType" placeholder="Namn" placeholder="Ange namn" required />
+        <input matInput formControlName="name" placeholder="Namn" placeholder="Ange namn" required />
       </mat-form-field>
-      <app-form-error-message [control]="taskTypeForm.get('newTaskType')"></app-form-error-message>
+      <app-form-error-message [control]="taskTypeForm.get('name')"></app-form-error-message>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="taskTypeForm.invalid">Lägg till
         kategori</button>
