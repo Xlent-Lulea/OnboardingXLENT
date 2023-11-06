@@ -16,15 +16,20 @@ export class TaskTypeService {
     return this.http.get<TaskType[]>(this.taskTypesUrl);
   }
 
-  create(taskTypeName: string): Observable<TaskType> {
-    const taskTypeData = { name: taskTypeName };
-    return this.http.post<TaskType>(this.taskTypesUrl, taskTypeData).pipe(
+  create(name: string): Observable<TaskType> {
+    return this.http.post<TaskType>(this.taskTypesUrl, { name }).pipe(
       tap((type) => this.snackBarService.show('Kategori ' + type.name + ' sparad!'))
     );
   }
 
-  delete(taskTypeId: number): Observable<void> {
-    const url = `${this.taskTypesUrl}/${taskTypeId}`;
+  update(type: TaskType) {
+    return this.http.put<TaskType>(`${this.taskTypesUrl}/${type.id}`, type).pipe(
+      tap(() => this.snackBarService.show('Kategori uppdaterad!'))
+    );
+  }
+
+  delete(typeId: number): Observable<void> {
+    const url = `${this.taskTypesUrl}/${typeId}`;
     return this.http.delete<void>(url).pipe(
       tap(() => this.snackBarService.show('Kategori borttagen'))
     );
