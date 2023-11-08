@@ -16,8 +16,8 @@ export class TaskTypeService {
     return this.http.get<TaskType[]>(this.taskTypesUrl);
   }
 
-  create(name: string): Observable<TaskType> {
-    return this.http.post<TaskType>(this.taskTypesUrl, { name }).pipe(
+  create(type: TaskType): Observable<TaskType> {
+    return this.http.post<TaskType>(this.taskTypesUrl, type).pipe(
       tap((type) => this.snackBarService.show('Kategori ' + type.name + ' sparad!'))
     );
   }

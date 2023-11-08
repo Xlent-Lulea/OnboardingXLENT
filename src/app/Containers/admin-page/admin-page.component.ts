@@ -80,8 +80,8 @@ export class AdminPageComponent {
     );
   }
 
-  createTaskType(taskTypeName: string): void {
-    this.taskTypeService.create(taskTypeName).subscribe((newTaskType) => {
+  createTaskType(taskType: TaskType): void {
+    this.taskTypeService.create(taskType).subscribe((newTaskType) => {
       this.taskTypes.push(newTaskType);
     });
   }

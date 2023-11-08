@@ -11,7 +11,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
 })
 export class ManageTasktypesComponent {
   @Input({ required: true }) taskTypes: TaskType[] = [];
-  @Output() createTaskType = new EventEmitter<string>();
+  @Output() createTaskType = new EventEmitter<TaskType>();
   @Output() updateTaskType = new EventEmitter<TaskType>();
   @Output() deleteTaskType = new EventEmitter<number>();
 
@@ -32,7 +32,7 @@ export class ManageTasktypesComponent {
 
   save(): void {
     if (!this.selectedType) {
-      this.createTaskType.emit(this.taskTypeForm.value);
+      return this.createTaskType.emit(this.taskTypeForm.value);
     }
 
     this.selectedType = {
