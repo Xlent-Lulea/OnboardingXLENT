@@ -23,13 +23,13 @@ export class ManagePersonsComponent {
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.personForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.maxLength(255)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
       active: [true],  // set the active field as true
     });
   }
 
-  select(person: Person) {
+  select(person: Person): void {
     this.selectedPerson = person;
 
     this.personForm.get('name')?.setValue(person.name);

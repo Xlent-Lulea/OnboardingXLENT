@@ -34,20 +34,6 @@ export class ChecklistComponent {
   }
 
   updateTaskStatus(task: PersonTask): void {
-    if (task.id !== undefined) {
-      this.personService.updateTaskCompletionStatus(task.id).subscribe(
-        (updatedTask) => {
-          console.log('Task updated:', updatedTask);
-          // Optionally, update local task state or UI here if needed.
-        },
-        (error) => {
-          console.error('Failed to update task:', error);
-          // Optionally, revert the checkbox state in case of an error
-          task.isCompleted = !task.isCompleted;
-        }
-      );
-    } else {
-      console.error('Task ID is undefined');
-    }
+    this.personService.updateTaskCompletionStatus(task.id).subscribe();
   }
 }

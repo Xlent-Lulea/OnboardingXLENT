@@ -10,6 +10,7 @@
       placeholder="Ange namn"
       required />
   </mat-form-field>
+  <app-form-error-message [control]="personForm.get('name')"></app-form-error-message>
 
   <mat-form-field appearance="outline" class="form-group">
     <mat-label>E-post</mat-label>
@@ -21,12 +22,9 @@
       required
       type="text"
       email
-      title="Vänligen ange en giltig e-postadress" />
-
-    <mat-error *ngIf="personForm.get('email')?.hasError('email')">
-      Vänligen ange en giltig e-postadress
-    </mat-error>
+      />
   </mat-form-field>
+  <app-form-error-message [control]="personForm.get('email')"></app-form-error-message>
 
   <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid">Spara</button>
 </form>

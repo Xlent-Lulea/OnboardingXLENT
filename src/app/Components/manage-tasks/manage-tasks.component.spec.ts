@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 
 describe('ManageTasksComponent', () => {
   let component: ManageTasksComponent;
@@ -16,7 +17,7 @@ describe('ManageTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageTasksComponent],
+      declarations: [ManageTasksComponent, FormErrorMessageComponent],
       imports: [
         HttpClientModule,
         MatDialogModule,

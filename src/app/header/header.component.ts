@@ -9,7 +9,7 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class HeaderComponent {
   selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
-    map((person) => person?.name || 'Login' )
+    map((person) => person?.name || 'Logga in' )
   );
 
   constructor(

@@ -1,0 +1,8 @@
+<ng-container *ngIf="control">
+    <div *ngIf="control.touched && control.hasError('required')" class="form-error">{{
+        errorMessages.required }}</div>
+    <div *ngIf="control.hasError('maxlength')" class="form-error">{{
+        errorMessages.maxLength }}</div>
+    <div *ngIf="control.hasError('email')" class="form-error">{{
+        errorMessages.email }}</div>
+</ng-container>
