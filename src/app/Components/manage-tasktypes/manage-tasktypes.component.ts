@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';  // Import FormBuilder and FormGroup
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskType } from 'src/app/models/task-type.interface';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
@@ -10,11 +10,13 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
   styleUrls: ['./manage-tasktypes.component.scss'],
 })
 export class ManageTasktypesComponent {
-  @Input() taskTypes: TaskType[] = [];
-  @Output() createTaskType = new EventEmitter<string>();
+  @Input({ required: true }) taskTypes: TaskType[] = [];
+  @Output() createTaskType = new EventEmitter<TaskType>();
+  @Output() updateTaskType = new EventEmitter<TaskType>();
   @Output() deleteTaskType = new EventEmitter<number>();
 
   taskTypeForm: FormGroup;
+  selectedType: TaskType | null = null;
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.taskTypeForm = this.fb.group({
@@ -22,15 +24,25 @@ export class ManageTasktypesComponent {
     });
   }
 
-  addTaskType() {
-    const newTaskTypeControl = this.taskTypeForm.get('newTaskType');
-    if (newTaskTypeControl) {
-      const newTaskTypeValue = newTaskTypeControl.value;
-      if (newTaskTypeValue) {
-        this.createTaskType.emit(newTaskTypeValue);
-        this.taskTypeForm.reset();  // Reset the form
-      }
+  select(type: TaskType): void {
+    this.selectedType = type;
+
+    this.taskTypeForm.get('name')?.setValue(type.name);
+  }
+
+  save(): void {
+    if (!this.selectedType) {
+      return this.createTaskType.emit(this.taskTypeForm.value);
     }
+
+    this.selectedType = {
+      ...this.selectedType,
+      ...this.taskTypeForm.value
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.updateTaskType.emit(this.selectedType!);
+    this.selectedType = null;
   }
 
   deleteTaskTypeDialog(taskTypeId: number): void {

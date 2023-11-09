@@ -29,7 +29,7 @@ export class AdminPageComponent {
     this.taskService.getAll().pipe(
       tap((tasks) => this.tasks = tasks || []),
     ).subscribe();
-    this.taskService.getTypes().pipe(
+    this.taskTypeService.getAll().pipe(
       tap((types) => this.taskTypes = types || []),
     ).subscribe();
   }
@@ -80,12 +80,18 @@ export class AdminPageComponent {
     );
   }
 
-  createTaskType(taskTypeName: string) {
-    // Make a request to your backend to create a new task type
-    this.taskTypeService.create(taskTypeName).subscribe((newTaskType) => {
-      // Handle the newly created task type, e.g., add it to your taskTypes array
+  createTaskType(taskType: TaskType): void {
+    this.taskTypeService.create(taskType).subscribe((newTaskType) => {
       this.taskTypes.push(newTaskType);
     });
+  }
+
+  updateTaskType(taskType: TaskType): void {
+    this.taskTypeService.update(taskType).subscribe(() =>
+      this.taskTypeService.getAll().pipe(
+        tap((types) => this.taskTypes = types)
+      ).subscribe()
+    );
   }
 
   removeTask(taskId: number): void {
@@ -96,16 +102,11 @@ export class AdminPageComponent {
     );
   }
 
-  deleteTaskType(taskTypeId: number) {
-    this.taskTypeService.delete(taskTypeId).subscribe(
-      () => {
-        // Handle the success case (e.g., removing the deleted task type from your list)
-        // You might want to update your list of task types after a successful deletion.
-      },
-      (error) => {
-        // Handle the error case (e.g., displaying an error message)
-        console.error('Error deleting task type:', error);
-      }
-    );
+  deleteTaskType(taskTypeId: number): void {
+    this.taskTypeService.delete(taskTypeId).subscribe(() => {
+      this.taskTypeService.getAll().pipe(
+        tap((types) => this.taskTypes = types || [])
+      );
+    });
   }
 }

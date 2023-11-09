@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Task } from '../models/task.interface';
-import { TaskType } from '../models/task-type.interface';
 import { SnackBarService } from './snack-bar-service';
 
 @Injectable({
@@ -42,10 +41,6 @@ export class TaskService {
     return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`).pipe(
       tap(() => this.snackBarService.show('Task borttagen'))
     );
-  }
-
-  getTypes(): Observable<TaskType[]> {
-    return this.http.get<TaskType[]>(`${this.tasksUrl}/taskTypes`);
   }
 }
 
