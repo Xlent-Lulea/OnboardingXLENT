@@ -9,12 +9,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
   @ViewChild('highlightPath', { static: false }) highlightPath!: ElementRef<SVGPathElement>;
 
   private pathLength = 0; // Will be set to the SVG path's length after view init
+  litEllipseId: string | null = null;
 
-  private ellipsesData: { id: string; lengthAlongPath: number }[] = [
-    { id: 'ellipse-hej', lengthAlongPath: 1000 }, // example length along the path
-    { id: 'ellipse-buddy', lengthAlongPath: 2300 }, // and so on...
-    // ... other ellipses
-  ];
 
   constructor() {}
 
@@ -34,31 +30,64 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
-    const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
+
+
+    const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 103;
     const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
     this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
-    const currentOffset = this.calculateCurrentOffset();
-    const scrolllog = window.scrollY || document.documentElement.scrollTop;
-    console.log(scrolllog);
 
 
-    // Loop over each ellipse to check if it should be active
-    this.ellipsesData.forEach((ellipseData) => {
-      const ellipse = document.getElementById(ellipseData.id);
-      if (currentOffset <= this.pathLength - ellipseData.lengthAlongPath) {
-        ellipse?.classList.add('active');
-      } else {
-        ellipse?.classList.remove('active');
-      }
+
+    this.litEllipseId = this.calculateLitEllipse(scrollPosition);
+    this.updateEllipseClasses();
+    console.log(scrollPosition);
+
+
+  }
+
+
+  private calculateLitEllipse(scrollPosition: number): string | null {
+    // Your logic to determine the ID of the ellipse that should light up based on the scroll position
+    if (scrollPosition > 6000) {
+      return 'journey__ellipse-22';
+
+    }else if (scrollPosition > 5400) {
+      return 'journey__ellipse-20';
+
+    }else if (scrollPosition > 4528) {
+      return 'journey__ellipse-21';
+
+    }else if (scrollPosition > 3528) {
+      return 'journey__ellipse-18';
+
+    }else if (scrollPosition > 3000) {
+      return 'journey__ellipse-17';
+
+    }else if (scrollPosition > 2500) {
+      return ' ellipse-buddy';
+    }else if (scrollPosition > 1200) {
+      return 'journey__ellipse-15';
+    }else if (scrollPosition > 600) {
+      return 'journey__ellipse-14';
+    }else if (scrollPosition > -1) {
+      return 'journey__ellipse-13';
+
+    }
+
+
+    return null; // No ellipse is lit
+  }
+
+  private updateEllipseClasses(): void {
+    // Query all ellipses and remove the 'lit' class
+    document.querySelectorAll('.journey__ellipse').forEach((ellipse) => {
+      ellipse.classList.remove('ellipse-lit');
     });
-  }
 
-  private calculateCurrentOffset(): number {
-    // Implement logic to convert scrollY to stroke offset
-    // This is a placeholder function and needs to be adjusted to your page's specific behavior
-    const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight));
-    return scrollPercentage * this.pathLength;
+    if (this.litEllipseId) {
+      document.querySelector('.' + this.litEllipseId)?.classList.add('ellipse-lit');
+    }
   }
-
 }
+
 
