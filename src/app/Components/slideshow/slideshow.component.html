@@ -1,25 +1,138 @@
-<h1>XLENT Resan</h1>
-<p>Första steget som nyansälld</p>
+<div class="journey">
+    <div class="journey__container">
+      <svg
+        class="journey__stig"
 
-<div class="journey-container">
-    <div class="row end">
-        <div class="box" id="odd" (click)="openDialogForFirstBox()">{{boxes[0].title}}</div>
-    </div>
-    <div class="row">
-        <div class="box" (click)="openDialog(boxes[3])">{{boxes[3].title}}</div>
-        <div class="box" (click)="openDialog(boxes[2])">{{boxes[2].title}}</div>
-        <div class="box" (click)="openDialog(boxes[1])">{{boxes[1].title}}</div>
-    </div>
-    <div class="row start">
-        <div class="box" id="odd" (click)="openDialog(boxes[4])">{{boxes[4].title}}</div>
-    </div>
+        width="731"
+        height="6804"
+        viewBox="0 0 731 6804"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          id="base-path"
+          d="M381 3.11425C385.5 -23.6008 731 119.623 731 507.838C731 896.053 58.5 875.223 58.5 1327C58.5 1778.78 731 1665.17 731 2264.26C731 2863.34 0 2629.39 0 3201.57C0 3773.75 731 3549.9 731 4138.88C731 4727.86 0 4490.29 0 5076.19C0 5662.1 731 5458.71 731 6013.5C731 6568.3 381 6225.81 377.5 6804"
+          stroke="black"
+          stroke-linejoin="round"
+          stroke-dasharray="20 20"
+        />
+        <path #highlightPath
+        id="highlight-path"
+        d="M381 3.11425C385.5 -23.6008 731 119.623 731 507.838C731 896.053 58.5 875.223 58.5 1327C58.5 1778.78 731 1665.17 731 2264.26C731 2863.34 0 2629.39 0 3201.57C0 3773.75 731 3549.9 731 4138.88C731 4727.86 0 4490.29 0 5076.19C0 5662.1 731 5458.71 731 6013.5C731 6568.3 381 6225.81 377.5 6804"
+        stroke="#fcb814"
+        stroke-linejoin="round"
+        stroke-dasharray="4"
+        stroke-dashoffset="0"
+        style="stroke-width: 2px"
+      />
+      </svg>
 
-    <div class="row">
-        <div class="box" (click)="openDialog(boxes[5])">{{boxes[5].title}}</div>
-        <div class="box" (click)="openDialog(boxes[6])">{{boxes[6].title}}</div>
-        <div class="box" (click)="openDialog(boxes[7])">{{boxes[7].title}}</div>
+      <div class="journey__hej">
+        <div class="journey__textbox">
+          <div class="journey__heading-text">Hej!</div>
+          <div class="journey__text">
+            Vi är väldigt glada att du blir en del av vårt gäng! Under första
+            veckorna på XLENT så kommer det säkert bli många som du får hälsa på
+            och säga hej till. Tag gärna chansen och surra en stund när du får
+            tillfälle, så kommer du snabbt in i gänget&quot;
+          </div>
+        </div>
+        <div class="journey__ellipse-13"></div>
+      </div>
+      <div class="journey__ready">
+        <div class="journey__textbox2">
+          <div class="journey__heading-text2">Startklar</div>
+          <div class="journey__text2">
+            Vi vill att du så snart som möjligt ska känna dig hemmastadd och redo
+            för uppdrag. Det är det vi menar med ”Startklar”. För att hålla koll
+            på vad som behöver göras under den första tiden på XLU så checklista
+            som du får av din Buddy.<br /><br />
+          </div>
+        </div>
+        <div class="journey__ellipse-15"></div>
+      </div>
+      <div class="journey__buddy-coach">
+        <div class="highlightable-ellipse" id="ellipse-buddy"></div>
+        <div class="journey__textbox3">
+          <div class="journey__heading-text3">Buddy/Coach<br /></div>
+          <div class="journey__text3">
+            Vi är väldigt glada att du blir en del av vårt gäng! Under första
+            veckorna på XLENT så kommer det säkert bli många som du får hälsa på
+            och säga hej till. Tag gärna chansen och surra en stund när du får
+            tillfälle, så kommer du snabbt in i gänget&quot;
+          </div>
+        </div>
+      </div>
+      <div class="journey__digital-setup">
+        <div class="journey__textbox">
+          <div class="journey__heading-text4">Digital setup<br /></div>
+          <div class="journey__text4">
+            Den digitala setupen handlar om att den utrustning och teknik som du
+            behöver för att jobba som konsult hos XLU. Vi har en IT-ansvarig som
+            heter Christian. Han hjälper dig om du stöter på problem<br /><br />
+          </div>
+        </div>
+        <div class="journey__ellipse-17"></div>
+      </div>
+      <div class="journey__consultant">
+        <div class="journey__ellipse-18"></div>
+        <div class="journey__textbox4">
+          <div class="journey__heading-text5">Konsultrollen<br /></div>
+          <div class="journey__text5">
+            På XLENT är vi alla konsulter som arbetar i uppdrag hos olika
+            företag/organisationer. Som ny anställd får du en liten introduktion
+            till vad det innebär att vara konsult på XLENT. Hör av dig till Ola
+            när du vill ha din intro.<br /><br /><br />
+          </div>
+        </div>
+      </div>
+      <div class="journey__focusgroups">
+        <div class="journey__heading-text6">Fokusgrupper<br /></div>
+        <div class="journey__ellipse-21"></div>
+        <div class="journey__text4">
+          På XLU finns det ett antal fokusgrupper, detta för att vi effektivt ska
+          kunna jobba med allt från hur vi mår till hur vi ska växa och frodas som
+          bolag. Det är frivilligt att vara med i en eller flera fokusgrupper, men
+          då det är viktigt för oss att alla känner sig delaktiga så uppmuntrar vi
+          det.<br /><br />
+        </div>
+      </div>
+      <div class="journey__equal">
+        <div class="journey__ellipse-20"></div>
+        <div class="journey__textbox5">
+          <div class="journey__text6">Jämställdhet</div>
+          <div class="journey__heading-text7">
+            Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
+            nec facilisis. Vitae nam eget sit eget. Neque eu augue sit
+            tincidunt.Pretium sollicitudin quis elementum ac diam. Nec lectus
+            senectus diam elementum.
+          </div>
+        </div>
+      </div>
+      <div class="journey__end">
+        <div class="journey__end2">
+          <div class="journey__ellipse-21"></div>
+        </div>
+        <div class="journey__end3">
+          <div class="journey__heading-text8">Avslut!</div>
+          <div class="journey__text7">
+            Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus
+            nec facilisis. Vitae nam eget sit eget. Neque eu augue sit
+            tincidunt.Pretium sollicitudin quis elementum ac diam. Nec lectus
+            senectus diam elementum.<br /><br />
+          </div>
+        </div>
+      </div>
+      <div class="journey__employment">
+        <div class="journey__ellipse-14"></div>
+        <div class="journey__textbox6">
+          <div class="journey__heading-text9">Anställning och admin<br /></div>
+          <div class="journey__text8">
+            Det finns en hel del praktisk formalia att fixa i samband med din
+            anställningsstart. Veronica är vår VD och den som har koll på vad som
+            behöver vara på plats när du börjar.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row end">
-        <div class="box" id="odd" (click)="openDialog(boxes[8])">{{boxes[8].title}}</div>
-    </div>
-</div>
+  </div>

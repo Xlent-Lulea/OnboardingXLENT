@@ -1,56 +1,64 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { BoxDialogComponent, BoxDialogData } from '../box-dialog/box-dialog.component';
-import { PersonService } from 'src/app/services/person.service';
-import { Observable, map, take } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss']
 })
-export class SlideshowComponent {
-  boxes = [
-    { id: 0, title: 'Hej!', description: 'Placeholder text' },
-    { id: 2, title: 'Buddy/Coach', description: 'Du har säkert redan träffat din Buddy, som är den som håller ihop din intro och har lite extra koll på att du får svar på dina frågor och funderingar. Sen efter några månader när du kommit igång, så kommer du få möjlighet att själv önska en coach.' },
-    { id: 3, title: 'Startklar', description: 'Vi vill att du så snart som möjligt ska känna dig hemmastadd och redo för uppdrag. Det är det vi menar med ”Startklar”. För att hålla koll på vad som behöver göras under den första tiden på XLU så checklista som du får av din Buddy.' },
-    { id: 4, title: 'Anställning och admin', description: 'Det finns en hel del praktisk formalia att fixa i samband med din anställningsstart. Veronica är vår VD och den som har koll på vad som behöver vara på plats när du börjar.' },
-    { id: 5, title: 'Digital setup', description: 'Den digitala setupen handlar om att den utrustning och teknik som du behöver för att jobba som konsult hos XLU. Vi har en IT-ansvarig som heter Christian. Han hjälper dig om du stöter på problem' },
-    { id: 6, title: 'Konsultrollen', description: 'På XLENT är vi alla konsulter som arbetar i uppdrag hos olika företag/organisationer. Som ny anställd får du en liten introduktion till vad det innebär att vara konsult på XLENT. Hör av dig till Ola när du vill ha din intro.' },
-    { id: 7, title: 'Fokusgrupper', description: 'På XLU finns det ett antal fokusgrupper, detta för att vi effektivt ska kunna jobba med allt från hur vi mår till hur vi ska växa och frodas som bolag. Det är frivilligt att vara med i en eller flera fokusgrupper, men då det är viktigt för oss att alla känner sig delaktiga så uppmuntrar vi det.' },
-    { id: 8, title: 'Jämställdhet', description: 'Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam elementum.' },
-    { id: 9, title: 'Avslut!', description: 'Lorem ipsum dolor sit amet consectetur. Mollis suspendisse nibh mus nec facilisis. Vitae nam eget sit eget. Neque eu augue sit tincidunt.Pretium sollicitudin quis elementum ac diam. Nec lectus senectus diam elementum.' },
+export class SlideshowComponent implements OnInit, AfterViewInit {
+  @ViewChild('highlightPath', { static: false }) highlightPath!: ElementRef<SVGPathElement>;
 
+  private pathLength = 0; // Will be set to the SVG path's length after view init
+
+  private ellipsesData: { id: string; lengthAlongPath: number }[] = [
+    { id: 'ellipse-hej', lengthAlongPath: 1000 }, // example length along the path
+    { id: 'ellipse-buddy', lengthAlongPath: 2300 }, // and so on...
+    // ... other ellipses
   ];
 
-  selectedPersonName$: Observable<string | null> = this.personService.selectedPerson$.pipe(
-    map((person) => person?.name || 'N/A')
-  );
+  constructor() {}
 
-  constructor(public dialog: MatDialog , private personService: PersonService,
-    ) {}
+  ngOnInit() {}
 
-  openDialog(boxData: BoxDialogData): void {
-
-    this.dialog.open(BoxDialogComponent, {
-      width: '400px',
-      data: boxData
+  ngAfterViewInit() {
+    // setTimeout here is used to ensure that the DOM updates have been processed.
+    setTimeout(() => {
+      this.pathLength = this.highlightPath.nativeElement.getTotalLength();
+      this.highlightPath.nativeElement.style.strokeDasharray = `${this.pathLength}`;
+      this.highlightPath.nativeElement.style.strokeDashoffset = `${this.pathLength}`;
     });
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
+    const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
+    this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
+    const currentOffset = this.calculateCurrentOffset();
+    const scrolllog = window.scrollY || document.documentElement.scrollTop;
+    console.log(scrolllog);
 
-  openDialogForFirstBox(): void {
-    this.selectedPersonName$.pipe(take(1)).subscribe(name => {
-      const boxData = {
-        id: 1,
-        title: 'Hej ' + name + '!',
-        description: 'Vi är väldigt glada att du blir en del av vårt gäng! Under första veckorna på XLENT så kommer det säkert bli många som du får hälsa på och säga hej till. Tag gärna chansen och surra en stund när du får tillfälle, så kommer du snabbt in i gänget"'  // Modify as needed
-      };
-      this.dialog.open(BoxDialogComponent, {
-        width: '400px',
-        data: boxData
-      });
+
+    // Loop over each ellipse to check if it should be active
+    this.ellipsesData.forEach((ellipseData) => {
+      const ellipse = document.getElementById(ellipseData.id);
+      if (currentOffset <= this.pathLength - ellipseData.lengthAlongPath) {
+        ellipse?.classList.add('active');
+      } else {
+        ellipse?.classList.remove('active');
+      }
     });
+  }
+
+  private calculateCurrentOffset(): number {
+    // Implement logic to convert scrollY to stroke offset
+    // This is a placeholder function and needs to be adjusted to your page's specific behavior
+    const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight));
+    return scrollPercentage * this.pathLength;
   }
 
 }
+
