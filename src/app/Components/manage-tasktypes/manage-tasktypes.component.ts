@@ -24,6 +24,12 @@ export class ManageTasktypesComponent {
     });
   }
 
+  add(): void {
+    this.selectedType = {
+      ...this.taskTypeForm.value
+    };
+  }
+
   select(type: TaskType): void {
     this.selectedType = type;
 

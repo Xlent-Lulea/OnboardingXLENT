@@ -29,6 +29,12 @@ export class ManagePersonsComponent {
     });
   }
 
+  add(): void {
+    this.selectedPerson = {
+      ...this.personForm.value
+    };
+  }
+
   select(person: Person): void {
     this.selectedPerson = person;
 
