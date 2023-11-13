@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 describe('ManageTasktypesComponent', () => {
@@ -21,7 +22,8 @@ describe('ManageTasktypesComponent', () => {
         ReactiveFormsModule,
         MatInputModule,
         BrowserAnimationsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatIconModule
       ],
     }).compileComponents();
 

@@ -1,0 +1,34 @@
+mat-list {
+    text-align: left;
+}
+
+.mat-mdc-snack-bar-container {
+
+    &.snackbar-confirm,
+    &.snackbar-error {
+        --mdc-snackbar-container-color: #ffffff;
+        --mdc-snackbar-supporting-text-color: #000000;
+
+        .mat-mdc-button {
+            span {
+                color: #000000;
+            }
+
+            &.mat-mdc-snack-bar-action:not(:disabled) {
+                color: #000000;
+            }
+        }
+    }
+}
+
+.snackbar-confirm {
+    .mat-mdc-button {
+        background-color: #fcb814;
+    }
+}
+
+.snackbar-error {
+    .mat-mdc-button {
+        background-color: #f44336;
+    }
+}

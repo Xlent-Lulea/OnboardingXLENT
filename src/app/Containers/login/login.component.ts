@@ -20,7 +20,7 @@ export class LoginComponent {
     ).subscribe();
   }
 
-  selectPerson(personId: number) {
-    this.personService.getById(personId).subscribe();
+  selectPerson(person: Person | null) {
+    this.personService.updateSelectedPerson(person);
   }
 }

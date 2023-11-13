@@ -10,16 +10,10 @@ mat-form-field {
   width: 500px;
 }
 
-.deleteTask {
-  text-align: left;
-}
-
-.gray-text {
-  color: gray;
-}
-
 @media only screen and (max-width: 768px) {
-  mat-form-field, .form-error {
+
+  mat-form-field,
+  .form-error {
     width: 350px;
   }
 }

@@ -4,8 +4,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { LayoutComponent } from './layout/layout.component';
 import { routes } from './app-routing.module';
 import { HomeComponent } from './Containers/home/home.component';
 import { LoginComponent } from './Containers/login/login.component';
@@ -62,8 +60,6 @@ import { FormErrorMessageComponent } from './Components/form-error-message/form-
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    LayoutComponent,
     HomeComponent,
     LoginComponent,
     ChecklistComponent,
