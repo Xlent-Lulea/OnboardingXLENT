@@ -15,15 +15,17 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
   currentEllipseIndex: number = 0; // Keeps track of the currently focused ellipse
   isScrollingToEllipse: boolean = false; // Flag to indicate if scrolling to an ellipse is in progress
 
+  private onWindowScrollBound: any; // Function bound to this class context
 
   constructor() {
     this.ellipseElements = [];
-   }
+    // Bind the onWindowScroll function to the component instance in the constructor
+    this.onWindowScrollBound = this.onWindowScroll.bind(this);
+  }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-
     this.ellipseElements = Array.from(document.querySelectorAll('.journey__ellipse'));
 
     // setTimeout here is used to ensure that the DOM updates have been processed.
@@ -32,73 +34,99 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       this.highlightPath.nativeElement.style.strokeDasharray = `${this.pathLength}`;
       this.highlightPath.nativeElement.style.strokeDashoffset = `${this.pathLength}`;
     });
+
+    // Add event listener when the component's view is initialized
+    window.addEventListener('wheel', this.onWindowScrollBound, { passive: false });
   }
 
-  @HostListener('window:wheel', ['$event'])
-  onWindowScroll(event: WheelEvent): void { // Type the parameter as WheelEvent, not optional
+  ngOnDestroy() {
+    // Remove event listener when the component is destroyed
+    window.removeEventListener('wheel', this.onWindowScrollBound);
+  }
+
+  // Your onWindowScroll event is now separate and can be correctly bound or unbound from the event listener.
+  onWindowScroll(event: WheelEvent): void {
     if (event.cancelable) {
       event.preventDefault();
-      // ... the rest of your logic
+      this.handleScroll(event);
+    }
 
 
+  }
+
+  // Refactored scrolling logic into its own method for clarity
+  private handleScroll(event: WheelEvent): void {
+    console.log('handleScroll triggered'); // Confirm that the method is called
 
     if (this.isScrollingToEllipse) {
+      console.log('Currently animating to another ellipse');
       return;
     }
 
     const delta = event.deltaY;
-    const nextEllipseId = this.determineNextEllipseId(delta);
-    this.scrollToEllipse(nextEllipseId);
+    const nextEllipseClassName = this.determineNextEllipseId(delta).split(' ').pop(); // Use only the unique part
+    console.log(`Determined next ellipse class: ${nextEllipseClassName}`);
 
+    const nextEllipse = document.querySelector(`.${nextEllipseClassName}`);
+    console.log('Next ellipse element:', nextEllipse);
 
+    if (nextEllipse instanceof HTMLElement) {
+      console.log('Calling scrollToEllipse with:', nextEllipse);
+      this.scrollToEllipse(nextEllipse);
+    } else {
+      console.error('No next ellipse found or not an HTMLElement');
+    }
 
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
 
-
     const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
     const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
     this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
 
-
-
     this.litEllipseId = this.calculateLitEllipse(scrollPosition);
     this.updateEllipseClasses();
     console.log(scrollPosition);
-
-  }
   }
 
   private determineNextEllipseId(delta: number): string {
-    // Determine the direction of scrolling
-    const direction = delta > 0 ? 1 : -1; // '1' for down, '-1' for up
-
-    // Calculate next index based on the current index and scroll direction
+    const direction = delta > 0 ? 1 : -1;
     let nextIndex = this.currentEllipseIndex + direction;
 
-    // Ensure nextIndex is within bounds
+    // Bounds check
     nextIndex = Math.max(0, Math.min(nextIndex, this.ellipseElements.length - 1));
 
-    // Save the next index as the current index for future scrolls
-    this.currentEllipseIndex = nextIndex;
+    console.log(`Current index: ${this.currentEllipseIndex}, Next index: ${nextIndex}, Direction: ${direction}`);
 
-    // Return the ID of the next ellipse
-    return this.ellipseElements[nextIndex].id;
+    // Only update the current index if it's different
+    if (nextIndex !== this.currentEllipseIndex) {
+      this.currentEllipseIndex = nextIndex;
+      const nextEllipse = this.ellipseElements[nextIndex];
+      console.log(`Next Ellipse: ${nextEllipse.className}`);
+      return nextEllipse.className;
+    } else {
+      // If the index hasn't changed, return the current ellipse's class name
+      return this.ellipseElements[this.currentEllipseIndex].className;
+    }
   }
 
-  private scrollToEllipse(ellipseId: string): void {
-    const ellipse = document.getElementById(ellipseId);
+  private scrollToEllipse(ellipse: HTMLElement): void {
     if (ellipse) {
-      this.isScrollingToEllipse = true; // Set the flag to indicate scrolling is in progress
+      console.log(`Attempting to scroll to ellipse: `, ellipse);
 
-      ellipse.scrollIntoView({ behavior: 'smooth' });
+      this.isScrollingToEllipse = true;
+      ellipse.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
 
-      // Reset the flag after the scroll animation is complete
-      // This could be done after a fixed timeout or by listening for a scroll end event
       setTimeout(() => {
         this.isScrollingToEllipse = false;
-      }, 600); // Assuming 600ms is your smooth scroll duration
+        console.log(`Finished attempt to scroll to ellipse: `, ellipse);
+      }, 600); // Adjust based on expected duration of the scroll animation
+    } else {
+      console.error('Invalid element passed to scrollToEllipse.');
     }
   }
 
