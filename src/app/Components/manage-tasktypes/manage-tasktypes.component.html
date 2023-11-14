@@ -1,0 +1,26 @@
+<ng-container>
+  <ng-container class="form">
+    <h2>Lägg till/redigera kategori</h2>
+    <form #myForm="ngForm" [formGroup]="taskTypeForm" (ngSubmit)="save(); myForm.resetForm()">
+      <mat-form-field appearance="outline">
+        <mat-label>Namn</mat-label>
+        <input matInput formControlName="name" placeholder="Namn" placeholder="Ange namn" required />
+      </mat-form-field>
+      <app-form-error-message [control]="taskTypeForm.get('name')"></app-form-error-message>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskTypeForm.invalid">Spara</button>
+    </form>
+  </ng-container>
+</ng-container>
+
+<div class="deleteTask" *ngFor="let taskType of taskTypes">
+  {{ taskType.name }}
+
+  <button mat-button color="primary" (click)="select(taskType)">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button mat-button color="warn" (click)="deleteTaskTypeDialog(taskType.id)">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</div>

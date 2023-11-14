@@ -1,36 +1,49 @@
-<!-- manage-persons.component.html -->
+<h2>Lägg till/redigera person</h2>
 
-<h2>Lägg till person</h2>
-<form [formGroup]="personForm" (ngSubmit)="submitForm()">
+<form #myForm="ngForm" [formGroup]="personForm" (ngSubmit)="submitForm(); myForm.resetForm()">
   <mat-form-field>
-
     <mat-label>Namn</mat-label>
-    <input matInput formControlName="name" placeholder="Enter name" required />
-  </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Email</mat-label>
     <input
-      matInput
-      formControlName="email"
-      placeholder="Enter email"
-      required
-      type="email"
-      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-      title="Please enter a valid email address"
-    />
-    <mat-error *ngIf="personForm.get('email')?.hasError('email')">
-      Please enter a valid email address.
-    </mat-error>
+      matInput MatFormFieldControl
+      formControlName="name"
+      placeholder="Ange namn"
+      required />
   </mat-form-field>
+  <app-form-error-message [control]="personForm.get('name')"></app-form-error-message>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid"> Lägg till</button>
+  <mat-form-field appearance="outline" class="form-group">
+    <mat-label>E-post</mat-label>
+
+    <input
+      matInput MatFormFieldControl
+      formControlName="email"
+      placeholder="Ange e-postadress"
+      required
+      type="text"
+      email
+      />
+  </mat-form-field>
+  <app-form-error-message [control]="personForm.get('email')"></app-form-error-message>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid">Spara</button>
 </form>
-  <h2>Inaktivera/Aktivera Personer</h2>
-  <div *ngFor="let person of allPersons">
-    <mat-checkbox color="primary"  [checked]="person.active" (change)="toggleActive(person)">
-      {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
-    </mat-checkbox>
-    <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)"><mat-icon>delete</mat-icon></button>
-  </div>
 
+
+<h2>Inaktivera/Aktivera Personer</h2>
+<div *ngFor="let person of allPersons">
+
+  <mat-checkbox color="primary" [(ngModel)]="person.isActive"
+  (change)="toggleActive.emit({ id: person.id, active: person.isActive })">
+  <span [ngClass]="{'gray-text': !person.isActive}">{{ person.name }}</span>
+</mat-checkbox>
+
+  <button mat-button color="primary" (click)="select(person)">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+
+</div>

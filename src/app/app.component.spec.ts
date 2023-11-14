@@ -1,9 +1,52 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    declarations: [AppComponent, HeaderComponent],
+    imports: [
+      HttpClientModule,
+      RouterModule,
+      MatToolbarModule,
+      MatIconModule,
+      MatSidenavModule,
+      BrowserAnimationsModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useClass: TranslateFakeLoader, // Use TranslateFakeLoader for testing
+        },
+      }),
+      MatSnackBarModule
+    ],
+    providers: [
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          // Mock any properties or methods you need here
+          snapshot: {
+            paramMap: {
+              get: (key: string) => {
+                // Provide mock data for paramMap
+                if (key === 'yourParam') {
+                  return 'mockedParamValue';
+                }
+                return null; // Return null for other keys if needed
+              },
+            },
+          },
+        },
+      }
+    ],
   }));
 
   it('should create the app', () => {
@@ -16,12 +59,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('OnboardingXLENT');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('OnboardingXLENT app is running!');
   });
 });

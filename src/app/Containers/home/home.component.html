@@ -1,13 +1,18 @@
+<div class="container">
+    <app-title></app-title>
 
-
-
-<div class="hem">
-    <div class="container">
-     
-        <app-title></app-title>
-        <app-walkthrough></app-walkthrough>
-        <app-about></app-about> 
-     
+    <div class="overall-progress" *ngIf="personId">
+        <mat-card>
+            <div class="title">
+                <h2>Onboarding status</h2>
+                <mat-icon *ngIf="isAllTasksCompleted" class="checkmark-icon">check_circle</mat-icon>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="calculateOverallTaskProgress()"></mat-progress-bar>
+            <span class="progress-text">{{ calculateOverallTaskProgress() }}% klart</span>
+        </mat-card>
     </div>
-   </div>
-   
+
+    <app-walkthrough></app-walkthrough>
+    <app-about></app-about>
+    <app-portraits></app-portraits>
+</div>

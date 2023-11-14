@@ -14,7 +14,6 @@ import { TitleComponent } from './Components/title/title.component';
 import { AboutComponent } from './Components/about/about.component';
 import { WalkthroughComponent } from './Components/walkthrough/walkthrough.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ExpansionpanelComponent } from './Components/expansionpanel/expansionpanel.component';
 import { LinksComponent } from './Containers/links/links.component';
 import { LoginBoxComponent } from './Components/login-box/login-box.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,9 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
-import { ShowTasksComponent } from './Components/show-tasks/show-tasks.component';
 import { TaskService } from './services/task.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { PersonService } from './services/person.service';
@@ -48,7 +46,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { PortraitsComponent } from './Components/portraits/portraits.component';
+import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-tasktypes.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { TaskTypeService } from './services/tasktype.service';
+import { SnackBarService } from './services/snack-bar-service';
+import { SnackBarComponent } from './Components/snack-bar/snack-bar.component';
+import { FormErrorMessageComponent } from './Components/form-error-message/form-error-message.component';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +70,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     TitleComponent,
     AboutComponent,
     WalkthroughComponent,
-    ExpansionpanelComponent,
     LinksComponent,
     LoginBoxComponent,
     KnowledgeComponent,
@@ -73,9 +81,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ConfirmDialogComponent,
     LoginBoxComponent,
     KnowledgeComponent,
-    ShowTasksComponent,
     OnboardingComponent,
     CarouselComponent,
+    PortraitsComponent,
+    ManageTasktypesComponent,
+    SnackBarComponent,
+    FormErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +98,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSelectModule,
     MatExpansionModule,
     MatIconModule,
-    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -110,11 +120,25 @@ import {MatGridListModule} from '@angular/material/grid-list';
       }
     }),
     MatProgressBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
   ],
   providers: [
     TaskService,
-    PersonService
+    PersonService,
+    TaskTypeService,
+    SnackBarService,
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { panelClass: ['snackbar-confirm'] },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [
     AppComponent

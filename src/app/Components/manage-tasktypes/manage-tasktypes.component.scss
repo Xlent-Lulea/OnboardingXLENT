@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+mat-form-field {
+  width: 500px;
+}
+
+.deleteTask {
+  text-align: left;
+}
+
+.gray-text {
+  color: gray;
+}
+
+@media only screen and (max-width: 768px) {
+  mat-form-field, .form-error {
+    width: 350px;
+  }
+}

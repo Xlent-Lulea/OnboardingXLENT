@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowTasksComponent } from './show-tasks.component';
+import { PortraitsComponent } from './portraits.component';
 
-describe('ShowTasksComponent', () => {
-  let component: ShowTasksComponent;
-  let fixture: ComponentFixture<ShowTasksComponent>;
+describe('PortraitsComponent', () => {
+  let component: PortraitsComponent;
+  let fixture: ComponentFixture<PortraitsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ShowTasksComponent]
+      declarations: [PortraitsComponent],
     });
-    fixture = TestBed.createComponent(ShowTasksComponent);
+    fixture = TestBed.createComponent(PortraitsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,75 +1,51 @@
-import { Component, ViewChild, OnInit, Input } from '@angular/core';
-import { TaskService } from 'src/app/services/task.service';
-import { Task, TaskType } from '../../models/task.interface';
-import { Person } from 'src/app/models/task.interface';
-import { MatAccordion } from '@angular/material/expansion';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { PersonTask } from 'src/app/models/person-task.interface';
+import { TaskType } from 'src/app/models/task-type.interface';
 
-
-/**
- * @title Accordion with expand/collapse all toggles
- */
 @Component({
   selector: 'app-expansion-panel',
   templateUrl: 'expansion-panel.component.html',
   styleUrls: ['expansion-panel.component.scss'],
 })
-export class ExpansionPanelComponent {
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
+export class ExpansionPanelComponent implements OnChanges {
+  taskPercent = 0;
 
-  tasksByType: { [key in TaskType]?: Task[] } = {};
-  taskTypes: TaskType[] = Object.keys(TaskType) as TaskType[];
+  @Input({ required: true }) taskType: TaskType | null = null;
+  @Input({ required: true }) personTasks: PersonTask[] | null = [];
 
-  @Input() selectedPerson: Person | null = null;
+  @Output() taskStatusChanged: EventEmitter<PersonTask> = new EventEmitter<PersonTask>();
 
-  constructor(
-    private taskService: TaskService,
-  ) { }
-
-  shouldShowDivider(task: Task, index: number, taskEntities: Task[]): boolean {
-     if (index === 0) return false;
-     return taskEntities[index - 1].taskType === task.taskType;
-   }
-
-  fetchTasksByType(taskType: TaskType, personId: number): void {
-    this.taskService
-      .getTasksByPersonAndType(personId, taskType as unknown as string)
-      .subscribe((taskEntities: Task[]) => {
-        console.log('Tasks for type', taskType, taskEntities);
-        this.tasksByType[taskType] = taskEntities;
-      });
-  }
-
-  getCompletedTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type && task.completed).length;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['personTasks']) {
+      return;
     }
-    return 0;
+
+    this.filterTasks();
+    this.calculateTaskProgress();
   }
 
-  getTotalTasksForType(type: TaskType): number {
-    if (this.selectedPerson) {
-      return this.selectedPerson.taskEntities.filter(task => task.taskType === type).length;
-    }
-    return 0;
+  private filterTasks(): void {
+    this.personTasks = this.personTasks?.filter((personTask) =>
+      personTask.task?.type && personTask.task?.type.id === this.taskType?.id) || [];
   }
 
-  onTaskStatusChange(task: Task): void {
-    if (task.id !== undefined) {
-      this.taskService.updateTaskCompletionStatus(task.id).subscribe(
-        (updatedTask) => {
-          console.log('Task updated:', updatedTask);
-          // Optionally, update local task state or UI here if needed.
-        },
-        (error) => {
-          console.error('Failed to update task:', error);
-          // Optionally, revert the checkbox state in case of an error
-          task.completed = !task.completed;
-        }
-      );
-    } else {
-      console.error('Task ID is undefined');
-    }
+  onTaskStatusChange(task: PersonTask): void {
+    this.taskStatusChanged.emit(task);
+    this.calculateTaskProgress();
   }
 
+  calculateTaskProgress(): void {
+    const completedTasksCount = this.personTasks?.filter((task) => task.isCompleted).length || 0;
+    const totalTasksCount = this.personTasks?.length || 0;
+
+    this.taskPercent =
+      totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
+  }
 }

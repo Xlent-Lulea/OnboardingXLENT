@@ -1,75 +1,68 @@
-<!--task-list.component.html-->
-<div class="task-list">
-  <h2>Lägg till task</h2>
-
-    <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox> -->
-
-    <mat-form-field>
-      <mat-label>TaskType</mat-label>
-      <mat-select
-        [(value)]="selectedTaskType"
-        (selectionChange)="filterTasksByTaskType(selectedTaskType)"
-      >
-        <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
-          {{ taskType }}
-        </mat-option>
-      </mat-select>
-      {{ selectedTaskType }}
-    </mat-form-field>
-
-    <form (ngSubmit)="createTask()">
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Title</mat-label>
-        <input
-          matInput
-          id="task-urltitle"
-          [(ngModel)]="newTask.urltitle"
-          name="urltitle"
-          required
-        />
+<ng-container>
+  <ng-container class="task-list">
+    <h2>Lägg till/redigera task</h2>
+    <form [formGroup]="taskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
+      <mat-form-field>
+        <mat-label>Kategori</mat-label>
+        <mat-select MatFormFieldControl (selectionChange)="filterTasks()" formControlName="type" required>
+          <mat-option [value]="null"></mat-option>
+          <mat-option *ngFor="let type of taskTypes" [value]="type">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+      <app-form-error-message [control]="taskForm.get('type')"></app-form-error-message>
 
       <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Description</mat-label>
-        <input
-          matInput
-          id="task-description"
-          [(ngModel)]="newTask.description"
-          name="description"
-          required
-        />
+        <mat-label>Titel</mat-label>
+        <input MatFormFieldControl matInput id="task-title" formControlName="title" placeholder="Ange titel" required />
       </mat-form-field>
+      <app-form-error-message [control]="taskForm.get('title')"></app-form-error-message>
 
       <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Url?</mat-label>
-        <input matInput id="task-url" [(ngModel)]="newTask.url" name="url" />
+        <mat-label>URL</mat-label>
+        <input MatFormFieldControl matInput id="task-url" formControlName="url" placeholder="Ange URL" />
       </mat-form-field>
+      <app-form-error-message [control]="taskForm.get('url')"></app-form-error-message>
 
-      <button mat-raised-button color="primary" type="submit">Add task</button>
+      <mat-form-field id="description" appearance="outline" class="form-group">
+        <mat-label>Beskrivning</mat-label>
+        <textarea style="white-space: pre-wrap;" MatFormFieldControl matInput id="task-description"
+          formControlName="description" required placeholder="Ange beskrivning"></textarea>
+      </mat-form-field>
+      <app-form-error-message [control]="taskForm.get('description')"></app-form-error-message>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Spara</button>
     </form>
+  </ng-container>
 
-</div>
+  <!-- Show tasks based on selected taskType-->
+  <ng-container *ngFor="let task of filteredTasks">
+    <div class="task-row">
+      <div class="task">
+        <div class="task-text">
 
-<!-- Show tasks-->
-
-<!-- Show tasks-->
-<ng-container *ngIf="selectedPerson$ |async as selectedPerson">
-  <ng-container *ngFor="let task of selectedPerson.taskEntities">
-    <ng-container *ngIf="task.taskType === selectedTaskType">
-      <div class="task-row">
-        <div class="task">
-          <h3>
-            Titel:
+          <p class="title">
             <ng-container *ngIf="task.url; else noLink">
-              <a [attr.href]="task.url" target="_blank">{{ task.urltitle }}</a>
+              <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
             </ng-container>
-            <ng-template #noLink>{{ task.urltitle }}</ng-template>
-            Beskrivning: {{ task.description }}
-            <mat-icon (click)="deleteTask(selectedPerson.id, task.id!)">delete_forever</mat-icon>
-            <!-- <app-email></app-email> Fungerar ej-->
-          </h3>
+            <ng-template #noLink>
+              {{ task.title }}
+            </ng-template>
+            <button mat-button color="primary" (click)="select(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </p>
+
+          <p class="description">
+            {{ task.description }}
+          </p>
+
         </div>
       </div>
-    </ng-container>
+    </div>
   </ng-container>
 </ng-container>

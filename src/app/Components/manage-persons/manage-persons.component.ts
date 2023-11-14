@@ -1,116 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonService } from 'src/app/services/person.service';
-import { Person } from '../../models/task.interface';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
-
-
+import { Person } from 'src/app/models/person.interface';
 
 @Component({
   selector: 'app-manage-persons',
   templateUrl: './manage-persons.component.html',
-  styleUrls: ['./manage-persons.component.scss']
+  styleUrls: ['./manage-persons.component.scss'],
 })
 
-export class ManagePersonsComponent implements OnInit {
+export class ManagePersonsComponent {
   personForm: FormGroup;
-  activePersons: Person[] = [];
-  allPersons: Person[] = [];
+  selectedPerson: Person | null = null;
 
-  constructor(private personService: PersonService, private fb: FormBuilder, public dialog: MatDialog) {
+  @Input({ required: true }) allPersons: Person[] | null = [];
+
+  @Output() createPerson: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output() updatePerson: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output() removePerson: EventEmitter<number> = new EventEmitter<number>();
+  @Output() toggleActive: EventEmitter<{ id: number, active: boolean }> = new EventEmitter<{ id: number, active: boolean }>();
+
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.personForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
+      name: ['', [Validators.required, Validators.maxLength(255)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
       active: [true],  // set the active field as true
     });
   }
 
-  ngOnInit(): void {
-    this.personService.getPersons().subscribe({
-      next: (persons) => {
-        this.allPersons = persons;
-      },
-      error: (error) => {
-        console.error('Error fetching active persons:', error);
-      }
-    });
+  select(person: Person): void {
+    this.selectedPerson = person;
+
+    this.personForm.get('name')?.setValue(person.name);
+    this.personForm.get('email')?.setValue(person.email);
   }
 
   submitForm(): void {
-    const nameValue = this.personForm.get('name')!.value;
-    if (!nameValue) {
-      console.log('Name cannot be null. Cannot create person.');
-      return; // Exit the function if name is null
+    if (!this.selectedPerson) {
+      return this.createPerson.emit(this.personForm.value);
     }
 
-    const newPerson: Person = {
-      id: 0,
-      name: nameValue,
-      email: this.personForm.get('email')!.value,
-      active: this.personForm.get('active')!.value,
-      taskEntities: [],
-    };
-
-    this.personService.getPersons().subscribe({
-      next: (persons: Person[]) => {
-        this.activePersons = persons;
-      },
-      error: (error) => {
-        console.error('Error fetching persons:', error);
-      }
-    });
-
-    this.personService.createPerson(newPerson).subscribe({
-      next: (response) => {
-        console.log('Person created', response);
-      },
-      error: (error) => {
-        console.log('Error creating person:', error);
-      }
-    });
-  }
-
-
-  toggleActive(person: Person): void {
-    if (person.active) {
-      this.personService.deactivatePerson(person.id).subscribe({
-        next: (response) => {
-          console.log('Person deactivated', response);
-          this.reloadPersons();
-        },
-        error: (error) => {
-          console.log('Error deactivating person:', error);
-        }
-      });
-    } else {
-      this.personService.activatePerson(person.id).subscribe({
-        next: (response) => {
-          console.log('Person activated', response);
-          this.reloadPersons();
-        },
-        error: (error) => {
-          console.log('Error activating person:', error);
-        }
-      });
+    this.selectedPerson = {
+      ...this.selectedPerson,
+      ...this.personForm.value
     }
-  }
 
-  reloadPersons(): void {
-    this.personService.getPersons().subscribe({
-      next: (persons) => {
-        this.allPersons = persons;
-      },
-      error: (error) => {
-        console.error('Error fetching persons:', error);
-      }
-    });
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.updatePerson.emit(this.selectedPerson!);
+    this.selectedPerson = null;
   }
-
 
   openDeleteConfirmationDialog(personId: number): void {
-    const dialogData = new ConfirmDialogModel('Delete Person', 'Are you sure you want to delete this person?');
+    const dialogData = new ConfirmDialogModel(
+      'Bekräfta borttagning',
+      'Är du säker på att du vill ta bort den här personen?'
+    );
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
@@ -119,23 +64,8 @@ export class ManagePersonsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deletePerson(personId); // Call the deletePerson method after confirmation
+        this.removePerson.emit(personId);
       }
     });
   }
-
-deletePerson(personId: number): void {
-  this.personService.deletePerson(personId).subscribe(
-    () => {
-      // Remove the deleted person from the allPersons array
-      this.allPersons = this.allPersons.filter(person => person.id !== personId);
-      console.log('Deleted person with id:', personId);
-    },
-    error => {
-      console.error('Error deleting person:', error);
-    }
-  );
-
-
-}
 }

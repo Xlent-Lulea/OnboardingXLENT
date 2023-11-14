@@ -1,0 +1,10 @@
+<ng-container>
+    <span matSnackBarLabel>
+        {{ data.message }}
+    </span>
+    <span matSnackBarActions>
+        <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">
+            <mat-icon fontIcon="close" aria-label="Stäng" class="close"></mat-icon>
+        </button>
+    </span>
+</ng-container>

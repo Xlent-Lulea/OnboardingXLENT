@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 70px;
   align-items: center;
-  
   justify-content: center;
   flex-wrap: wrap;
   align-self: stretch;
@@ -14,5 +13,74 @@
   position: relative;
 }
 
+.overall-progress{
+
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+.title{
+    display: flex; /* Make the title a flex container */
+    justify-content: center; /* Place content at the beginning and the end of the container */
+    align-items: center; /* Vertically center the items */
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%; /* Ensure full width */
+
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+mat-card{
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+mat-progress-bar{
+
+  width: 100%;
+  max-width: 900px;
+  padding-left: 50px;
+}
+
+.progress-text{
+  padding-bottom: 10px;
+}
 
 
+
+.progressbar {
+  height: 100%;
+  width: 0;       /* Startvärde */
+  background-color: #4CAF50;  /* Färg för progress */
+  border-radius: 10px;       /* Avrundade hörn */
+
+}
+
+
+
+
+.checkmark-icon {
+  font-size: 24px; /* Adjust the size as needed */
+  color: green;
+  margin-left: 10px; /* Add spacing from the progress text */
+}
+
+
+@media screen and (max-width: 768px){
+  .container{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .overall-progress{
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  mat-progress-bar{
+    width: 90%;
+     padding-left: 15px;
+   }
+}

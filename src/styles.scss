@@ -5,61 +5,82 @@
 @include mat.core();
 
 // Define a custom palette with #fcb814 as the primary color.
-$custom-primary: mat.define-palette((
-  50: #fef6e2,
-  100: #fde4b8,
-  200: #fbd18b,
-  300: #faBD5a,
-  400: #f9ac33,
-  500: #fcb814,
-  600: #fbb311,
-  700: #faac0c,
-  800: #faa608,
-  900: #f99b00,
-  A100: #ffffff,
-  A200: #ffefde,
-  A400: #ffd5ab,
-  A700: #ffcc92,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #000000,
-    600: #000000,
-    700: #000000,
-    800: #000000,
-    900: #000000,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
-  )
-));
+$custom-primary: mat.define-palette((50: #fef6e2,
+      100: #fde4b8,
+      200: #fbd18b,
+      300: #faBD5a,
+      400: #f9ac33,
+      500: #fcb814,
+      600: #fbb311,
+      700: #faac0c,
+      800: #faa608,
+      900: #f99b00,
+      A100: #ffffff,
+      A200: #ffefde,
+      A400: #ffd5ab,
+      A700: #ffcc92,
+      contrast: (50: #000000,
+        100: #000000,
+        200: #000000,
+        300: #000000,
+        400: #000000,
+        500: #000000,
+        600: #000000,
+        700: #000000,
+        800: #000000,
+        900: #000000,
+        A100: #000000,
+        A200: #000000,
+        A400: #000000,
+        A700: #000000,
+      )));
 
 $OnboardingXLENT-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $OnboardingXLENT-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object using the custom primary palette.
-$OnboardingXLENT-theme: mat.define-light-theme((
-  color: (
-    primary: $custom-primary,  // Use the custom palette here.
-    accent: $OnboardingXLENT-accent,
-    warn: $OnboardingXLENT-warn,
-  )
-));
+$OnboardingXLENT-theme: mat.define-light-theme((color: (primary: $custom-primary, // Use the custom palette here.
+        accent: $OnboardingXLENT-accent,
+        warn: $OnboardingXLENT-warn,
+      )));
 
 // Include theme styles for core and each component used in your app.
 @include mat.all-component-themes($OnboardingXLENT-theme);
 
 /* Global styles */
-html, body { 
-    height: 100%; 
-    margin: 0; 
-    font-family: 'Poppins', sans-serif;
-    background-color: #f2f2f2;
-    
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f2f2f2;
 }
 
+.mat-mdc-snack-bar-container {
+  &.snackbar-confirm, &.snackbar-error {
+    --mdc-snackbar-container-color: #ffffff;
+    --mdc-snackbar-supporting-text-color: #000000;
 
+    .mat-mdc-button {
+      span {
+        color: #000000;
+      }
+
+      &.mat-mdc-snack-bar-action:not(:disabled) {
+        color: #000000;
+      }
+    }
+  }
+}
+
+.snackbar-confirm {
+  .mat-mdc-button {
+    background-color: #fcb814;
+  }
+}
+
+.snackbar-error {
+  .mat-mdc-button {
+    background-color: #f44336;
+  }
+}

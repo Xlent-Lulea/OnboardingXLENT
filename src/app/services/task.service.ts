@@ -1,45 +1,46 @@
-//task.service.ts
-//Purpose: To provide a service for the Task model
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Task } from '../models/task.interface';
-import { PersonService } from './person.service';
-
+import { SnackBarService } from './snack-bar-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  constructor(private http: HttpClient, private personService: PersonService) {}
 
-  getTasksByPerson (personId: number): Observable<Task[]> {
-    let tasks: Observable<Task[]> = this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-    return tasks;
+  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
+
+  constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
+
+  getAll(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.tasksUrl}/tasks`);
   }
 
-  getTasksByPersonId(personId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks`);
-  }
-
-  getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`);
-  }
-
-  createTask(personId: number, taskType: string, task: Task): Observable<Task> {
-    if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+  create(task: Task): Observable<Task> {
+    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
       task.url = 'https://' + task.url;
     }
-    return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/type/${taskType}`, task);
+
+    return this.http.post<Task>(`${this.tasksUrl}/tasks`, task).pipe(
+      tap(() => this.snackBarService.show('Task sparad!'))
+    );
   }
 
-  deleteTask(personId: number, taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskId}`);
+  update(task: Task): Observable<Task> {
+    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+      task.url = 'https://' + task.url;
+    }
+
+    return this.http.put<Task>(`${this.tasksUrl}/tasks/${task.id}`, task).pipe(
+      tap(() => this.snackBarService.show('Task uppdaterad!'))
+    );
   }
 
-  updateTaskCompletionStatus(taskId: number): Observable<Task> {
-    return this.http.put<Task>(`${this.personService.personsUrl}/task/${taskId}/toggle-completed`, {});
+  remove(taskId: number): Observable<void> {
+    return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`).pipe(
+      tap(() => this.snackBarService.show('Task borttagen'))
+    );
   }
-
 }
 
