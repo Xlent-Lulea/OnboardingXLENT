@@ -8,6 +8,8 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener }
 export class SlideshowComponent implements OnInit, AfterViewInit {
   @ViewChild('highlightPath', { static: false }) highlightPath!: ElementRef<SVGPathElement>;
 
+  
+
   private pathLength = 0; // Will be set to the SVG path's length after view init
   litEllipseId: string | null = null;
 
@@ -77,17 +79,24 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       console.error('No next ellipse found or not an HTMLElement');
     }
 
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
+    // if (nextEllipseClassName) {
+    //   this.updatePathDrawing(nextEllipseClassName);
+    // } else {
+    //   console.error('No next ellipse class name determined.');
+    // }
 
-    const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
-    const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
-    this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
 
-    this.litEllipseId = this.calculateLitEllipse(scrollPosition);
-    this.updateEllipseClasses();
-    console.log(scrollPosition);
+    // const scrollPosition = window.scrollY;
+    // const windowHeight = window.innerHeight;
+    // const docHeight = document.documentElement.scrollHeight;
+
+    // const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
+    // const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
+    // this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
+
+    // this.litEllipseId = this.calculateLitEllipse(scrollPosition);
+    // this.updateEllipseClasses();
+    // console.log(scrollPosition);
   }
 
   private determineNextEllipseId(delta: number): string {
@@ -116,19 +125,66 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       console.log(`Attempting to scroll to ellipse: `, ellipse);
 
       this.isScrollingToEllipse = true;
-      ellipse.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
+      ellipse.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       setTimeout(() => {
         this.isScrollingToEllipse = false;
         console.log(`Finished attempt to scroll to ellipse: `, ellipse);
-      }, 600); // Adjust based on expected duration of the scroll animation
+        // Extract class name from the ellipse and call updatePathDrawing
+        const className = ellipse.className.split(' ').find(cls => cls.startsWith('journey__ellipse-'));
+        if (className) {
+          this.updatePathDrawing(className);
+        }
+      }, 1000); // Adjust based on expected duration of the scroll animation
     } else {
       console.error('Invalid element passed to scrollToEllipse.');
     }
   }
+
+
+
+  private calculateScrollPosition(ellipse: HTMLElement): number {
+    let position = ellipse.offsetTop;
+    let parent = ellipse.offsetParent as HTMLElement;
+    while (parent) {
+      position += parent.offsetTop;
+      parent = parent.offsetParent as HTMLElement;
+    }
+    return position;
+  }
+
+  // Method to update the path highlighting based on the target ellipse
+  private updatePathDrawing(className: string): void {
+    // Find the ellipse element by its class name
+    const ellipse = document.querySelector(`.${className}`) as HTMLElement;
+    if (!ellipse) {
+      console.error(`No ellipse found with class name: ${className}`);
+      return;
+    }
+
+    const positionPercentage = this.calculateEllipsePositionPercentage(ellipse);
+    const pathSegmentLength = this.calculatePathLength(positionPercentage);
+
+    console.log(`Updating path for ellipse: positionPercentage = ${positionPercentage}, pathSegmentLength = ${pathSegmentLength}`);
+    this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, pathSegmentLength));
+  }
+
+  // Calculate the position of the ellipse as a percentage of the total scrollable height
+  private calculateEllipsePositionPercentage(ellipse: HTMLElement): number {
+    const scrollPosition = this.calculateScrollPosition(ellipse);
+    const docHeight = document.documentElement.scrollHeight;
+    console.log((scrollPosition / docHeight) * 100);
+    return (scrollPosition / docHeight) * 100;
+
+
+  }
+
+  // Calculate the path length to highlight based on the position percentage
+  private calculatePathLength(positionPercentage: number): number {
+    return this.pathLength - (this.pathLength * positionPercentage) / 100;
+  }
+
+
 
 
   private calculateLitEllipse(scrollPosition: number): string | null {

@@ -37,11 +37,11 @@
   stroke: #fcb814;
   stroke-linecap: round;
   stroke-linejoin: round;
-  // The highlight effect will be added dynamically with JS so initially set to full length
-  stroke-dasharray: 10000; // Set to the full length of the path or higher
-  stroke-dashoffset: 10000; // Set equal to stroke-dasharray to hide initially
-  transition: stroke-dashoffset 0.3s; // Smooth transition for dash offset
+  stroke-dasharray: 10000; // Adjust as needed based on the actual length of your path
+  stroke-dashoffset: 10000; // Initially hide the path
+  transition: stroke-dashoffset 1s ease-in-out; // Longer duration and ease-in-out timing
 }
+
 
 .ellipse-lit {
   background: #fcb814 !important; // Change the background color to orange
