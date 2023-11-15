@@ -33,18 +33,19 @@
 
 }
 
-#highlight-path {
+#highlightPath {
   stroke: #fcb814;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 10000; // Adjust as needed based on the actual length of your path
-  stroke-dashoffset: 10000; // Initially hide the path
-  transition: stroke-dashoffset 1s ease-in-out; // Longer duration and ease-in-out timing
+  stroke-dasharray: 20000; // Adjust as needed based on the actual length of your path
+  stroke-dashoffset: 20000; // Initially hide the path
+  transition: stroke-dashoffset 0.6s ease-in-out; // Longer duration and ease-in-out timing
 }
 
 
 .ellipse-lit {
-  background: #fcb814 !important; // Change the background color to orange
+  background: #fcb814 !important;
+  transform: scale(1.1); /* Example: Scale up the ellipse */
   // Add other styles or transitions as needed
 }
 
@@ -88,6 +89,8 @@
   width: 33px;
   height: 33px;
   position: relative;
+  transition: all 0.6 ease-in-out // Change the background color to orange
+
 }
 .journey__ready {
   display: flex;
@@ -394,6 +397,7 @@
   width: 33px;
   height: 33px;
   position: relative;
+
 }
 .journey__textbox6 {
   display: flex;

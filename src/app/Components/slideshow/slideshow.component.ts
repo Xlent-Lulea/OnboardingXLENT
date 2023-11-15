@@ -6,29 +6,32 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener }
   styleUrls: ['./slideshow.component.scss']
 })
 export class SlideshowComponent implements OnInit, AfterViewInit {
-  @ViewChild('highlightPath', { static: false }) highlightPath!: ElementRef<SVGPathElement>;
 
-  
-
-  private pathLength = 0; // Will be set to the SVG path's length after view init
   litEllipseId: string | null = null;
 
   ellipseElements: HTMLElement[]; // This should be populated with actual elements
   currentEllipseIndex: number = 0; // Keeps track of the currently focused ellipse
   isScrollingToEllipse: boolean = false; // Flag to indicate if scrolling to an ellipse is in progress
-
   private onWindowScrollBound: any; // Function bound to this class context
 
-  constructor() {
+  @ViewChild('highlightPath') highlightPath!: ElementRef;
+  private pathLength!: number;
+
+  private ellipseDashOffsets: number[] = [10000, 8150, 7100, 5700, 4410, 3300, 2000, 740,0]; // Example values, adjust to match your path
+
+
+  constructor(private el: ElementRef) {
     this.ellipseElements = [];
     // Bind the onWindowScroll function to the component instance in the constructor
     this.onWindowScrollBound = this.onWindowScroll.bind(this);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   ngAfterViewInit() {
-    this.ellipseElements = Array.from(document.querySelectorAll('.journey__ellipse'));
+    this.ellipseElements = Array.from(document.querySelectorAll('.journey__ellipse'))
 
     // setTimeout here is used to ensure that the DOM updates have been processed.
     setTimeout(() => {
@@ -44,6 +47,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
   ngOnDestroy() {
     // Remove event listener when the component is destroyed
     window.removeEventListener('wheel', this.onWindowScrollBound);
+
+
   }
 
   // Your onWindowScroll event is now separate and can be correctly bound or unbound from the event listener.
@@ -52,6 +57,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       event.preventDefault();
       this.handleScroll(event);
     }
+
+
 
 
   }
@@ -64,6 +71,9 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       console.log('Currently animating to another ellipse');
       return;
     }
+
+
+
 
     const delta = event.deltaY;
     const nextEllipseClassName = this.determineNextEllipseId(delta).split(' ').pop(); // Use only the unique part
@@ -78,25 +88,20 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
     } else {
       console.error('No next ellipse found or not an HTMLElement');
     }
+    this.updatePathDrawing();
 
-    // if (nextEllipseClassName) {
-    //   this.updatePathDrawing(nextEllipseClassName);
-    // } else {
-    //   console.error('No next ellipse class name determined.');
-    // }
+    setTimeout(() => {
+      this.updateEllipseClasses();
+    },600);
+
+  }
 
 
-    // const scrollPosition = window.scrollY;
-    // const windowHeight = window.innerHeight;
-    // const docHeight = document.documentElement.scrollHeight;
-
-    // const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
-    // const drawLength = this.pathLength - (this.pathLength * scrollPercentage) / 100;
-    // this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, drawLength));
-
-    // this.litEllipseId = this.calculateLitEllipse(scrollPosition);
-    // this.updateEllipseClasses();
-    // console.log(scrollPosition);
+  private updatePathDrawing(): void {
+    const dashOffset = this.ellipseDashOffsets[this.currentEllipseIndex];
+    // Ensure dashOffset is within the path length
+    const adjustedDashOffset = Math.min(dashOffset, this.pathLength);
+    this.highlightPath.nativeElement.style.strokeDashoffset = adjustedDashOffset.toString();
   }
 
   private determineNextEllipseId(delta: number): string {
@@ -130,12 +135,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.isScrollingToEllipse = false;
         console.log(`Finished attempt to scroll to ellipse: `, ellipse);
-        // Extract class name from the ellipse and call updatePathDrawing
-        const className = ellipse.className.split(' ').find(cls => cls.startsWith('journey__ellipse-'));
-        if (className) {
-          this.updatePathDrawing(className);
-        }
-      }, 1000); // Adjust based on expected duration of the scroll animation
+
+      }, 600); // Adjust based on expected duration of the scroll animation
     } else {
       console.error('Invalid element passed to scrollToEllipse.');
     }
@@ -143,90 +144,16 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
 
 
 
-  private calculateScrollPosition(ellipse: HTMLElement): number {
-    let position = ellipse.offsetTop;
-    let parent = ellipse.offsetParent as HTMLElement;
-    while (parent) {
-      position += parent.offsetTop;
-      parent = parent.offsetParent as HTMLElement;
-    }
-    return position;
-  }
-
-  // Method to update the path highlighting based on the target ellipse
-  private updatePathDrawing(className: string): void {
-    // Find the ellipse element by its class name
-    const ellipse = document.querySelector(`.${className}`) as HTMLElement;
-    if (!ellipse) {
-      console.error(`No ellipse found with class name: ${className}`);
-      return;
-    }
-
-    const positionPercentage = this.calculateEllipsePositionPercentage(ellipse);
-    const pathSegmentLength = this.calculatePathLength(positionPercentage);
-
-    console.log(`Updating path for ellipse: positionPercentage = ${positionPercentage}, pathSegmentLength = ${pathSegmentLength}`);
-    this.highlightPath.nativeElement.style.strokeDashoffset = String(Math.max(0, pathSegmentLength));
-  }
-
-  // Calculate the position of the ellipse as a percentage of the total scrollable height
-  private calculateEllipsePositionPercentage(ellipse: HTMLElement): number {
-    const scrollPosition = this.calculateScrollPosition(ellipse);
-    const docHeight = document.documentElement.scrollHeight;
-    console.log((scrollPosition / docHeight) * 100);
-    return (scrollPosition / docHeight) * 100;
-
-
-  }
-
-  // Calculate the path length to highlight based on the position percentage
-  private calculatePathLength(positionPercentage: number): number {
-    return this.pathLength - (this.pathLength * positionPercentage) / 100;
-  }
-
-
-
-
-  private calculateLitEllipse(scrollPosition: number): string | null {
-    // Your logic to determine the ID of the ellipse that should light up based on the scroll position
-    if (scrollPosition > 6000) {
-      return 'journey__ellipse-22';
-
-    } else if (scrollPosition > 5400) {
-      return 'journey__ellipse-20';
-
-    } else if (scrollPosition > 4528) {
-      return 'journey__ellipse-21';
-
-    } else if (scrollPosition > 3528) {
-      return 'journey__ellipse-18';
-
-    } else if (scrollPosition > 3000) {
-      return 'journey__ellipse-17';
-
-    } else if (scrollPosition > 2500) {
-      return 'journey__ellipse-23';
-    } else if (scrollPosition > 1200) {
-      return 'journey__ellipse-15';
-    } else if (scrollPosition > 600) {
-      return 'journey__ellipse-14';
-    } else if (scrollPosition > -1) {
-      return 'journey__ellipse-13';
-
-    }
-
-
-    return null; // No ellipse is lit
-  }
 
   private updateEllipseClasses(): void {
-    // Query all ellipses and remove the 'lit' class
-    document.querySelectorAll('.journey__ellipse').forEach((ellipse) => {
+    // Remove 'ellipse-lit' class from all ellipses
+    this.ellipseElements.forEach(ellipse => {
       ellipse.classList.remove('ellipse-lit');
     });
 
-    if (this.litEllipseId) {
-      document.querySelector('.' + this.litEllipseId)?.classList.add('ellipse-lit');
+    // Add 'ellipse-lit' class to the currently focused ellipse
+    if (this.ellipseElements[this.currentEllipseIndex]) {
+      this.ellipseElements[this.currentEllipseIndex].classList.add('ellipse-lit');
     }
   }
 
