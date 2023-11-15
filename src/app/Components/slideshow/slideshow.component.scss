@@ -44,6 +44,7 @@
 
 
 .ellipse-lit {
+  transition: all 0.2s ease-in-out;
   background: #fcb814 !important;
   transform: scale(1.1); /* Example: Scale up the ellipse */
   // Add other styles or transitions as needed
