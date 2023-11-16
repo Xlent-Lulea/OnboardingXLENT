@@ -1,5 +1,5 @@
 <h2>Hantera tasks
-  <button mat-button color="primary" (click)="add()">
+  <button *ngIf="!selectedTask" mat-button color="primary" (click)="add()">
     <span>Lägg till</span>
     <mat-icon>add</mat-icon>
   </button>

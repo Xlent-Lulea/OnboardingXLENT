@@ -6,14 +6,14 @@
 </div>
 
 <div class="container">
-  <app-manage-tasktypes
+  <app-manage-tasktypes class="box"
     [taskTypes]="taskTypes"
     (createTaskType)="createTaskType($event)"
     (updateTaskType)="updateTaskType($event)"
     (deleteTaskType)="deleteTaskType($event)"
   ></app-manage-tasktypes>
 
-  <app-manage-tasks
+  <app-manage-tasks class="box"
     [tasks]="tasks"
     [taskTypes]="taskTypes"
     (createTask)="createTask($event)"
@@ -21,7 +21,7 @@
     (removeTask)="removeTask($event)"
   ></app-manage-tasks>
 
-  <app-manage-persons
+  <app-manage-persons class="box"
     [allPersons]="allPersons"
     (createPerson)="createPerson($event)"
     (updatePerson)="updatePerson($event)"

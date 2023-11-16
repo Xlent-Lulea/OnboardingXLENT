@@ -19,6 +19,7 @@ export class PersonService {
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
   updateSelectedPerson(person: Person | null): void {
+    localStorage.setItem('personId', '' + person?.id);
     this.selectedPersonSubject.next(person);
   }
 
@@ -29,7 +30,6 @@ export class PersonService {
   getById(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.personsUrl}/person/${id}`).pipe(
       tap((person) => {
-        localStorage.setItem('personId', '' + id);
         this.updateSelectedPerson(person);
       })
     );
@@ -86,8 +86,7 @@ export class PersonService {
     const storedId = localStorage.getItem('personId');
 
     if (storedId && +storedId === id) {
-      localStorage.setItem('personId', '');
-      this.selectedPersonSubject.next(null);
+      this.updateSelectedPerson(null);
     }
   }
 }

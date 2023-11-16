@@ -70,7 +70,7 @@ export class ManageTasksComponent implements OnChanges {
   }
 
   save(): void {
-    if (!this.selectedTask) {
+    if (!this.selectedTask?.id) {
       return this.createTask.emit(this.taskForm.value);
     }
 

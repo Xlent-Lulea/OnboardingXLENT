@@ -25,7 +25,6 @@ export class ManagePersonsComponent {
     this.personForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-      active: [true],  // set the active field as true
     });
   }
 
@@ -43,7 +42,7 @@ export class ManagePersonsComponent {
   }
 
   submitForm(): void {
-    if (!this.selectedPerson) {
+    if (!this.selectedPerson?.id) {
       return this.createPerson.emit(this.personForm.value);
     }
 
