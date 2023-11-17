@@ -46,6 +46,12 @@ export class ManageTasksComponent implements OnChanges {
       this.tasks || [];
   }
 
+  add(): void {
+    this.selectedTask = {
+      ...this.taskForm.value
+    };
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   select(task: Record<string, any>): void {
     this.selectedTask = task as Task;
@@ -64,7 +70,7 @@ export class ManageTasksComponent implements OnChanges {
   }
 
   save(): void {
-    if (!this.selectedTask) {
+    if (!this.selectedTask?.id) {
       return this.createTask.emit(this.taskForm.value);
     }
 

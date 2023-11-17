@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('ManageTasksComponent', () => {
   let component: ManageTasksComponent;
@@ -32,7 +33,8 @@ describe('ManageTasksComponent', () => {
             provide: TranslateLoader,
             useClass: TranslateFakeLoader, // Use TranslateFakeLoader for testing
           },
-        })
+        }),
+        MatIconModule
       ]
     })
       .compileComponents();

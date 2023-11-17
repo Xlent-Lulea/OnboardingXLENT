@@ -1,6 +1,8 @@
 <div class="container">
   <div class="heading">Välkommen till XLENT Onboarding</div>
+
   <div class="login-box">
+
     <div class="subheading">Välj din användare</div>
     <svg
       class="vector"
@@ -15,57 +17,35 @@
         fill="#323232"
       />
     </svg>
+
     <div class="listbox-component">
-      <div class="personvaljar-lista">
         <mat-form-field>
-          <!-- Visar aktivt namn efter man valt i rullistan -->
           <mat-label>
-            <div>
-              <p>{{ selectedPerson?.name || "Login" }}</p>
-            </div>
+            {{ selectedPerson?.name || "Välj person" }}
           </mat-label>
 
-          <!-- Personvaljare -->
-
-          <mat-select
-            [(value)]="selectedPerson"
-            (selectionChange)="selectPerson.emit(selectedPerson!.id)"
-          >
+          <mat-select [(value)]="selectedPerson" (selectionChange)="selectPerson.emit(selectedPerson)">
+            <mat-option [value]="null">
+            </mat-option>
             <mat-option *ngFor="let person of activePersons" [value]="person">
-              {{ person.name }} {{ person.isActive ? "Aktiv" : "Inaktiv" }}
-              {{ person.id }}
+              {{ person.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
-
-
     </div>
 
-      </div>
+  </div>
 
-      <div class="knappar">
+  <div class="buttons">
 
-        <button
+    <button mat-raised-button color="secondary" routerLink="/home">
+      Gå till hemskärm
+    </button>
 
-          class="knapp"
-          mat-raised-button
-          color="secondary"
-          routerLink="/home"
-          class="loginButton"
-        >
-          Gå till hemskärm
-        </button>
+    <button mat-raised-button color="primary" routerLink="/onboarding">
+      Gå till onboarding
+    </button>
 
-          <button
-            class="knapp"
-            mat-raised-button
-            color="primary"
-            routerLink="/onboarding"
-            class="loginButton"
-          >
-            Gå till onboarding
-          </button>
-        </div>
-    </div>
+  </div>
 
+</div>

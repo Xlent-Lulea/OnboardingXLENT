@@ -24,14 +24,19 @@ export class ManageTasktypesComponent {
     });
   }
 
+  add(): void {
+    this.selectedType = {
+      ...this.taskTypeForm.value
+    };
+  }
+
   select(type: TaskType): void {
     this.selectedType = type;
-
     this.taskTypeForm.get('name')?.setValue(type.name);
   }
 
   save(): void {
-    if (!this.selectedType) {
+    if (!this.selectedType?.id) {
       return this.createTaskType.emit(this.taskTypeForm.value);
     }
 
