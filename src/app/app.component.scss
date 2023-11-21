@@ -51,8 +51,13 @@ a {
 }
 
 button {
-
+  font-family: 'Poppins', sans-serif;
   min-width: min-content;
+  box-shadow: none;
+}
+
+button:hover {
+  box-shadow: none !important;
 }
 
 .example-icon {
