@@ -1,17 +1,17 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss'],
 })
-export class SlideshowComponent implements AfterViewInit {
+export class SlideshowComponent implements AfterViewInit, OnDestroy {
   litEllipseId: string | null = null;
 
   ellipseElements: HTMLElement[];
-  currentEllipseIndex: number = 0;
-  isScrollingToEllipse: boolean = false;
-  private onWindowScrollBound: any;
+  currentEllipseIndex = 0;
+  isScrollingToEllipse = false;
+  private onWindowScrollBound;
 
   @ViewChild('highlightPath') highlightPath!: ElementRef;
   private pathLength!: number;
@@ -53,7 +53,7 @@ export class SlideshowComponent implements AfterViewInit {
   }
 
   private handleScroll(event: WheelEvent): void {
-    
+
     const delta = event.deltaY;
     const nextEllipseClassName = this.determineNextEllipseId(delta)
       .split(' ')

@@ -35,7 +35,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { TaskService } from './services/task.service';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
-import { CarouselComponent } from './Components/carousel/carousel.component';
 import { PersonService } from './services/person.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -50,7 +49,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { PortraitsComponent } from './Components/portraits/portraits.component';
 import { SlideshowComponent } from './Components/slideshow/slideshow.component';
-import { BoxDialogComponent } from './Components/box-dialog/box-dialog.component';
 import { ManageTasktypesComponent } from './Components/manage-tasktypes/manage-tasktypes.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { TaskTypeService } from './services/tasktype.service';
@@ -80,10 +78,8 @@ import { FormErrorMessageComponent } from './Components/form-error-message/form-
     LoginBoxComponent,
     KnowledgeComponent,
     OnboardingComponent,
-    CarouselComponent,
     PortraitsComponent,
     SlideshowComponent,
-    BoxDialogComponent,
     ManageTasktypesComponent,
     SnackBarComponent,
     FormErrorMessageComponent,
