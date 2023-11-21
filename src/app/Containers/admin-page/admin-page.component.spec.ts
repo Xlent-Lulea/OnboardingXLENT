@@ -12,6 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ManageTasktypesComponent } from 'src/app/Components/manage-tasktypes/manage-tasktypes.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormErrorMessageComponent } from 'src/app/Components/form-error-message/form-error-message.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('AdminPageComponent', () => {
   let component: AdminPageComponent;
@@ -19,7 +23,13 @@ describe('AdminPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminPageComponent, ManageTasksComponent, ManagePersonsComponent],
+      declarations: [
+        AdminPageComponent,
+        ManageTasksComponent,
+        ManagePersonsComponent,
+        ManageTasktypesComponent,
+        FormErrorMessageComponent
+      ],
       imports: [
         HttpClientModule,
         RouterModule,
@@ -35,7 +45,9 @@ describe('AdminPageComponent', () => {
             provide: TranslateLoader,
             useClass: TranslateFakeLoader, // Use TranslateFakeLoader for testing
           },
-        })
+        }),
+        MatSnackBarModule,
+        MatIconModule
       ],
       providers: [
         {

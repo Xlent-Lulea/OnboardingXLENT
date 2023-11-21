@@ -6,8 +6,8 @@ import { Person } from 'src/app/models/person.interface';
   styleUrls: ['./login-box.component.scss']
 })
 export class LoginBoxComponent {
-  @Input() activePersons: Person[] | null = [];
-  @Input() selectedPerson: Person | null = null;
+  @Input({ required: true }) activePersons: Person[] | null = [];
+  @Input({ required: true }) selectedPerson: Person | null = null;
 
-  @Output() selectPerson = new EventEmitter<number>();
+  @Output() selectPerson = new EventEmitter<Person | null>();
 }

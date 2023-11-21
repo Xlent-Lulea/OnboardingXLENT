@@ -21,9 +21,12 @@
         <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
             {{selectedPersonName$ | async }}
         </button>
+
       </div>
+      <button class="secretButton" routerLink="/admin-page">Admin</button>
 
     </mat-toolbar>
+
     <mat-sidenav-container class="example-container sidenav-container">
       <mat-sidenav color="primary" class="sidenav" #sidenav mode="over" (click)="sidenav.toggle()">
 
@@ -41,5 +44,7 @@
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>
+
   </header>
+
 

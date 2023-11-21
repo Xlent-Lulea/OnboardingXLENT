@@ -20,10 +20,7 @@ export class LoginComponent {
     ).subscribe();
   }
 
-  selectPerson(personId: number) {
-    console.log('onPersonSelected:', personId);
-
-    // Fetch the selected person details
-    this.personService.getById(personId).subscribe();
+  selectPerson(person: Person | null) {
+    this.personService.updateSelectedPerson(person);
   }
 }

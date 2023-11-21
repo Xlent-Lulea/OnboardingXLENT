@@ -5,6 +5,7 @@ import { TaskType } from 'src/app/models/task-type.interface';
 import { Task } from 'src/app/models/task.interface';
 import { PersonService } from 'src/app/services/person.service';
 import { TaskService } from 'src/app/services/task.service';
+import { TaskTypeService } from 'src/app/services/tasktype.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -17,20 +18,32 @@ export class AdminPageComponent {
   taskTypes: TaskType[] = [];
   tasks: Task[] = [];
 
-  constructor(private personService: PersonService, private taskService: TaskService) {
+  constructor(
+    private personService: PersonService,
+    private taskService: TaskService,
+    private taskTypeService: TaskTypeService
+  ) {
     this.personService.getAll().pipe(
       tap((persons) => this.allPersons = persons || [])
     ).subscribe();
     this.taskService.getAll().pipe(
-      tap((tasks) => this.tasks = tasks),
+      tap((tasks) => this.tasks = tasks || []),
     ).subscribe();
-    this.taskService.getTypes().pipe(
+    this.taskTypeService.getAll().pipe(
       tap((types) => this.taskTypes = types || []),
     ).subscribe();
   }
 
   createPerson(person: Person): void {
     this.personService.create(person).subscribe(() =>
+      this.personService.getAll().pipe(
+        tap((persons) => this.allPersons = persons || [])
+      ).subscribe()
+    );
+  }
+
+  updatePerson(person: Person): void {
+    this.personService.update(person).subscribe(() =>
       this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
       ).subscribe()
@@ -59,11 +72,41 @@ export class AdminPageComponent {
     );
   }
 
+  updateTask(task: Task): void {
+    this.taskService.update(task).subscribe(() =>
+      this.taskService.getAll().pipe(
+        tap((tasks) => this.tasks = tasks)
+      ).subscribe()
+    );
+  }
+
+  createTaskType(taskType: TaskType): void {
+    this.taskTypeService.create(taskType).subscribe((newTaskType) => {
+      this.taskTypes.push(newTaskType);
+    });
+  }
+
+  updateTaskType(taskType: TaskType): void {
+    this.taskTypeService.update(taskType).subscribe(() =>
+      this.taskTypeService.getAll().pipe(
+        tap((types) => this.taskTypes = types)
+      ).subscribe()
+    );
+  }
+
   removeTask(taskId: number): void {
     this.taskService.remove(taskId).subscribe(() =>
       this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)
       ).subscribe()
     );
+  }
+
+  deleteTaskType(taskTypeId: number): void {
+    this.taskTypeService.delete(taskTypeId).subscribe(() => {
+      this.taskTypeService.getAll().pipe(
+        tap((types) => this.taskTypes = types || [])
+      );
+    });
   }
 }

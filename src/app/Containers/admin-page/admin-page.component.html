@@ -1,19 +1,33 @@
 <div class="title">
   <h1>Admin</h1>
   <h4>Sida för att administrera personer och checklista</h4>
+  <div>Använd knapparna för att lägga till, redigera eller ta bort kategorier, tasks och personer.</div>
+  <div>Använd checkboxen till respektive person för att aktivera/inaktivera den.</div>
 </div>
+
 <div class="container">
-  <app-manage-tasks
-  [tasks]="tasks"
-  [taskTypes]="taskTypes"
-  (createTask)="createTask($event)"
-  (removeTask)="removeTask($event)"
+  <app-manage-tasktypes class="box"
+    [taskTypes]="taskTypes"
+    (createTaskType)="createTaskType($event)"
+    (updateTaskType)="updateTaskType($event)"
+    (deleteTaskType)="deleteTaskType($event)"
+  ></app-manage-tasktypes>
+
+  <app-manage-tasks class="box"
+    [tasks]="tasks"
+    [taskTypes]="taskTypes"
+    (createTask)="createTask($event)"
+    (updateTask)="updateTask($event)"
+    (removeTask)="removeTask($event)"
   ></app-manage-tasks>
 
-  <app-manage-persons
+  <app-manage-persons class="box"
     [allPersons]="allPersons"
     (createPerson)="createPerson($event)"
+    (updatePerson)="updatePerson($event)"
     (removePerson)="removePerson($event)"
     (toggleActive)="toggleActivePerson($event)"
-    ></app-manage-persons>
+  ></app-manage-persons>
 </div>
+
+

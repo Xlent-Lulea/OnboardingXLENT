@@ -1,17 +1,10 @@
-// confirmation-dialog.component.ts
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
-  template: `
-    <h2 mat-dialog-title>{{data.title}}</h2>
-    <mat-dialog-content>{{data.message}}</mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button cdkFocusInitial (click)="onYesClick()">Yes</button>
-      <button mat-button (click)="onNoClick()">No</button>
-    </mat-dialog-actions>
-  `,
+  templateUrl: 'confirm-dialog.component.html',
+  styleUrls: ['confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
 

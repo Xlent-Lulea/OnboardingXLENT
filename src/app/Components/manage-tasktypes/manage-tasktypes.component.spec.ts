@@ -1,35 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ManagePersonsComponent } from './manage-persons.component';
-import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ManageTasktypesComponent } from './manage-tasktypes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 import { MatIconModule } from '@angular/material/icon';
 
-describe('ManagePersonsComponent', () => {
-  let component: ManagePersonsComponent;
-  let fixture: ComponentFixture<ManagePersonsComponent>;
+
+describe('ManageTasktypesComponent', () => {
+  let component: ManageTasktypesComponent;
+  let fixture: ComponentFixture<ManageTasktypesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagePersonsComponent, FormErrorMessageComponent],
+      declarations: [ManageTasktypesComponent, FormErrorMessageComponent],
       imports: [
-        MatDialogModule,
+        FormsModule,
         MatFormFieldModule,
-        HttpClientModule,
         ReactiveFormsModule,
         MatInputModule,
         BrowserAnimationsModule,
+        MatDialogModule,
         MatIconModule
-      ]
-    })
-      .compileComponents();
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ManagePersonsComponent);
+    fixture = TestBed.createComponent(ManageTasktypesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

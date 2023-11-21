@@ -1,62 +1,66 @@
-<ng-container>
-  <ng-container class="task-list">
-    <h2>Lägg till task</h2>
-    <form [formGroup]="TaskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
-      <mat-form-field>
-        <mat-label>Tasktyp</mat-label>
-        <mat-select MatFormFieldControl (selectionChange)="filterTasks()"
-          formControlName="type" required>
-          <mat-option *ngFor="let type of taskTypes" [value]="type">
-            {{ type.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+<h2>Hantera tasks
+  <button *ngIf="!selectedTask" mat-button color="primary" (click)="add()">
+    <span>Lägg till</span>
+    <mat-icon>add</mat-icon>
+  </button>
+</h2>
 
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Titel</mat-label>
-        <input MatFormFieldControl matInput id="task-title" formControlName="title"
-          placeholder="Ange titel" required />
-      </mat-form-field>
+<form *ngIf="selectedTask" [formGroup]="taskForm" #myForm="ngForm" (ngSubmit)="save(); myForm.resetForm()">
+  <mat-form-field>
+    <mat-label>Kategori</mat-label>
+    <mat-select MatFormFieldControl (selectionChange)="filterTasks()" formControlName="type" required>
+      <mat-option [value]="null"></mat-option>
+      <mat-option *ngFor="let type of taskTypes" [value]="type">
+        {{ type.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-form-error-message [control]="taskForm.get('type')"></app-form-error-message>
 
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Beskrivning</mat-label>
-        <input MatFormFieldControl matInput id="task-description"
-          formControlName="description" required placeholder="Ange beskrivning" />
-      </mat-form-field>
+  <mat-form-field appearance="outline" class="form-group">
+    <mat-label>Titel</mat-label>
+    <input MatFormFieldControl matInput id="task-title" formControlName="title" placeholder="Ange titel" required />
+  </mat-form-field>
+  <app-form-error-message [control]="taskForm.get('title')"></app-form-error-message>
 
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>URL</mat-label>
-        <input MatFormFieldControl matInput id="task-url" formControlName="url"
-          placeholder="Ange URL" />
-      </mat-form-field>
+  <mat-form-field appearance="outline" class="form-group">
+    <mat-label>URL</mat-label>
+    <input MatFormFieldControl matInput id="task-url" formControlName="url" placeholder="Ange URL" />
+  </mat-form-field>
+  <app-form-error-message [control]="taskForm.get('url')"></app-form-error-message>
 
-      <button mat-raised-button color="primary" type="submit">Add task</button>
-    </form>
-  </ng-container>
+  <mat-form-field id="description" appearance="outline" class="form-group">
+    <mat-label>Beskrivning</mat-label>
+    <textarea style="white-space: pre-wrap;" MatFormFieldControl matInput id="task-description"
+      formControlName="description" required placeholder="Ange beskrivning"></textarea>
+  </mat-form-field>
+  <app-form-error-message [control]="taskForm.get('description')"></app-form-error-message>
 
-  <!-- Show tasks based on selected taskType-->
-  <ng-container *ngFor="let task of filteredTasks">
-    <div class="task-row">
-      <div class="task">
-        <div class="task-text">
+  <div>
+    <button mat-raised-button color="primary" class="form-button" type="submit"
+      [disabled]="taskForm.invalid">Spara</button>
+    <button mat-raised-button color="secondary" class="form-button"
+      (click)="selectedTask = null; myForm.resetForm()">Avbryt</button>
+  </div>
+</form>
 
-          <p>
-            <ng-container *ngIf="task.url; else noLink">
-              <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
-              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
-            </ng-container>
-            <ng-template #noLink>
-              {{ task.title }}
-              <mat-icon (click)="deleteTask(task.id)">delete_forever</mat-icon>
-            </ng-template>
-          </p>
-
-          <p class="description">
-            {{ task.description }}
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</ng-container>
+<!-- Show tasks based on selected taskType-->
+<mat-list *ngFor="let task of filteredTasks">
+  <mat-list-item>
+    <span matListItemTitle>
+      <ng-container *ngIf="task.url; else noLink">
+        <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
+      </ng-container>
+      <ng-template #noLink>
+        {{ task.title }}
+      </ng-template>
+      <button mat-icon-button color="primary" (click)="select(task)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </span>
+    {{ task.description }}
+  </mat-list-item>
+</mat-list>

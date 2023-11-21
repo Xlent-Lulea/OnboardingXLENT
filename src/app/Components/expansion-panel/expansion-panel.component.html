@@ -20,13 +20,13 @@
                                 (ngModelChange)="onTaskStatusChange(personTask)"></mat-checkbox>
 
                             <div class="task-text">
-                                <p>
+                                <p class="title">
 
                                     <ng-container *ngIf="personTask.task.url; else noLink">
                                         <a [attr.href]="personTask.task.url" target="_blank">{{ personTask.task.title
                                             }}</a>
                                     </ng-container>
-                                    <ng-template #noLink>{{ personTask.task.title }}</ng-template>
+                                    <ng-template class="noLink" #noLink>{{ personTask.task.title }}</ng-template>
 
                                 </p>
                                 <p class="description">

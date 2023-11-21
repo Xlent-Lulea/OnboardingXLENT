@@ -17,8 +17,8 @@ import { TaskType } from 'src/app/models/task-type.interface';
 export class ExpansionPanelComponent implements OnChanges {
   taskPercent = 0;
 
-  @Input() taskType: TaskType | null = null;
-  @Input() personTasks: PersonTask[] | null = [];
+  @Input({ required: true }) taskType: TaskType | null = null;
+  @Input({ required: true }) personTasks: PersonTask[] | null = [];
 
   @Output() taskStatusChanged: EventEmitter<PersonTask> = new EventEmitter<PersonTask>();
 

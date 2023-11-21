@@ -12,23 +12,48 @@ import { Person } from 'src/app/models/person.interface';
 
 export class ManagePersonsComponent {
   personForm: FormGroup;
+  selectedPerson: Person | null = null;
 
-  @Input() allPersons: Person[] | null = [];
+  @Input({ required: true }) allPersons: Person[] | null = [];
 
   @Output() createPerson: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output() updatePerson: EventEmitter<Person> = new EventEmitter<Person>();
   @Output() removePerson: EventEmitter<number> = new EventEmitter<number>();
   @Output() toggleActive: EventEmitter<{ id: number, active: boolean }> = new EventEmitter<{ id: number, active: boolean }>();
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.personForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      active: [true],  // set the active field as true
+      name: ['', [Validators.required, Validators.maxLength(255)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
     });
   }
 
+  add(): void {
+    this.selectedPerson = {
+      ...this.personForm.value
+    };
+  }
+
+  select(person: Person): void {
+    this.selectedPerson = person;
+
+    this.personForm.get('name')?.setValue(person.name);
+    this.personForm.get('email')?.setValue(person.email);
+  }
+
   submitForm(): void {
-    this.createPerson.emit(this.personForm.value);
+    if (!this.selectedPerson?.id) {
+      return this.createPerson.emit(this.personForm.value);
+    }
+
+    this.selectedPerson = {
+      ...this.selectedPerson,
+      ...this.personForm.value
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.updatePerson.emit(this.selectedPerson!);
+    this.selectedPerson = null;
   }
 
   openDeleteConfirmationDialog(personId: number): void {

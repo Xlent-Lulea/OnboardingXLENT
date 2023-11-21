@@ -29,7 +29,7 @@ export class CarouselComponent {
     {
       title: "Buddy/coach",
       content: "Du har säkert redan träffat din Buddy, som är den som håller ihop din intro och har lite extra koll på att du får svar på dina frågor och funderingar. Sen efter några månader när du kommit igång, så kommer du få möjlighet att själv önska en coach.",
-      imagePath: "../../../assets/image 5.png"
+      imagePath: "../../../assets/image 4.png"
     },
     {
       title: "Startklar",
