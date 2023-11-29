@@ -1,50 +1,47 @@
-
 <header class="main-container">
 
-    <mat-toolbar class="toolbar">
+  <mat-toolbar class="toolbar">
 
-        <div class="left-section">
+    <div class="left-section">
       <div class="mobile-nav-button">
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
       <a class="logo" routerLink="/home">
-         <img class="image" src="../../assets/image-2.png" alt="XLENT logo"/>
+        <img class="image" src="../../assets/image-2.png" alt="XLENT logo" />
       </a>
     </div>
-      <span class="example-spacer"></span>
-      <div class="desktop-nav-links">
+    <span class="example-spacer"></span>
+    <div class="desktop-nav-links">
+      <a mat-button routerLink="/checklist">Checklista</a>
+      <a mat-button routerLink="/links">Länkar</a>
+      <a mat-button routerLink="/knowledge">Kunskap</a>
+      <button mat-raised-button color="primary" routerLink="/login">
+        {{ selectedPersonName$ | async }}
+      </button>
+    </div>
+    <button mat-button class="secretButton" routerLink="/admin-page">Admin</button>
+
+  </mat-toolbar>
+
+
+  <mat-sidenav-container class="example-container sidenav-container">
+    <mat-sidenav color="primary" class="sidenav" #sidenav mode="over" (click)="sidenav.toggle()">
+
+      <div class="sidenav-links">´
+        <a mat-button routerLink="/home">Hem</a>
         <a mat-button routerLink="/checklist">Checklista</a>
         <a mat-button routerLink="/links">Länkar</a>
         <a mat-button routerLink="/knowledge">Kunskap</a>
         <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
-            {{selectedPersonName$ | async }}
+          {{ selectedPersonName$ | async }}
         </button>
-
       </div>
-      <button class="secretButton" routerLink="/admin-page">Admin</button>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
-    </mat-toolbar>
-
-    <mat-sidenav-container class="example-container sidenav-container">
-      <mat-sidenav color="primary" class="sidenav" #sidenav mode="over" (click)="sidenav.toggle()">
-
-        <div class="sidenav-links">´
-          <a mat-button routerLink="/home">Hem</a>
-            <a mat-button routerLink="/checklist" >Checklista</a>
-            <a mat-button routerLink="/links">Länkar</a>
-            <a mat-button routerLink="/knowledge">Kunskap</a>
-            <button mat-raised-button color="primary" routerLink="/login" class="loginButton">
-                {{selectedPersonName$ | async }}
-            </button>
-        </div>
-      </mat-sidenav>
-      <mat-sidenav-content class="sidenav-content">
-        <router-outlet></router-outlet>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-
-  </header>
-
-
+</header>

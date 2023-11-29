@@ -1,9 +1,11 @@
 .body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    border-radius: 12px;
-    padding: 20px; /* Lägger till lite padding runt containerns innehåll */
-  }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+ng-container {
+  margin-bottom: 100px; // Enable scroll to bottom
+}

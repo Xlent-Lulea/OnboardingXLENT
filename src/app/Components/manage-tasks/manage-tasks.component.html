@@ -45,22 +45,25 @@
 </form>
 
 <!-- Show tasks based on selected taskType-->
-<mat-list *ngFor="let task of filteredTasks">
-  <mat-list-item>
+<mat-list class="form-list" *ngFor="let task of filteredTasks">
+  <mat-list-item lines="3">
     <span matListItemTitle>
-      <ng-container *ngIf="task.url; else noLink">
-        <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
-      </ng-container>
-      <ng-template #noLink>
-        {{ task.title }}
-      </ng-template>
-      <button mat-icon-button color="primary" (click)="select(task)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
-        <mat-icon>delete_forever</mat-icon>
-      </button>
+      @if (task.url) {
+      <a [attr.href]="task.url" target="_blank">{{ task.title }}</a>
+      }
+      @else {
+      <p>{{ task.title }}</p>
+      }
+      <span>
+        <button mat-icon-button color="primary" (click)="select(task)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </span>
     </span>
-    {{ task.description }}
+    <span>{{ task.description }}
+    </span>
   </mat-list-item>
 </mat-list>

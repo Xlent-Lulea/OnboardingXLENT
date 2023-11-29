@@ -1,5 +1,4 @@
 <div class="container">
-
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>{{ taskType?.name }}</mat-panel-title>
@@ -10,32 +9,26 @@
 
         <ng-container>
             <ng-container *ngFor="let personTask of personTasks; let taskIndex = index">
-                <ng-container>
 
-                    <div class="task-row">
-                        <div class="task" style="display: flex; align-items: center;">
+                <div class="task">
+                    <mat-checkbox [(ngModel)]="personTask.isCompleted" color="primary"
+                        (ngModelChange)="onTaskStatusChange(personTask)"></mat-checkbox>
 
-                            <mat-checkbox [(ngModel)]="personTask.isCompleted" color="primary"
-                                style="margin-right: 10px;"
-                                (ngModelChange)="onTaskStatusChange(personTask)"></mat-checkbox>
+                    <div class="task-text">
+                        <p class="title">
 
-                            <div class="task-text">
-                                <p class="title">
+                            @if (personTask.task.url) {
+                            <a [attr.href]="personTask.task.url" target="_blank">{{ personTask.task.title }}</a>
+                            }
+                            @else {
+                            <span class="noLink">{{ personTask.task.title }}</span>
+                            }
 
-                                    <ng-container *ngIf="personTask.task.url; else noLink">
-                                        <a [attr.href]="personTask.task.url" target="_blank">{{ personTask.task.title
-                                            }}</a>
-                                    </ng-container>
-                                    <ng-template class="noLink" #noLink>{{ personTask.task.title }}</ng-template>
-
-                                </p>
-                                <p class="description">
-                                    {{ personTask.task.description }}
-                                </p>
-                            </div>
-                        </div>
+                        </p>
+                        <p>{{ personTask.task.description }}</p>
                     </div>
-                </ng-container>
+                </div>
+
             </ng-container>
         </ng-container>
     </mat-expansion-panel>

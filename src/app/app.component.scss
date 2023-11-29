@@ -1,27 +1,22 @@
-body, html {
+body,
+html {
   margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
-
 
 @media only screen and (max-width: 768px) {
   table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-
-
-
 }
 
-header{
+header {
   background-color: #ffff;
-
 }
-
 
 .mat-toolbar {
   height: 7vh;
@@ -33,6 +28,9 @@ header{
   min-width: 768px;
   max-width: 1050px;
 
+  button {
+    max-width: 230px; // If larger than 230px there may be button overlap
+  }
 }
 
 div {
@@ -51,8 +49,10 @@ a {
 }
 
 button {
-
-  min-width: min-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .example-icon {
@@ -64,7 +64,6 @@ button {
 }
 
 .mat-sidenav-content {
-
   text-align: center;
   flex: 1;
 }
@@ -76,6 +75,7 @@ button {
 .desktop-nav-links {
   display: flex;
   gap: 20px;
+  margin-right: 50px;
 }
 
 .sidenav {
@@ -89,7 +89,6 @@ button {
   gap: 20px;
   font-size: 25px;
   overflow: hidden;
-
 }
 
 .left-section {
@@ -103,33 +102,22 @@ button {
   margin: 0;
   padding: 0;
   padding-top: 10px;
-
 }
 
 .secretButton {
   display: flex;
-
   background-color: transparent;
-  border: none;
-  padding: 0;
-  outline: white;
-  color: white;
   position: absolute;
-  right: 0; /* Position it on the far right */
-  margin-left: 0; /* Remove the margin-left */
+  right: 2px; // Position it on the far right
+  --mdc-text-button-label-text-color: transparent !important;
 
-
-
+  &:hover {
+    color: white;
+    outline: black;
+    border: black;
+    background-color: gray;
+  }
 }
-
-.secretButton:hover {
-  color: white;
-  outline: black;
-  border: black;
-  background-color: gray;
-}
-
-
 
 @media (min-width: 768px) {
   .mobile-nav-button {
@@ -143,8 +131,6 @@ button {
   .desktop-nav-links {
     display: flex;
   }
-
-
 }
 
 @media (max-width: 767px) {
@@ -156,13 +142,12 @@ button {
     display: flex;
     width: 60%;
   }
-  .logo{
+
+  .logo {
     margin: auto;
   }
+
   .mat-toolbar {
     min-width: 0;
-
   }
-
 }
-

@@ -19,16 +19,20 @@
   </div>
 </form>
 
-<mat-list *ngFor="let taskType of taskTypes">
+<mat-list class="form-list" *ngFor="let taskType of taskTypes">
   <mat-list-item>
-    <span matListItemTitle>{{ taskType.name }}
+    <span matListItemTitle>
+      <p>{{ taskType.name }}</p>
 
-      <button mat-icon-button color="primary" (click)="select(taskType)">
-        <mat-icon>edit</mat-icon>
-      </button>
+      <span>
+        <button mat-icon-button color="primary" (click)="select(taskType)">
+          <mat-icon>edit</mat-icon>
+        </button>
 
-      <button mat-icon-button color="warn" (click)="deleteTaskTypeDialog(taskType.id)">
-        <mat-icon>delete_forever</mat-icon>
-      </button></span>
+        <button mat-icon-button color="warn" (click)="deleteTaskTypeDialog(taskType.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </span>
+    </span>
   </mat-list-item>
 </mat-list>

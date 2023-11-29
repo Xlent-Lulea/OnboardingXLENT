@@ -6,8 +6,13 @@ form {
   height: 100%;
 }
 
+mat-checkbox {
+  height: 100%;
+  padding-top: 0 !important; // Align label with buttons
+}
+
 mat-form-field {
-  width: 500px; // Standardiserad bredd
+  width: 500px; // Standardized width
 }
 
 @media only screen and (max-width: 768px) {
@@ -18,7 +23,7 @@ mat-form-field {
   }
 }
 
-@media only screen and (min-width: 1419px) {
+@media only screen and (min-width: 1219px) {
 
   mat-form-field,
   .form-error {

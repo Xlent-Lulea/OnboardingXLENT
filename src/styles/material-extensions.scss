@@ -1,5 +1,58 @@
+mat-expansion-panel {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+mat-expansion-panel-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 mat-list {
     text-align: left;
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+    // Project defined class form-list, used at admin page
+    &.form-list {
+        mat-list-item {
+            margin-bottom: 16px;
+
+            // Title works as a container
+            .mat-mdc-list-item-title {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                /* Styles for the title including buttons wrapped in span
+                   Each element works as a box inside the container */
+                p,
+                a,
+                span,
+                mat-checkbox {
+                    display: flex;
+                    flex-direction: row;
+                    margin: 0;
+                    overflow: scroll;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                }
+
+                // Styles for the title itself, not buttons wrapped in span
+                p,
+                a,
+                mat-checkbox {
+                    padding-top: 12px;
+                }
+            }
+
+            .mat-mdc-list-item-unscoped-content {
+                overflow: scroll;
+                text-overflow: ellipsis;
+                display: inline-block;
+            }
+        }
+    }
 }
 
 .mat-mdc-snack-bar-container {

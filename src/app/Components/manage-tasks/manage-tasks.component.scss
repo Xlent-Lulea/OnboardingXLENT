@@ -10,15 +10,14 @@ mat-form-field {
   width: 500px;
 }
 
-@media only screen and (max-width: 768px) {
-
-  mat-form-field,
-  .form-error {
-    width: 350px;
+mat-list-item {
+  .mat-mdc-list-item-title {
+    grid-template-columns: 0fr 1fr 1fr;
   }
 }
 
-@media only screen and (min-width: 1419px) {
+@media only screen and (max-width: 768px),
+screen and (min-width: 1219px) {
 
   mat-form-field,
   .form-error {
