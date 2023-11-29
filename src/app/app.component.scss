@@ -53,6 +53,12 @@ button {
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: none;
+}
+
+button:hover {
+  box-shadow: none !important;
 }
 
 .example-icon {
