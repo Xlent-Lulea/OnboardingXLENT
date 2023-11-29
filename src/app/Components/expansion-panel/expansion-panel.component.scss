@@ -4,25 +4,28 @@
   align-items: center;
 }
 
-.task-row {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-}
-
 .task-text {
   text-align: left;
   max-width: 450px;
   white-space: pre-line;
+
   p {
     margin-bottom: 5px;
   }
 }
 
-
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
 
 .title {
   font-weight: 600;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 mat-expansion-panel {
@@ -31,21 +34,23 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-  margin-top: 10px;
-  margin-bottom: 10px;
   width: 600px;
-}
 
-mat-accordion {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  max-width: 1000px;
-  justify-content: center;
+  mat-panel-title {
+    text-overflow: ellipsis;
+    overflow: scroll;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: left;
+  }
 }
 
 mat-progress-bar {
   width: 60%;
+  margin-right: 10px;
+}
+
+mat-checkbox {
   margin-right: 10px;
 }
 
@@ -54,13 +59,7 @@ mat-progress-bar {
     align-items: unset;
   }
 
-  .mat-accordion {
-    padding: 10px;
-  }
-
   mat-expansion-panel-header {
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: unset;
   }
 }

@@ -29,23 +29,25 @@
   </div>
 </form>
 
-<mat-list *ngFor="let person of allPersons" [ngClass]="{'inactive': !person.isActive}">
+<mat-list class="form-list" *ngFor="let person of allPersons" [ngClass]="{'inactive': !person.isActive}">
   <mat-list-item>
     <span matListItemTitle>
       <mat-checkbox color="primary" [(ngModel)]="person.isActive"
         (change)="toggleActive.emit({ id: person.id, active: person.isActive })">
-        <span>{{ person.name }}
+        <p>{{ person.name }}
           <i *ngIf="!person.isActive"> (Inaktiv)</i>
-        </span>
+        </p>
       </mat-checkbox>
 
-      <button mat-icon-button color="primary" (click)="select(person)">
-        <mat-icon>edit</mat-icon>
-      </button>
+      <span>
+        <button mat-icon-button color="primary" (click)="select(person)">
+          <mat-icon>edit</mat-icon>
+        </button>
 
-      <button mat-icon-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
-        <mat-icon>delete_forever</mat-icon>
-      </button>
+        <button mat-icon-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </span>
     </span>
   </mat-list-item>
 </mat-list>

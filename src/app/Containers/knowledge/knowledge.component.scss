@@ -2,106 +2,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1000px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
 }
 
 mat-expansion-panel {
-  margin-top: 1px;
-  margin-bottom: 1px;
-  text-align: left;
-}
-
-mat-expansion-panel-header {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 mat-accordion {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  max-width: 1000px;
-  justify-content: center;
-  min-width: 1000px;
-  text-align: left;
-}
-
-.mat-accordion.mat-accordion {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  max-width: 1000px;
-  justify-content: center;
-}
-
-.responsibility{
-  padding-bottom: 100px;
-
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-
-  padding-top: 50px;
-  display: flex;
-  flex-direction: column;
-
-
-}
-
-.heading{
-  // background-color: #ffffff;
-  border-radius: 12px;
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-  flex: 1;
-  max-width: 500px;
-  justify-content: center;
-  min-width: 1000px;
-  text-align: left;
-  padding-top: 10px;
-  padding-left: 15px;
-  gap: 5px;
-
-  p{
-    max-width: 500px;
-  }
-}
-
-.subheading{
-  text-align: left;
+  margin-bottom: 40px;
+  width: 100%
 }
 
 p {
   padding-bottom: 20px;
 }
 
-/* Apply the same styling to both lists */
-mat-list {
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-
 mat-list-item {
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    align-items: unset;
-  }
-
-  .mat-accordion {
-    padding: 10px;
-  }
-
-  mat-panel-description {
-    display: none;
-  }
-}
-.heading-width {
-  width: 200px; /* Adjust the width as needed */
-  display: inline-block; /* Ensures the width applies to the heading content */
 }

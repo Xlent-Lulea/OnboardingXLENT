@@ -8,8 +8,8 @@
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); // Ensure same size for 3 columns
+    grid-gap: 10px;
 }
 
 .box {
@@ -18,11 +18,11 @@
     flex-direction: column;
     border-radius: 12px;
     background-color: #ffffff;
-    padding: 40px; // Increased padding for better spacing
+    padding: 10px; // Increased padding for better spacing
     margin: 20px;
 }
 
-@media only screen and (max-width: 1419px) {
+@media only screen and (max-width: 1219px) {
 
     .container {
         display: flex;
@@ -36,5 +36,6 @@
 
     .box {
         width: 100%;
+        padding: 40px;
     }
 }

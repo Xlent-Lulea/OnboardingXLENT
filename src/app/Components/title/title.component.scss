@@ -1,4 +1,4 @@
-.titel {
+.title {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -7,20 +7,20 @@
   flex-wrap: wrap;
 }
 
-.titlar {
-  width: 65%; 
+.titles {
+  width: 65%;
   box-sizing: border-box;
   padding-right: 20px;
 }
 
-.titel-rubrik {
+.title-heading {
   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
   text-align: left;
   font-size: 72px;
   margin-bottom: 20px;
 }
 
-.titel-underrubrik {
+.title-subheading {
   color: var(--tonalpalette-primary-primary-900, #0f0b2e);
   text-align: left;
   font-size: 15px;
@@ -34,17 +34,17 @@
 
 
 @media only screen and (max-width: 768px) {
-  .titlar {
+  .titles {
     width: 100%;
     padding-right: 0;
   }
 
-  .titel-rubrik {
+  .title-heading {
     font-size: 36px;
     line-height: 45px;
   }
 
-  .titel-underrubrik {
+  .title-subheading {
     font-size: 16px;
     line-height: 24px;
   }
