@@ -26,6 +26,13 @@
   text-overflow: ellipsis;
   overflow: scroll;
   white-space: nowrap;
+
+  -ms-overflow-style: none; // Hide scroll Internet Explorer 10+
+  scrollbar-width: none; // Hide scroll Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Hide scroll Safari and Chrome
+  }
 }
 
 mat-expansion-panel {
@@ -42,6 +49,12 @@ mat-expansion-panel-header {
     white-space: nowrap;
     display: inline-block;
     text-align: left;
+    -ms-overflow-style: none; // Hide scroll Internet Explorer 10+
+    scrollbar-width: none; // Hide scroll Firefox
+
+    &::-webkit-scrollbar {
+      display: none; // Hide scroll Safari and Chrome
+    }
   }
 }
 
