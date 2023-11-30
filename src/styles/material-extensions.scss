@@ -36,6 +36,12 @@ mat-list {
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     display: inline-block;
+                    -ms-overflow-style: none; // Hide scroll Internet Explorer 10+
+                    scrollbar-width: none; // Hide scroll Firefox
+
+                    &::-webkit-scrollbar {
+                        display: none; // Hide scroll Safari and Chrome
+                    }
                 }
 
                 // Styles for the title itself, not buttons wrapped in span
@@ -50,6 +56,12 @@ mat-list {
                 overflow: scroll;
                 text-overflow: ellipsis;
                 display: inline-block;
+                -ms-overflow-style: none; // Hide scroll Internet Explorer 10+
+                scrollbar-width: none; // Hide scroll Firefox
+
+                &::-webkit-scrollbar {
+                    display: none; // Hide scroll Safari and Chrome
+                }
             }
         }
     }
