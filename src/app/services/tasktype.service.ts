@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { TaskType } from 'src/app/models/task-type.interface';
 import { SnackBarService } from './snack-bar-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskTypeService {
-  private taskTypesUrl = `${window.location.protocol}//${window.location.hostname}:8081/taskTypes`;
+  private taskTypesUrl = `${environment.url}:${environment.port}/taskTypes`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) {}
 

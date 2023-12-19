@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { Person } from '../models/person.interface';
 import { PersonTask } from '../models/person-task.interface';
 import { SnackBarService } from './snack-bar-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class PersonService {
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
 
-  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
+  private personsUrl = `${environment.url}:${environment.port}`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
