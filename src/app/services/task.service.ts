@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TaskService {
 
-  private tasksUrl = `${environment.url}:${environment.port}`;
+  private tasksUrl = `http:///${window.location.hostname}:${environment.port}`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 

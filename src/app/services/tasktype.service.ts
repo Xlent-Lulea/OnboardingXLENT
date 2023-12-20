@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class TaskTypeService {
-  private taskTypesUrl = `${environment.url}:${environment.port}/taskTypes`;
+  private taskTypesUrl = `http:///${window.location.hostname}:${environment.port}/taskTypes`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) {}
 

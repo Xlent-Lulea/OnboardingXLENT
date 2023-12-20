@@ -15,7 +15,7 @@ export class PersonService {
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
 
-  private personsUrl = `${environment.url}:${environment.port}`;
+  private personsUrl = `http:///${window.location.hostname}:${environment.port}`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 

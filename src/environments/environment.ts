@@ -1,4 +1,3 @@
 export const environment = {
-    url:  'https://xlentbackend',
-    port: 8080
+    port: 32100
 };
