@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PortraitsComponent } from 'src/app/Components/portraits/portraits.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { PersonTask } from 'src/app/models/person-task.interface';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -40,5 +40,62 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should calculate overall progress for zero tasks to 0%', () => {
+    component.personTasks = [] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(0);
+    expect(component.isAllTasksCompleted).toBeFalsy();
+  });
+
+  it('should calculate overall progress for one task to 0%', () => {
+    component.personTasks = [{ isCompleted: false }] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(0);
+    expect(component.isAllTasksCompleted).toBeFalsy();
+  });
+
+  it('should calculate overall progress for multiple tasks to 0%', () => {
+    component.personTasks = [
+      { isCompleted: false },
+      { isCompleted: false },
+      { isCompleted: false },
+      { isCompleted: false }
+    ] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(0);
+    expect(component.isAllTasksCompleted).toBeFalsy();
+  });
+
+  it('should calculate overall progress for multiple tasks to 25%', () => {
+    component.personTasks = [
+      { isCompleted: false },
+      { isCompleted: true },
+      { isCompleted: false },
+      { isCompleted: false }
+    ] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(25);
+    expect(component.isAllTasksCompleted).toBeFalsy();
+  });
+
+  it('should calculate overall progress for one task to 100%', () => {
+    component.personTasks = [{ isCompleted: true }] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(100);
+    expect(component.isAllTasksCompleted).toBeTruthy();
+  });
+
+  it('should calculate overall progress for multiple tasks to 100%', () => {
+    component.personTasks = [
+      { isCompleted: true },
+      { isCompleted: true },
+      { isCompleted: true },
+      { isCompleted: true }
+    ] as PersonTask[];
+
+    expect(component.calculateOverallTaskProgress()).toEqual(100);
+    expect(component.isAllTasksCompleted).toBeTruthy();
   });
 });

@@ -37,7 +37,7 @@ export class HomeComponent implements AfterViewInit {
     const completedTasksCount = this.personTasks.filter((task) => task.isCompleted).length;
 
     // Check if all tasks are completed
-    this.isAllTasksCompleted = completedTasksCount === totalTasksCount;
+    this.isAllTasksCompleted = completedTasksCount === totalTasksCount && totalTasksCount > 0;
 
     const percentage = totalTasksCount > 0 ? (completedTasksCount / totalTasksCount) * 100 : 0;
     return Math.trunc(percentage);
