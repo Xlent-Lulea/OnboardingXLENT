@@ -20,7 +20,8 @@ export class ManageTasktypesComponent {
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.taskTypeForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(255)]]
+      name: ['', [Validators.required, Validators.maxLength(255)]],
+      isBuddyType: [false, Validators.required]
     });
   }
 
@@ -33,6 +34,7 @@ export class ManageTasktypesComponent {
   select(type: TaskType): void {
     this.selectedType = type;
     this.taskTypeForm.get('name')?.setValue(type.name);
+    this.taskTypeForm.get('isBuddyType')?.setValue(type.isBuddyType ? type.isBuddyType : false);
   }
 
   save(): void {

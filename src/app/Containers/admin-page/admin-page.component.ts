@@ -50,6 +50,14 @@ export class AdminPageComponent {
     );
   }
 
+  resetPerson(personId: number): void {
+    this.personService.resetTasks(personId).subscribe(() =>
+      this.personService.getAll().pipe(
+        tap((persons) => this.allPersons = persons || [])
+      ).subscribe()
+    );
+  }
+
   removePerson(personId: number): void {
     this.personService.remove(personId).subscribe(() =>
       this.personService.getAll().pipe(

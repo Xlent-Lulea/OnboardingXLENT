@@ -1,13 +1,26 @@
-<ng-container *ngIf="this.personId; else noPersonSelected">
-  <div class="body">
-    <h1>Checklista</h1>
-    <h4>Här får du en introduktion som nyanställd</h4>
-  </div>
+<ng-container *ngIf="person; else noPersonSelected">
+  <ng-container *ngIf="person.mentee">
+    <div class="body">
+      <h1>Buddylista</h1>
+      <h4>Här är din Buddy-checklista</h4>
+    </div>
 
+    <ng-container *ngFor="let type of buddyTaskTypes">
+      <app-expansion-panel [personTasks]="buddyTasks" [taskType]="type"
+        (taskStatusChanged)="updateTaskStatus($event)"></app-expansion-panel>
+    </ng-container>
+  </ng-container>
 
-  <ng-container *ngFor="let type of taskTypes">
-    <app-expansion-panel [personTasks]="personTasks" [taskType]="type"
-      (taskStatusChanged)="updateTaskStatus($event)"></app-expansion-panel>
+  <ng-container>
+    <div class="body">
+      <h1>Checklista</h1>
+      <h4>{{ checklistDescription }}</h4>
+    </div>
+
+    <ng-container *ngFor="let type of taskTypes">
+      <app-expansion-panel [personTasks]="personTasks" [taskType]="type"
+        (taskStatusChanged)="updateTaskStatus($event)"></app-expansion-panel>
+    </ng-container>
   </ng-container>
 </ng-container>
 

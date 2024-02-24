@@ -9,7 +9,7 @@ import { SnackBarService } from './snack-bar-service';
 })
 export class TaskService {
 
-  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
+  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8082`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 

@@ -21,6 +21,25 @@
   </mat-form-field>
   <app-form-error-message [control]="personForm.get('email')"></app-form-error-message>
 
+  <mat-label>Buddy</mat-label>
+  <mat-radio-group formControlName="isBuddy">
+    <mat-radio-button [value]="true">Ja</mat-radio-button>
+    <mat-radio-button [value]="false">Nej</mat-radio-button>
+  </mat-radio-group>
+
+  <ng-container *ngIf="personForm.get('isBuddy')?.value === true">
+    <mat-form-field>
+      <mat-label>Buddy till</mat-label>
+      <mat-select MatFormFieldControl formControlName="mentee">
+        <mat-option [value]="null"></mat-option>
+        <mat-option *ngFor="let person of allPersons" [value]="person">
+          {{ person.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-form-error-message [control]="personForm.get('mentee')"></app-form-error-message>
+  </ng-container>
+
   <div>
     <button mat-raised-button color="primary" class="form-button" type="submit"
       [disabled]="personForm.invalid">Spara</button>
@@ -42,6 +61,10 @@
       <span>
         <button mat-icon-button color="primary" (click)="select(person)">
           <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" (click)="openResetDialog(person.id)">
+          <mat-icon>refresh</mat-icon>
         </button>
 
         <button mat-icon-button color="warn" (click)="openDeleteConfirmationDialog(person.id)">

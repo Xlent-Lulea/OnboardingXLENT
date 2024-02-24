@@ -8,7 +8,7 @@ import { SnackBarService } from './snack-bar-service';
   providedIn: 'root',
 })
 export class TaskTypeService {
-  private taskTypesUrl = `${window.location.protocol}//${window.location.hostname}:8081/taskTypes`;
+  private taskTypesUrl = `${window.location.protocol}//${window.location.hostname}:8082/taskTypes`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) {}
 

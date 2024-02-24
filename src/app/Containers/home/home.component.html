@@ -1,14 +1,40 @@
 <div class="container">
     <app-title></app-title>
 
-    <div class="overall-progress" *ngIf="personId">
+    <div class="overall-progress">
         <mat-card>
             <div class="title">
-                <h2>Onboarding status</h2>
-                <mat-icon *ngIf="isAllTasksCompleted" class="checkmark-icon">check_circle</mat-icon>
+                <h2>Hej!</h2>
             </div>
-            <mat-progress-bar mode="determinate" [value]="calculateOverallTaskProgress()"></mat-progress-bar>
-            <span class="progress-text">{{ calculateOverallTaskProgress() }}% klart</span>
+            <div style="padding: 20px;">
+                Vi är väldigt glada att du blir en del av vårt gäng!
+                Under första veckorna på XLENT så kommer det säkert bli många som du får hälsa på och säga hej till.
+                Tag gärna chansen och surra en stund när du får tillfälle,
+                så kommer du snabbt in i gänget!
+            </div>
+            <div style="padding: 20px;">Här får du en introduktion till din arbetsplats som nyanställd</div>
+        </mat-card>
+    </div>
+
+    <div class="overall-progress" *ngIf="person?.mentee">
+        <mat-card>
+            <div class="title">
+                <h2>Buddy status</h2>
+                <mat-icon *ngIf="buddyTaskProgress === 100" class="checkmark-icon">check_circle</mat-icon>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="buddyTaskProgress"></mat-progress-bar>
+            <span class="progress-text">{{ buddyTaskProgress }}% klart</span>
+        </mat-card>
+    </div>
+
+    <div class="overall-progress" *ngIf="person">
+        <mat-card>
+            <div class="title">
+                <h2>Onboarding status <span *ngIf="person.mentee"> för {{ person.mentee.name }}</span></h2>
+                <mat-icon *ngIf="taskProgress === 100" class="checkmark-icon">check_circle</mat-icon>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="taskProgress"></mat-progress-bar>
+            <span class="progress-text">{{ taskProgress }}% klart</span>
         </mat-card>
     </div>
 

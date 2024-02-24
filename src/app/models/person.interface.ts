@@ -3,4 +3,5 @@ export interface Person {
     name: string;
     email: string;
     isActive: boolean;
+    readonly mentee: Person | null;
 }

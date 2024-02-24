@@ -14,7 +14,7 @@ export class PersonService {
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
   public selectedPerson$ = this.selectedPersonSubject.asObservable();
 
-  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
+  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8082`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
@@ -51,6 +51,14 @@ export class PersonService {
     const url = `${this.personsUrl}/person/${person.id}`;
     return this.http.put<Person>(url, person).pipe(
       tap((person) => this.snackBarService.show(person.name + ' sparad!'))
+    );
+  }
+
+  resetTasks(personId: number): Observable<void> {
+    return this.http.put<void>(`${this.personsUrl}/person/${personId}/reset`, {}).pipe(
+      tap(() => {
+        this.snackBarService.show('Person återställd');
+      })
     );
   }
 

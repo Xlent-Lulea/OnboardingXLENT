@@ -151,6 +151,14 @@ describe('AdminPageComponent', () => {
     expect(personService.update).toHaveBeenCalledOnceWith(personToUpdate);
   });
 
+  it('should handle person reset', () => {
+    // Trigger the event output from ManagePersonComponent
+    const personId: number = 0;
+    managePersonComponent.resetPerson.emit(personId);
+
+    expect(personService.resetTasks).toHaveBeenCalledOnceWith(personId);
+  });
+
   it('should handle person remove', () => {
     // Trigger the event output from ManagePersonComponent
     const personToRemove: Person = { id: 0 } as Person;
