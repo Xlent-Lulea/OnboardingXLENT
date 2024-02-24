@@ -3,18 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Task } from '../models/task.interface';
 import { SnackBarService } from './snack-bar-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8082`;
-
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
   getAll(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.tasksUrl}/tasks`);
+    return this.http.get<Task[]>(`${environment.apiUrl}/tasks`);
   }
 
   create(task: Task): Observable<Task> {
@@ -22,7 +21,7 @@ export class TaskService {
       task.url = 'https://' + task.url;
     }
 
-    return this.http.post<Task>(`${this.tasksUrl}/tasks`, task).pipe(
+    return this.http.post<Task>(`${environment.apiUrl}/tasks`, task).pipe(
       tap(() => this.snackBarService.show('Task sparad!'))
     );
   }
@@ -32,13 +31,13 @@ export class TaskService {
       task.url = 'https://' + task.url;
     }
 
-    return this.http.put<Task>(`${this.tasksUrl}/tasks/${task.id}`, task).pipe(
+    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
       tap(() => this.snackBarService.show('Task uppdaterad!'))
     );
   }
 
   remove(taskId: number): Observable<void> {
-    return this.http.delete<void>(`${this.tasksUrl}/tasks/${taskId}`).pipe(
+    return this.http.delete<void>(`${environment.apiUrl}/tasks/${taskId}`).pipe(
       tap(() => this.snackBarService.show('Task borttagen'))
     );
   }
