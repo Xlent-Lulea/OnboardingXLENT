@@ -23,7 +23,8 @@ import { TaskTypeService } from 'src/app/services/tasktype.service';
 import { By } from '@angular/platform-browser';
 import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task-type.interface';
-import { of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
+import { MatRadioModule } from '@angular/material/radio';
 
 describe('AdminPageComponent', () => {
   let component: AdminPageComponent;
@@ -58,6 +59,7 @@ describe('AdminPageComponent', () => {
         MatDialogModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatRadioModule,
         ReactiveFormsModule,
         FormsModule,
         MatInputModule,
@@ -100,19 +102,20 @@ describe('AdminPageComponent', () => {
     component = fixture.componentInstance;
 
     personService = TestBed.inject(PersonService);
-    spyOn(personService, 'create');
-    spyOn(personService, 'update');
-    spyOn(personService, 'remove');
+    spyOn(personService, 'create').and.returnValue(EMPTY);
+    spyOn(personService, 'update').and.returnValue(EMPTY);
+    spyOn(personService, 'resetTasks').and.returnValue(EMPTY);
+    spyOn(personService, 'remove').and.returnValue(EMPTY);
 
     taskService = TestBed.inject(TaskService);
-    spyOn(taskService, 'create');
-    spyOn(taskService, 'update');
-    spyOn(taskService, 'remove');
+    spyOn(taskService, 'create').and.returnValue(EMPTY);
+    spyOn(taskService, 'update').and.returnValue(EMPTY);
+    spyOn(taskService, 'remove').and.returnValue(EMPTY);
 
     taskTypeService = TestBed.inject(TaskTypeService);
     spyOn(taskTypeService, 'create').and.returnValue(of(taskTypeToHandle));
-    spyOn(taskTypeService, 'update');
-    spyOn(taskTypeService, 'delete');
+    spyOn(taskTypeService, 'update').and.returnValue(EMPTY);
+    spyOn(taskTypeService, 'delete').and.returnValue(EMPTY);
 
     managePersonFixture = TestBed.createComponent(ManagePersonsComponent);
     manageTaskFixture = TestBed.createComponent(ManageTasksComponent);
