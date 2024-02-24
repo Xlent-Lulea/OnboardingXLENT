@@ -54,20 +54,12 @@ export class KnowledgeComponent {
       subheading: 'Ansvarig: Sofia Flodmark',
       tasks: [
         '•	Marknadsföring av XLU',
-        '•	Delta på externa event'
+        '•	Delta på externa event',
+        '•	Profilprodukter'
       ]
     },
     {
-      heading: 'Onboarding',
-      subheading: 'Ansvarig: Emmy Valfridsson',
-      tasks: [
-        '•	Ansvarar för och utvecklar processen för att ta emot nyanställda',
-        '•	Initierar onboardingprocessen vid nyanställning',
-        '•	Ansvarar för samordning av fotografering'
-      ]
-    },
-    {
-      heading: 'Rekrytering',
+      heading: 'Rekrytering och Onboarding',
       subheading: 'Ansvarig: Alexandra Rönnkvist',
       tasks: [
         '•	Ansvarar för rekryteringsprocessen',
@@ -75,7 +67,10 @@ export class KnowledgeComponent {
         '•	Sammanhållande av rekryterings-processen för varje rekrytering',
         '•	Planera för kommande rekryteringar, vem som skriver annons, vilka som ska delta på intervjuer m.m ',
         '•	Ansvarar för pågående rekryteringar och beslut',
-        '•	Informerar övriga och tar in input kring beslut'
+        '•	Informerar övriga och tar in input kring beslut',
+        '•	Ansvarar för och utvecklar processen för att ta emot nyanställda',
+        '•	Initierar onboardingprocessen vid nyanställning',
+        '•	Ansvarar för samordning av fotografering'
       ]
     },
     {
