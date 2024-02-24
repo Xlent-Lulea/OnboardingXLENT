@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { Person } from 'src/app/models/person.interface';
 import { TaskType } from 'src/app/models/task-type.interface';
 import { Task } from 'src/app/models/task.interface';
@@ -35,19 +35,19 @@ export class AdminPageComponent {
   }
 
   createPerson(person: Person): void {
-    this.personService.create(person).subscribe(() =>
-      this.personService.getAll().pipe(
+    this.personService.create(person).pipe(
+      switchMap(() => this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   updatePerson(person: Person): void {
-    this.personService.update(person).subscribe(() =>
-      this.personService.getAll().pipe(
+    this.personService.update(person).pipe(
+      switchMap(() => this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   resetPerson(personId: number): void {
@@ -59,11 +59,11 @@ export class AdminPageComponent {
   }
 
   removePerson(personId: number): void {
-    this.personService.remove(personId).subscribe(() =>
-      this.personService.getAll().pipe(
+    this.personService.remove(personId).pipe(
+      switchMap(() => this.personService.getAll().pipe(
         tap((persons) => this.allPersons = persons || [])
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   toggleActivePerson(params: { id: number, active: boolean }): void {
@@ -73,19 +73,19 @@ export class AdminPageComponent {
   }
 
   createTask(task: Task): void {
-    this.taskService.create(task).subscribe(() =>
-      this.taskService.getAll().pipe(
+    this.taskService.create(task).pipe(
+      switchMap(() => this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   updateTask(task: Task): void {
-    this.taskService.update(task).subscribe(() =>
-      this.taskService.getAll().pipe(
+    this.taskService.update(task).pipe(
+      switchMap(() => this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   createTaskType(taskType: TaskType): void {
@@ -95,26 +95,26 @@ export class AdminPageComponent {
   }
 
   updateTaskType(taskType: TaskType): void {
-    this.taskTypeService.update(taskType).subscribe(() =>
-      this.taskTypeService.getAll().pipe(
+    this.taskTypeService.update(taskType).pipe(
+      switchMap(() => this.taskTypeService.getAll().pipe(
         tap((types) => this.taskTypes = types)
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   removeTask(taskId: number): void {
-    this.taskService.remove(taskId).subscribe(() =>
-      this.taskService.getAll().pipe(
+    this.taskService.remove(taskId).pipe(
+      switchMap(() => this.taskService.getAll().pipe(
         tap((tasks) => this.tasks = tasks)
-      ).subscribe()
-    );
+      ))
+    ).subscribe();
   }
 
   deleteTaskType(taskTypeId: number): void {
-    this.taskTypeService.delete(taskTypeId).subscribe(() => {
-      this.taskTypeService.getAll().pipe(
+    this.taskTypeService.delete(taskTypeId).pipe(
+      switchMap(() => this.taskTypeService.getAll().pipe(
         tap((types) => this.taskTypes = types || [])
-      );
-    });
+      ))
+    ).subscribe();
   }
 }
