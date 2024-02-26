@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Task } from '../models/task.interface';
 import { SnackBarService } from './snack-bar-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private tasksUrl = `${window.location.protocol}//${window.location.hostname}:8081`;
+  private tasksUrl = `http:///${window.location.hostname}:${environment.port}`;
 
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
@@ -18,20 +19,12 @@ export class TaskService {
   }
 
   create(task: Task): Observable<Task> {
-    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
-      task.url = 'https://' + task.url;
-    }
-
     return this.http.post<Task>(`${this.tasksUrl}/tasks`, task).pipe(
       tap(() => this.snackBarService.show('Task sparad!'))
     );
   }
 
   update(task: Task): Observable<Task> {
-    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
-      task.url = 'https://' + task.url;
-    }
-
     return this.http.put<Task>(`${this.tasksUrl}/tasks/${task.id}`, task).pipe(
       tap(() => this.snackBarService.show('Task uppdaterad!'))
     );
