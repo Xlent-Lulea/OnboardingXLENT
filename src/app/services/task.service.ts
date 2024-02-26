@@ -17,20 +17,12 @@ export class TaskService {
   }
 
   create(task: Task): Observable<Task> {
-    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
-      task.url = 'https://' + task.url;
-    }
-
     return this.http.post<Task>(`${environment.apiUrl}/tasks`, task).pipe(
       tap(() => this.snackBarService.show('Task sparad!'))
     );
   }
 
   update(task: Task): Observable<Task> {
-    if (task.url && !task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
-      task.url = 'https://' + task.url;
-    }
-
     return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
       tap(() => this.snackBarService.show('Task uppdaterad!'))
     );
