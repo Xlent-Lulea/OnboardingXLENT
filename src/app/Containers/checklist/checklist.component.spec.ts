@@ -11,6 +11,8 @@ import { By } from '@angular/platform-browser';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Person } from 'src/app/models/person.interface';
+import { EMPTY } from 'rxjs';
 
 describe('ChecklistComponent', () => {
   let component: ChecklistComponent;
@@ -39,10 +41,10 @@ describe('ChecklistComponent', () => {
     component.taskTypes = [
       {}
     ] as TaskType[];
-    component.personId = '1';
+    component.person = { id: 0 } as Person;
 
     personService = TestBed.inject(PersonService);
-    spyOn(personService, 'updateTaskCompletionStatus');
+    spyOn(personService, 'updateTaskCompletionStatus').and.returnValue(EMPTY);
     expansionPanelFixture = TestBed.createComponent(ExpansionPanelComponent);
 
     fixture.detectChanges();

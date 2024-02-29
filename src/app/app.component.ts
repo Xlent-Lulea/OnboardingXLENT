@@ -22,7 +22,7 @@ export class AppComponent {
     translate.setDefaultLang('sv');
     const storedPersonId = localStorage.getItem('personId');
 
-    if (!storedPersonId) {
+    if (!storedPersonId || storedPersonId === 'undefined') {
       return;
     }
 

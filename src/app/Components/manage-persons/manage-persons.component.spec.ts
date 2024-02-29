@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 describe('ManagePersonsComponent', () => {
   let component: ManagePersonsComponent;
@@ -24,7 +25,8 @@ describe('ManagePersonsComponent', () => {
         ReactiveFormsModule,
         MatInputModule,
         BrowserAnimationsModule,
-        MatIconModule
+        MatIconModule,
+        MatRadioModule
       ]
     })
       .compileComponents();

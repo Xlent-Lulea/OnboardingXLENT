@@ -7,7 +7,6 @@ import { ChecklistComponent } from './Containers/checklist/checklist.component';
 import { LinksComponent } from './Containers/links/links.component';
 import { KnowledgeComponent } from './Containers/knowledge/knowledge.component';
 import { AdminPageComponent } from './Containers/admin-page/admin-page.component';
-import { OnboardingComponent } from './Containers/onboarding/onboarding.component';
 @NgModule({
   declarations: [],
   imports: [
@@ -24,7 +23,6 @@ export const routes: Routes = [
   { path: 'links', component: LinksComponent },
   { path: 'knowledge', component: KnowledgeComponent },
   { path: 'admin-page', component: AdminPageComponent },
-  { path: 'onboarding', component: OnboardingComponent },
 
   // ... andra rutter
 ];

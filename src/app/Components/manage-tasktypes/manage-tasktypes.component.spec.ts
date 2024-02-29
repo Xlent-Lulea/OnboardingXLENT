@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormErrorMessageComponent } from '../form-error-message/form-error-message.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 describe('ManageTasktypesComponent', () => {
@@ -23,7 +24,8 @@ describe('ManageTasktypesComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         MatDialogModule,
-        MatIconModule
+        MatIconModule,
+        MatRadioModule
       ],
     }).compileComponents();
 
